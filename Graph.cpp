@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <set>
+#include <algorithm>
 
 Graph::Graph(const string &input_edge_name, const string &input_vertex_name) {
     input_edge(input_edge_name);
