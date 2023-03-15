@@ -3,12 +3,28 @@
 //
 
 #include "Railway.h"
-#include <sstream>
+#include <iostream>
+
+bool is_number(const string &s) {
+    for (char x : s) {
+        if (x < '0' || x > '9') {
+            return false;
+        }
+    }
+    return !s.empty();
+}
 istream &operator>>(istream &in, Railway &edge) {
     getline(in, edge.station_A, ',');
     getline(in, edge.station_B, ',');
-    getline(in, edge.capacity, ',');
+    string s;
+    getline(in, s, ',');
+    if (is_number(s)) {
+        edge.capacity = stoi(s);
+    } else {
+        return in;
+    }
     getline(in, edge.service);
+    edge.cost = (edge.service == "STANDARD") ? 1 : 2;
     return in;
 }
 ostream &operator<<(ostream &out, const Railway &edge) {

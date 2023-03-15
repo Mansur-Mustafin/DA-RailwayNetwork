@@ -7,7 +7,6 @@
 
 #include <string>
 using namespace std;
-
 class Station {
 public:
     int ind = 0;
