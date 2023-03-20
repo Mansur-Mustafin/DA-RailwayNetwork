@@ -5,16 +5,20 @@
 using namespace std;
 
 
+
 int main() {
     Graph g = Graph("network.csv", "stations.csv");
+
     while (true) {
-        vector<string> base(2);
-        cout << "Enter name of station: <from> <to> \n";
-        getline(cin, base[0]);
-        getline(cin, base[1]);
+        vector<string> base = {"Évora","Portalegre"};
+//        cout << "Enter name of station: <from> <to> \n";
+//        getline(cin, base[0]);
+//        getline(cin, base[1]);
+//        cout << base[0] << base[1];
         cout
                 << "Enter number of task: <2_1> <2_2> <2_3> <2_4> <3_1> <4_1>, without "
                    "<> or enter <exit>\n";
+
         string number;
         getline(cin, number);
         if (number == "2_1") {
