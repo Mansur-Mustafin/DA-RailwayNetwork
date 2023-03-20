@@ -16,9 +16,10 @@ Graph::Graph(const string &input_edge_name, const string &input_vertex_name) {
 
 void Graph::input_vertex(const string &input_name) {
     Station v;
+    string s;
     ifstream fin(input_name);
     int ptr = 0;
-    fin >> v;
+    getline(fin, s);
     while (fin >> v) {
         key[v.name] = ptr;
         v.ind = ptr++;
@@ -29,7 +30,10 @@ void Graph::input_vertex(const string &input_name) {
 
 void Graph::input_edge(const string &input_name) {
     Railway e;
+    string s;
     ifstream fin(input_name);
+    getline(fin, s);
+
     while (fin >> e) {
         railways.emplace_back(e);
         swap(e.station_A, e.station_B);
@@ -98,9 +102,25 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
         ans.emplace_back(x.second, x.first);
     }
     sort(ans.rbegin(), ans.rend());
-    for (int i = 0; i < k; i++) {
+    for (int i = 0; i < ans.size() && i < k; i++) {
         cout << ans[i].second << " " << ans[i].first << "\n";
     }
+}
+void Graph::Task2_4(const vector<string> &base) {
+    if (key.count(base[2]) == 0) {
+        cout << -1;
+        return;
+    }
+    vector<Railway> copy_railways = railways;
+    ford_falk(key[base[0]], key[base[1]], copy_railways);
+    int count = 0;
+    int pos = key[base[2]];
+    for (int i : adjacencyList[pos]) {
+        if (copy_railways[i].flow < 0) {
+            count += (-copy_railways[i].flow);
+        }
+    }
+    cout << count << "\n";
 }
 
 int Graph::Task3_1(const vector<string> &base) {
@@ -116,10 +136,21 @@ int Graph::Task3_1(const vector<string> &base) {
     }
     return result * 2;
 }
-int Graph::ford_falk(int s, int t, vector<Railway> &rail) {
+int Graph::Task4_1(const vector<string> &base) {
+    if (!check_keys(base)) {
+        return -1;
+    }
+    vector<Railway> copy_railways = railways;
+    return ford_falk(key[base[0]], key[base[1]], copy_railways, key[base[3]]);
+}
+
+int Graph::ford_falk(int s, int t, vector<Railway> &rail, int skip) {
     int result = 0;
     while (true) {
         vector<bool> mark(adjacencyList.size(), false);
+        if (skip != -1) {
+            mark[skip] = true;
+        }
         int x = dfs(s, t, 1e9, mark, rail);
         if (x == 0) {
             break;
@@ -128,13 +159,16 @@ int Graph::ford_falk(int s, int t, vector<Railway> &rail) {
     }
     return result;
 }
+
 int Graph::dfs(int v, int t, int current_min, vector<bool> &mark,
                vector<Railway> &rail) {
+
     if (mark[v]) {
         return 0;
     }
     mark[v] = true;
     if (v == t) {
+        int p;
         return current_min;
     }
     for (int q : adjacencyList[v]) {
@@ -192,7 +226,12 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
 }
 
 bool Graph::check_keys(const vector<string> &base) {
-    return key.count(base[0]) == 1 && key.count(base[1]) == 1;
+    for (auto &x : base) {
+        if (key.count(x) == 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {

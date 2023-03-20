@@ -4,7 +4,7 @@
 
 #include "Railway.h"
 #include <iostream>
-
+#include <sstream>
 bool is_number(const string &s) {
     for (char x : s) {
         if (x < '0' || x > '9') {
