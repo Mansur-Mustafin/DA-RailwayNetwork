@@ -33,7 +33,6 @@ void Graph::input_edge(const string &input_name) {
     string s;
     ifstream fin(input_name);
     getline(fin, s);
-
     while (fin >> e) {
         railways.emplace_back(e);
         swap(e.station_A, e.station_B);
@@ -60,6 +59,7 @@ int Graph::Task2_1(const vector<string> &base) {
     vector<Railway> copy_railways = railways;
     return ford_falk(key[base[0]], key[base[1]], copy_railways);
 }
+
 void Graph::Task2_2(vector<string> &base) {
     if (!check_keys(base)) {
         return;
@@ -91,10 +91,10 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
             if (stations[key[x.station_A]].municipality !=
                 stations[key[x.station_B]].municipality) {
                 result[stations[key[x.station_B]].municipality] += x.flow;
-            } else if (stations[key[x.station_A]].district !=
-                       stations[key[x.station_B]].district) {
-                result[stations[key[x.station_B]].district] += x.flow;
             }
+        }else if (stations[key[x.station_A]].district !=
+                  stations[key[x.station_B]].district) {
+            result[stations[key[x.station_B]].district] += x.flow;
         }
     }
     vector<pair<int, string>> ans;
@@ -106,6 +106,7 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
         cout << ans[i].second << " " << ans[i].first << "\n";
     }
 }
+
 void Graph::Task2_4(const vector<string> &base) {
     if (key.count(base[2]) == 0) {
         cout << -1;
@@ -123,6 +124,7 @@ void Graph::Task2_4(const vector<string> &base) {
     cout << count << "\n";
 }
 
+
 int Graph::Task3_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -136,6 +138,8 @@ int Graph::Task3_1(const vector<string> &base) {
     }
     return result * 2;
 }
+
+
 int Graph::Task4_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -160,9 +164,7 @@ int Graph::ford_falk(int s, int t, vector<Railway> &rail, int skip) {
     return result;
 }
 
-int Graph::dfs(int v, int t, int current_min, vector<bool> &mark,
-               vector<Railway> &rail) {
-
+int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway> &rail) {
     if (mark[v]) {
         return 0;
     }
