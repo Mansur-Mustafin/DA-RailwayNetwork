@@ -54,6 +54,7 @@ void Graph::build_adjacencyList() {
     }
 }
 
+
 int Graph::Task2_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -62,20 +63,30 @@ int Graph::Task2_1(const vector<string> &base) {
     return ford_falk(key[base[0]], key[base[1]], copy_railways);
 }
 
+
 void Graph::Task2_2(vector<string> &base) {
     if (!check_keys(base)) {
         return;
     }
     vector<Railway> copy_railways = railways;
     ford_falk(key[base[0]], key[base[1]], copy_railways);
-    Railway mx;
+
+    vector<Railway> r;
+    int mx = -1;
+
     for (const auto &x : copy_railways) {
-        if (x.flow > mx.flow) {
-            mx = x;
+        if (x.flow > mx) {
+            mx = x.flow;
+            r.clear();
+        }else if(x.flow == mx){
+            r.push_back(x);
         }
     }
-    cout << mx.station_A << " " << mx.station_B << " " << mx.flow;
+    for(auto el : r){
+        cout << el.station_A << " -> " << el.station_B  << " (" << el.flow << ")" << endl;
+    }
 }
+
 
 void Graph::Task2_2_2() {
     vector<Railway> copy_railways = railways;
