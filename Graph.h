@@ -32,6 +32,7 @@ class Graph {
 public:
     int Task2_1(const vector<string> &base);
     void Task2_2(vector<string> &base);
+    void Task2_2_2();
     void Task2_3(vector<string> &base, int k, bool flag);
     int Task3_1(const vector<string> &base);
     Graph(const string &input_edge_name, const string &input_vertex_name);

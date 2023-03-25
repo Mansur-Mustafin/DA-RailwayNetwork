@@ -49,6 +49,8 @@ void Graph::build_adjacencyList() {
         railways[i + 1].prev_position = i;
         adjacencyList[key[obj.station_A]].emplace_back(i);
         adjacencyList[key[obj.station_B]].emplace_back(i + 1);
+        stations[key[obj.station_A]].number_stations += obj.capacity;
+        stations[key[obj.station_B]].number_stations += obj.capacity;
     }
 }
 
@@ -73,6 +75,44 @@ void Graph::Task2_2(vector<string> &base) {
         }
     }
     cout << mx.station_A << " " << mx.station_B << " " << mx.flow;
+}
+
+void Graph::Task2_2_2() {
+    vector<Railway> copy_railways = railways;
+    vector<Station> copy_stations = stations;
+    sort(copy_stations.begin(), copy_stations.end(), [](Station x, Station y) {return x.number_stations > y.number_stations;});
+
+    struct answer{
+        string s1;
+        string s2;
+        int flow;
+    };
+
+    vector<answer> r;
+    int cur, max = -1;
+
+    for(int i = 0; i < copy_stations.size(); i++){
+        if(max > copy_stations[i].number_stations){
+            break;
+        }
+        for(int j = 0; j < i; j++){
+            cur = ford_falk(key[copy_stations[i].name], key[copy_stations[j].name], copy_railways);
+            copy_railways = railways;
+            //cout << copy_stations[i].name << " " <<  copy_stations[j].name << "  " << cur << endl;
+            if(cur > max){
+                max = cur;
+                r.clear();
+                answer a = {copy_stations[i].name,copy_stations[j].name, cur};
+                r.push_back(a);
+            }else if(cur == max){
+                answer a = {copy_stations[i].name,copy_stations[j].name, cur};
+                r.push_back(a);
+            }
+        }
+    }
+    for(auto e : r){
+        cout << e.s1 << " -> " << e.s2 << " (" << e.flow << ")" << endl;
+    }
 }
 
 void Graph::Task2_3(vector<string> &base, int k, bool flag) {

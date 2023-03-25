@@ -15,6 +15,7 @@ public:
     string municipality;
     string township;
     string line;
+    int number_stations;
     friend istream &operator>>(istream &in, Station &vertex);
     friend ostream &operator<<(ostream &out, const Station &vertex);
 };
