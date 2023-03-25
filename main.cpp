@@ -6,9 +6,8 @@ using namespace std;
 int main() {
     Graph g = Graph("network_test_1.csv", "stations_test_1.csv");
     //Graph g = Graph("network.csv", "stations.csv");
-
     while (true) {
-        vector<string> base = {"A","N"};
+        vector<string> base = {"D","H"};
         cout << "Enter number of task: <2_1> <2_2> <2_2_2> <2_3> <2_4> <3_1> <4_1>\n";
         string number;
         getline(cin, number);

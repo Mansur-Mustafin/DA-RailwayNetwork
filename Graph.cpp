@@ -60,7 +60,14 @@ int Graph::Task2_1(const vector<string> &base) {
         return -1;
     }
     vector<Railway> copy_railways = railways;
-    return ford_falk(key[base[0]], key[base[1]], copy_railways);
+    int r = ford_falk(key[base[0]], key[base[1]], copy_railways);
+
+    for (auto &x : copy_railways) {
+        if (x.flow > 0) {
+            cout << x.station_A << " -> " << x.station_B << " " << x.flow << '/'<< x.capacity << endl;
+        }
+    }
+    return r;
 }
 
 
@@ -78,6 +85,7 @@ void Graph::Task2_2(vector<string> &base) {
         if (x.flow > mx) {
             mx = x.flow;
             r.clear();
+            r.push_back(x);
         }else if(x.flow == mx){
             r.push_back(x);
         }
@@ -126,25 +134,32 @@ void Graph::Task2_2_2() {
     }
 }
 
+
+
 void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     if (!check_keys(base)) {
         return;
     }
     // TODO k and flag
     vector<Railway> copy_railways = railways;
-    ford_falk(key[base[0]], key[base[1]], copy_railways);
+    int tmp = ford_falk(key[base[0]], key[base[1]], copy_railways);
     unordered_map<string, int> result;
+
+    if(flag){
+        result[stations[key[base[0]]].municipality] += tmp;
+    }else{
+        result[stations[key[base[0]]].district] += tmp;
+    }
+
     for (auto &x : copy_railways) {
         if (x.flow <= 0) {
             continue;
         }
         if (flag) {
-            if (stations[key[x.station_A]].municipality !=
-                stations[key[x.station_B]].municipality) {
+            if (stations[key[x.station_A]].municipality != stations[key[x.station_B]].municipality && stations[key[x.station_B]].municipality != stations[key[base[0]]].municipality) {
                 result[stations[key[x.station_B]].municipality] += x.flow;
             }
-        }else if (stations[key[x.station_A]].district !=
-                  stations[key[x.station_B]].district) {
+        }else if (stations[key[x.station_A]].district != stations[key[x.station_B]].district && stations[key[x.station_B]].district != stations[key[base[0]]].district) {
             result[stations[key[x.station_B]].district] += x.flow;
         }
     }
