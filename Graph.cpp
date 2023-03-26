@@ -54,6 +54,18 @@ void Graph::build_adjacencyList() {
     }
 }
 
+bool Graph::check_segments(const vector<int> &seg)
+{
+    for (auto i : seg)
+    {
+        if (2 * i >= railways.size())
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 int Graph::Task2_1(const vector<string> &base) {
     if (!check_keys(base)) {
@@ -134,8 +146,6 @@ void Graph::Task2_2_2() {
     }
 }
 
-
-
 void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     if (!check_keys(base)) {
         return;
@@ -156,10 +166,12 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
             continue;
         }
         if (flag) {
-            if (stations[key[x.station_A]].municipality != stations[key[x.station_B]].municipality && stations[key[x.station_B]].municipality != stations[key[base[0]]].municipality) {
+            if (stations[key[x.station_A]].municipality != stations[key[x.station_B]].municipality
+                && stations[key[x.station_B]].municipality != stations[key[base[0]]].municipality) {
                 result[stations[key[x.station_B]].municipality] += x.flow;
             }
-        }else if (stations[key[x.station_A]].district != stations[key[x.station_B]].district && stations[key[x.station_B]].district != stations[key[base[0]]].district) {
+        }else if (stations[key[x.station_A]].district != stations[key[x.station_B]].district
+                && stations[key[x.station_B]].district != stations[key[base[0]]].district) {
             result[stations[key[x.station_B]].district] += x.flow;
         }
     }
@@ -190,7 +202,6 @@ void Graph::Task2_4(const vector<string> &base) {
     cout << count << "\n";
 }
 
-
 int Graph::Task3_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -205,13 +216,83 @@ int Graph::Task3_1(const vector<string> &base) {
     return result * 2;
 }
 
-
-int Graph::Task4_1(const vector<string> &base) {
-    if (!check_keys(base)) {
+int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce)
+{
+    if (!check_keys(base) || !check_segments(reduce))
+    {
         return -1;
     }
+
     vector<Railway> copy_railways = railways;
-    return ford_falk(key[base[0]], key[base[1]], copy_railways, key[base[3]]);
+    vector<Railway> copy_reduced_railways = railways;
+    for (size_t i = 0; i < reduce.size(); i++)
+    {
+        copy_reduced_railways[2 * reduce[i]].capacity = 0;
+        copy_reduced_railways[2 * reduce[i] + 1].capacity = 0;
+    }
+
+    ford_falk(key[base[0]], key[base[1]], copy_railways);
+    int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
+
+    for (auto &seg : copy_railways)
+    {
+        // cout << seg;
+    }
+
+    for (auto &seg : copy_reduced_railways)
+    {
+        // cout << seg;
+    }
+
+    return res;
+}
+
+int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k)
+{
+    if (!check_keys(base) || !check_segments(reduce))
+    {
+        return -1;
+    }
+
+    vector<Railway> copy_railways = railways;
+    vector<Railway> copy_reduced_railways = railways;
+    for (size_t i = 0; i < reduce.size(); i++)
+    {
+        copy_reduced_railways[2 * reduce[i]].capacity = 0;
+        copy_reduced_railways[2 * reduce[i] + 1].capacity = 0;
+    }
+
+    ford_falk(key[base[0]], key[base[1]], copy_railways);
+    int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
+
+    for (auto &seg : copy_railways)
+    {
+        // cout << seg;
+    }
+
+    for (auto &seg : copy_reduced_railways)
+    {
+        // cout << seg;
+    }
+
+    vector<pair<int, int>> ans;
+    for (size_t i = 0; i < copy_railways.size(); i++)
+    {
+        if (copy_railways[i].flow >= 0 && copy_railways[i].flow != copy_reduced_railways[i].flow)
+        {
+            ans.push_back({-std::abs(copy_railways[i].flow - copy_reduced_railways[i].flow), (int)i});
+        }
+    }
+
+    std::sort(ans.begin(), ans.end());
+
+    for (size_t i = 0; i < k && i < ans.size(); i++)
+    {
+        cout << copy_railways[ans[i].second] << " - "
+             << copy_reduced_railways[ans[i].second] << ": " << -ans[i].first << endl;
+    }
+
+    return 0;
 }
 
 int Graph::ford_falk(int s, int t, vector<Railway> &rail, int skip) {

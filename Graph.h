@@ -20,6 +20,7 @@ class Graph {
     pair<int, vector<int>> dijkstra(int s, int t, vector<Railway> &edgesList);
     void minCostFlow(int s, int t, vector<Railway> &rail);
     bool check_keys(const vector<string> &base);
+    bool check_segments(const vector<int> &seg);
     vector<vector<int>> adjacencyList;
     vector<Railway> railways;
     vector<Station> stations;
@@ -37,7 +38,8 @@ public:
     int Task3_1(const vector<string> &base);
     Graph(const string &input_edge_name, const string &input_vertex_name);
     void Task2_4(const vector<string> &station);
-    int Task4_1(const vector<string> &base);
+    int Task4_1(const vector<string> &base, const vector<int> &reduce);
+    int Task4_2(const vector<string> &base, const vector<int> &reduce, int k);
 };
 
 
