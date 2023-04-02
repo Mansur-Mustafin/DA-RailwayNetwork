@@ -22,7 +22,8 @@ void Graph::input_vertex(const string &input_name) {
     getline(fin, s);
     while (fin >> v) {
         key[v.getName()] = ptr;
-        v.setInd(ptr++);
+        v.setInd(ptr);
+        ptr++;
         stations.emplace_back(v);
     }
     fin.close();
@@ -35,7 +36,9 @@ void Graph::input_edge(const string &input_name) {
     getline(fin, s);
     while (fin >> e) {
         railways.emplace_back(e);
-        swap(e.station_A, e.station_B);
+        string tmp = e.getStationA();
+        e.setStationA(e.getStationB());
+        e.setStationB(tmp);
         railways.emplace_back(e);
     }
     fin.close();
@@ -45,12 +48,12 @@ void Graph::build_adjacencyList() {
     adjacencyList.resize(stations.size());
     for (int i = 0; i < railways.size(); i += 2) {
         Railway &obj = railways[i];
-        obj.prev_position = i + 1;
-        railways[i + 1].prev_position = i;
-        adjacencyList[key[obj.station_A]].emplace_back(i);
-        adjacencyList[key[obj.station_B]].emplace_back(i + 1);
-        stations[key[obj.station_A]].addNumberStations(obj.capacity);
-        stations[key[obj.station_B]].addNumberStations(obj.capacity);
+        obj.setPrevPosition(i + 1);
+        railways[i + 1].setPrevPosition(i);
+        adjacencyList[key[obj.getStationA()]].emplace_back(i);
+        adjacencyList[key[obj.getStationB()]].emplace_back(i + 1);
+        stations[key[obj.getStationA()]].addNumberStations(obj.getCapacity());
+        stations[key[obj.getStationB()]].addNumberStations(obj.getCapacity());
     }
 }
 
@@ -71,8 +74,8 @@ int Graph::Task2_1(const vector<string> &base) {
     int r = ford_falk(key[base[0]], key[base[1]], copy_railways);
 
     for (auto &x : copy_railways) {
-        if (x.flow > 0) {
-            cout << x.station_A << " -> " << x.station_B << " " << x.flow << '/'<< x.capacity << endl;
+        if (x.getFlow() > 0) {
+            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
         }
     }
     return r;
@@ -89,16 +92,16 @@ void Graph::Task2_2(vector<string> &base) {
     int mx = -1;
 
     for (const auto &x : copy_railways) {
-        if (x.flow > mx) {
-            mx = x.flow;
+        if (x.getFlow() > mx) {
+            mx = x.getFlow();
             r.clear();
             r.push_back(x);
-        }else if(x.flow == mx){
+        }else if(x.getFlow() == mx){
             r.push_back(x);
         }
     }
     for(auto el : r){
-        cout << el.station_A << " -> " << el.station_B  << " (" << el.flow << ")" << endl;
+        cout << el.getStationA() << " -> " << el.getStationB()  << " (" << el.getFlow() << ")" << endl;
     }
 }
 
@@ -157,17 +160,17 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     }
 
     for (auto &x : copy_railways) {
-        if (x.flow <= 0) {
+        if (x.getFlow() <= 0) {
             continue;
         }
         if (flag) {
-            if (stations[key[x.station_A]].getMunicipality() != stations[key[x.station_B]].getMunicipality()
-                && stations[key[x.station_B]].getMunicipality() != stations[key[base[0]]].getMunicipality()) {
-                result[stations[key[x.station_B]].getMunicipality()] += x.flow;
+            if (stations[key[x.getStationA()]].getMunicipality() != stations[key[x.getStationB()]].getMunicipality()
+                && stations[key[x.getStationB()]].getMunicipality() != stations[key[base[0]]].getMunicipality()) {
+                result[stations[key[x.getStationB()]].getMunicipality()] += x.getFlow();
             }
-        }else if (stations[key[x.station_A]].getDistrict() != stations[key[x.station_B]].getDistrict()
-                && stations[key[x.station_B]].getDistrict() != stations[key[base[0]]].getDistrict()) {
-            result[stations[key[x.station_B]].getDistrict()] += x.flow;
+        }else if (stations[key[x.getStationA()]].getDistrict() != stations[key[x.getStationB()]].getDistrict()
+                && stations[key[x.getStationB()]].getDistrict() != stations[key[base[0]]].getDistrict()) {
+            result[stations[key[x.getStationB()]].getDistrict()] += x.getFlow();
         }
     }
     vector<pair<int, string>> ans;
@@ -190,8 +193,8 @@ void Graph::Task2_4(const vector<string> &base) {
     int count = 0;
     int pos = key[base[2]];
     for (int i : adjacencyList[pos]) {
-        if (copy_railways[i].flow < 0) {
-            count += (-copy_railways[i].flow);
+        if (copy_railways[i].getFlow() < 0) {
+            count += (-copy_railways[i].getFlow());
         }
     }
     cout << count << "\n";
@@ -205,8 +208,8 @@ int Graph::Task3_1(const vector<string> &base) {
     minCostFlow(key[base[0]], key[base[1]], copy_railways);
     int result = 0;
     for (auto &copy_railway : copy_railways) {
-        if (copy_railway.flow > 0)
-            result += (copy_railway.flow * copy_railway.cost);
+        if (copy_railway.getFlow() > 0)
+            result += (copy_railway.getFlow() * copy_railway.getCost());
     }
     return result * 2;
 }
@@ -219,8 +222,8 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
     vector<Railway> copy_railways = railways;
     vector<Railway> copy_reduced_railways = railways;
     for (size_t i = 0; i < reduce.size(); i++){
-        copy_reduced_railways[2 * reduce[i]].capacity = 0;
-        copy_reduced_railways[2 * reduce[i] + 1].capacity = 0;
+        copy_reduced_railways[2 * reduce[i]].setCapacity(0);
+        copy_reduced_railways[2 * reduce[i] + 1].setCapacity(0);
     }
 
     ford_falk(key[base[0]], key[base[1]], copy_railways);
@@ -245,8 +248,8 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k)
     vector<Railway> copy_railways = railways;
     vector<Railway> copy_reduced_railways = railways;
     for (size_t i = 0; i < reduce.size(); i++){
-        copy_reduced_railways[2 * reduce[i]].capacity = 0;
-        copy_reduced_railways[2 * reduce[i] + 1].capacity = 0;
+        copy_reduced_railways[2 * reduce[i]].setCapacity(0);
+        copy_reduced_railways[2 * reduce[i] + 1].setCapacity(0);
     }
 
     ford_falk(key[base[0]], key[base[1]], copy_railways);
@@ -262,8 +265,8 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k)
 
     vector<pair<int, int>> ans;
     for (size_t i = 0; i < copy_railways.size(); i++){
-        if (copy_railways[i].flow >= 0 && copy_railways[i].flow != copy_reduced_railways[i].flow){
-            ans.push_back({-abs(copy_railways[i].flow - copy_reduced_railways[i].flow), (int)i});
+        if (copy_railways[i].getFlow() >= 0 && copy_railways[i].getFlow() != copy_reduced_railways[i].getFlow()){
+            ans.push_back({-abs(copy_railways[i].getFlow() - copy_reduced_railways[i].getFlow()), (int)i});
         }
     }
 
@@ -303,13 +306,13 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
         return current_min;
     }
     for (int q : adjacencyList[v]) {
-        if (rail[q].flow < rail[q].capacity) {
+        if (rail[q].getFlow() < rail[q].getCapacity()) {
             int mn =
-                    dfs(key[rail[q].station_B], t,
-                        min(current_min, rail[q].capacity - rail[q].flow), mark, rail);
+                    dfs(key[rail[q].getStationB()], t,
+                        min(current_min, rail[q].getCapacity() - rail[q].getFlow()), mark, rail);
             if (mn > 0) {
-                rail[q].flow += mn;
-                rail[rail[q].prev_position].flow -= mn;
+                rail[q].changeFlow(mn);
+                rail[rail[q].getPrevPosition()].changeFlow(-mn);
                 return mn;
             }
         }
@@ -329,9 +332,9 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
         q.erase(q.begin());
         for (int ptr : adjacencyList[v]) {
             const Railway &e = rail[ptr];
-            int to = key[e.station_B];
-            int len = e.cost;
-            if (d[v] + len < d[to] && e.flow < e.capacity) {
+            int to = key[e.getStationB()];
+            int len = e.getCost();
+            if (d[v] + len < d[to] && e.getFlow() < e.getCapacity()) {
                 q.erase(make_pair(d[to], to));
                 d[to] = d[v] + len;
                 q.insert(make_pair(d[to], to));
@@ -351,7 +354,7 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
     reverse(edgesPath.begin(), edgesPath.end());
     int minCapacity = 1e9;
     for (int it : edgesPath) {
-        minCapacity = min(minCapacity, rail[it].capacity - rail[it].flow);
+        minCapacity = min(minCapacity, rail[it].getCapacity() - rail[it].getFlow());
     }
     return make_pair(minCapacity, edgesPath);
 }
@@ -373,8 +376,8 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
         }
         for (int x : res.second) {
             Railway e = rail[x];
-            rail[x].flow += res.first;
-            rail[e.prev_position].flow -= res.first;
+            rail[x].changeFlow(res.first);
+            rail[e.getPrevPosition()].changeFlow(-res.first);
         }
     }
 }

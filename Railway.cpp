@@ -37,3 +37,51 @@ ostream &operator<<(ostream &out, const Railway &edge) {
     out << edge.service;
     return out;
 }
+
+string Railway::getStationA() const {
+    return station_A;
+}
+
+string Railway::getStationB() const {
+    return station_B;
+}
+
+int Railway::getCapacity() const {
+    return capacity;
+}
+
+string Railway::getService() const {
+    return service;
+}
+
+int Railway::getFlow() const {
+    return flow;
+}
+
+int Railway::getPrevPosition() const {
+    return prev_position;
+}
+
+int Railway::getCost() const {
+    return cost;
+}
+
+void Railway::setPrevPosition(int newPosition) {
+    prev_position = newPosition;
+}
+
+void Railway::setCapacity(int newCapacity) {
+    capacity = newCapacity;
+}
+
+void Railway::changeFlow(int delta) {
+    flow += delta;
+}
+
+void Railway::setStationA(const std::string& stationA) {
+    station_A = stationA;
+}
+
+void Railway::setStationB(const std::string& stationB) {
+    station_B = stationB;
+}
