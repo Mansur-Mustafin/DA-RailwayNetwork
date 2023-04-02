@@ -21,8 +21,8 @@ void Graph::input_vertex(const string &input_name) {
     int ptr = 0;
     getline(fin, s);
     while (fin >> v) {
-        key[v.name] = ptr;
-        v.ind = ptr++;
+        key[v.getName()] = ptr;
+        v.setInd(ptr++);
         stations.emplace_back(v);
     }
     fin.close();
@@ -49,21 +49,17 @@ void Graph::build_adjacencyList() {
         railways[i + 1].prev_position = i;
         adjacencyList[key[obj.station_A]].emplace_back(i);
         adjacencyList[key[obj.station_B]].emplace_back(i + 1);
-        stations[key[obj.station_A]].number_stations += obj.capacity;
-        stations[key[obj.station_B]].number_stations += obj.capacity;
+        stations[key[obj.station_A]].addNumberStations(obj.capacity);
+        stations[key[obj.station_B]].addNumberStations(obj.capacity);
     }
 }
 
-bool Graph::check_segments(const vector<int> &seg)
-{
-    for (auto i : seg)
-    {
-        if (2 * i >= railways.size())
-        {
+bool Graph::check_segments(const vector<int> &seg){
+    for (auto i : seg){
+        if (2 * i >= railways.size()){
             return false;
         }
     }
-
     return true;
 }
 
@@ -81,7 +77,6 @@ int Graph::Task2_1(const vector<string> &base) {
     }
     return r;
 }
-
 
 void Graph::Task2_2(vector<string> &base) {
     if (!check_keys(base)) {
@@ -111,7 +106,7 @@ void Graph::Task2_2(vector<string> &base) {
 void Graph::Task2_2_2() {
     vector<Railway> copy_railways = railways;
     vector<Station> copy_stations = stations;
-    sort(copy_stations.begin(), copy_stations.end(), [](Station x, Station y) {return x.number_stations > y.number_stations;});
+    sort(copy_stations.begin(), copy_stations.end(), [](Station x, Station y) {return x.getNumberStations() > y.getNumberStations();});
 
     struct answer{
         string s1;
@@ -123,20 +118,20 @@ void Graph::Task2_2_2() {
     int cur, max = -1;
 
     for(int i = 0; i < copy_stations.size(); i++){
-        if(max > copy_stations[i].number_stations){
+        if(max > copy_stations[i].getNumberStations()){
             break;
         }
         for(int j = 0; j < i; j++){
-            cur = ford_falk(key[copy_stations[i].name], key[copy_stations[j].name], copy_railways);
+            cur = ford_falk(key[copy_stations[i].getName()], key[copy_stations[j].getName()], copy_railways);
             copy_railways = railways;
             //cout << copy_stations[i].name << " " <<  copy_stations[j].name << "  " << cur << endl;
             if(cur > max){
                 max = cur;
                 r.clear();
-                answer a = {copy_stations[i].name,copy_stations[j].name, cur};
+                answer a = {copy_stations[i].getName(),copy_stations[j].getName(), cur};
                 r.push_back(a);
             }else if(cur == max){
-                answer a = {copy_stations[i].name,copy_stations[j].name, cur};
+                answer a = {copy_stations[i].getName(),copy_stations[j].getName(), cur};
                 r.push_back(a);
             }
         }
@@ -156,9 +151,9 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     unordered_map<string, int> result;
 
     if(flag){
-        result[stations[key[base[0]]].municipality] += tmp;
+        result[stations[key[base[0]]].getMunicipality()] += tmp;
     }else{
-        result[stations[key[base[0]]].district] += tmp;
+        result[stations[key[base[0]]].getDistrict()] += tmp;
     }
 
     for (auto &x : copy_railways) {
@@ -166,13 +161,13 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
             continue;
         }
         if (flag) {
-            if (stations[key[x.station_A]].municipality != stations[key[x.station_B]].municipality
-                && stations[key[x.station_B]].municipality != stations[key[base[0]]].municipality) {
-                result[stations[key[x.station_B]].municipality] += x.flow;
+            if (stations[key[x.station_A]].getMunicipality() != stations[key[x.station_B]].getMunicipality()
+                && stations[key[x.station_B]].getMunicipality() != stations[key[base[0]]].getMunicipality()) {
+                result[stations[key[x.station_B]].getMunicipality()] += x.flow;
             }
-        }else if (stations[key[x.station_A]].district != stations[key[x.station_B]].district
-                && stations[key[x.station_B]].district != stations[key[base[0]]].district) {
-            result[stations[key[x.station_B]].district] += x.flow;
+        }else if (stations[key[x.station_A]].getDistrict() != stations[key[x.station_B]].getDistrict()
+                && stations[key[x.station_B]].getDistrict() != stations[key[base[0]]].getDistrict()) {
+            result[stations[key[x.station_B]].getDistrict()] += x.flow;
         }
     }
     vector<pair<int, string>> ans;

@@ -4,6 +4,34 @@
 
 #include "Station.h"
 #include <sstream>
+int Station::getInd() {
+    return ind;
+}
+
+string Station::getName() {
+    return name;
+}
+
+string Station::getDistrict() {
+    return district;
+}
+
+string Station::getMunicipality() {
+    return municipality;
+}
+
+string Station::getTownship() {
+    return township;
+}
+
+string Station::getLine() {
+    return line;
+}
+
+int Station::getNumberStations() {
+    return 0;
+}
+
 istream &operator>>(istream &in, Station &vertex) {
     getline(in, vertex.name, ',');
     getline(in, vertex.district, ',');
@@ -20,4 +48,12 @@ ostream &operator<<(ostream &out, const Station &vertex) {
     out << vertex.township << " ";
     out << vertex.line << "\n";
     return out;
+}
+
+void Station::setInd(int x) {
+    ind = x;
+}
+
+void Station::addNumberStations(int add) {
+    number_stations += add;
 }
