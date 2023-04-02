@@ -29,7 +29,7 @@ string Station::getLine() {
 }
 
 int Station::getNumberStations() {
-    return 0;
+    return number_stations;
 }
 
 istream &operator>>(istream &in, Station &vertex) {
