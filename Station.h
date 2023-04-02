@@ -9,14 +9,17 @@
 using namespace std;
 class Station {
 public:
-    int getInd();
+    int getInd() const;
     void setInd(int NewInd);
     string getName();
     string getDistrict();
     string getMunicipality();
     string getTownship();
     string getLine();
-    int getNumberStations();
+    Station(string name, string district, string municipality, string township, string line)
+            : name(name), district(district), municipality(municipality), township(township), line(line){};
+    Station() = default;
+    int getNumberStations() const;
     void addNumberStations(int add);
     friend istream &operator>>(istream &in, Station &vertex);
     friend ostream &operator<<(ostream &out, const Station &vertex);
@@ -27,7 +30,7 @@ private:
     string municipality;
     string township;
     string line;
-    int number_stations;
+    int number_stations = 0;
 };
 
 

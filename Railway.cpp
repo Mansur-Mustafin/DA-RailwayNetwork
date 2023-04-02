@@ -74,8 +74,12 @@ void Railway::setCapacity(int newCapacity) {
     capacity = newCapacity;
 }
 
-void Railway::changeFlow(int delta) {
+void Railway::addFlow(int delta) {
     flow += delta;
+}
+
+void Railway::subFlow(int delta) {
+    flow -= delta;
 }
 
 void Railway::setStationA(const std::string& stationA) {
@@ -84,4 +88,12 @@ void Railway::setStationA(const std::string& stationA) {
 
 void Railway::setStationB(const std::string& stationB) {
     station_B = stationB;
+}
+
+void Railway::setCost(int c) {
+    cost = c;
+}
+
+void Railway::setService(string service_) {
+    service = service_;
 }

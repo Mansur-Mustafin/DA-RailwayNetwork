@@ -8,10 +8,12 @@
 #include <set>
 #include <algorithm>
 
-Graph::Graph(const string &input_edge_name, const string &input_vertex_name) {
-    input_edge(input_edge_name);
-    input_vertex(input_vertex_name);
+Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
+    input_edge(input_edge_name_);
+    input_vertex(input_vertex_name_);
     build_adjacencyList();
+    input_edge_name = input_edge_name_;
+    input_vertex_name = input_vertex_name_;
 }
 
 void Graph::input_vertex(const string &input_name) {
@@ -54,6 +56,44 @@ void Graph::build_adjacencyList() {
         adjacencyList[key[obj.getStationB()]].emplace_back(i + 1);
         stations[key[obj.getStationA()]].addNumberStations(obj.getCapacity());
         stations[key[obj.getStationB()]].addNumberStations(obj.getCapacity());
+    }
+}
+
+void Graph::add_station(const string& name, bool f, const string& district, const string& municipality, const string& township, const string& line) {
+    Station v (name, district, municipality, township, line);
+    int ptr = (--stations.end())->getInd();
+    v.setInd( ptr + 1);
+    key[v.getName()] = ptr + 1;
+    stations.emplace_back(v);
+    if(f){
+        ofstream out;
+        out.open(input_vertex_name, ios_base::app);
+        out << name << ',' << district << ',' << municipality << ',' << township << ',' << line << endl;
+    }
+    adjacencyList.push_back({});
+}
+
+void Graph::add_railway(const string& nameA, const string& nameB, bool f, int capacity, const string& service) {
+    Railway e;
+    e.setStationA(nameA);
+    e.setStationB(nameB);
+    e.setCapacity(capacity);
+    e.setService(service);
+    e.setCost((e.getService() == "STANDARD") ? 1 : 2);
+    railways.emplace_back(e);
+    string tmp = e.getStationA();
+    e.setStationA(e.getStationB());
+    e.setStationB(tmp);
+    railways.emplace_back(e);
+    int n = railways.size();
+    railways[n - 2].setPrevPosition(n - 1);
+    railways[n - 1].setPrevPosition(n - 2);
+    adjacencyList[key[nameA]].emplace_back(n - 2);
+    adjacencyList[key[nameB]].emplace_back(n - 1);
+    if(f){
+        ofstream out;
+        out.open(input_edge_name, ios_base::app);
+        out << nameA << ',' << nameB << ',' << capacity << ',' << service << endl;
     }
 }
 
@@ -311,8 +351,8 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
                     dfs(key[rail[q].getStationB()], t,
                         min(current_min, rail[q].getCapacity() - rail[q].getFlow()), mark, rail);
             if (mn > 0) {
-                rail[q].changeFlow(mn);
-                rail[rail[q].getPrevPosition()].changeFlow(-mn);
+                rail[q].addFlow(mn);
+                rail[rail[q].getPrevPosition()].subFlow(mn);
                 return mn;
             }
         }
@@ -376,8 +416,8 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
         }
         for (int x : res.second) {
             Railway e = rail[x];
-            rail[x].changeFlow(res.first);
-            rail[e.getPrevPosition()].changeFlow(-res.first);
+            rail[x].addFlow(res.first);
+            rail[e.getPrevPosition()].subFlow(res.first);
         }
     }
 }

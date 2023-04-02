@@ -21,7 +21,10 @@ public:
     void setCapacity(int newCapacity);
     void setStationA(const string& stationA);
     void setStationB(const string& stationB);
-    void changeFlow(int delta);
+    void setService(string service);
+    void setCost(int c);
+    void addFlow(int delta);
+    void subFlow(int delta);
     Railway(int flow, int to, int prev_position)
             : flow(flow), prev_position(prev_position){};
     Railway() = default;

@@ -4,7 +4,7 @@
 
 #include "Station.h"
 #include <sstream>
-int Station::getInd() {
+int Station::getInd() const {
     return ind;
 }
 
@@ -28,7 +28,7 @@ string Station::getLine() {
     return line;
 }
 
-int Station::getNumberStations() {
+int Station::getNumberStations() const {
     return number_stations;
 }
 

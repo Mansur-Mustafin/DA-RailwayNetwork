@@ -4,10 +4,11 @@
 using namespace std;
 
 int main() {
-    //Graph g = Graph("network_test_3.csv", "stations_test_3.csv");
-    Graph g = Graph("network.csv", "stations.csv");
+    Graph g = Graph("network_test_3.csv", "stations_test_3.csv");
+    g.add_railway("A", "E", false, 11);
+    //Graph g = Graph("network.csv", "stations.csv");
     while (true) {
-        vector<string> base = {"A", "B"};
+        vector<string> base = {"A","E"};
         cout << "Enter number of task: <2_1> <2_2> <2_2_2> <2_3> <2_4> <3_1> <4_1> <4_2>\n";
         string number;
         getline(cin, number);
@@ -59,4 +60,6 @@ int main() {
         }
         cout << "\n\n";
     }
+
+
 }
