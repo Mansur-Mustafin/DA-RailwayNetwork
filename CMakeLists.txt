@@ -3,4 +3,4 @@ project(DA_RailwayNetwork)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DA_RailwayNetwork main.cpp Code/Station.cpp Code/Station.h Code/Railway.cpp Code/Railway.h Code/Graph.cpp Code/Graph.h)
+add_executable(DA_RailwayNetwork main.cpp Code/Station.cpp Code/Station.h Code/Railway.cpp Code/Railway.h Code/Graph.cpp Code/Graph.h Code/Menu.cpp)

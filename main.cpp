@@ -1,15 +1,27 @@
 #include "Code/Graph.h"
+#include "Code/Menu.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 int main() {
-    Graph g = Graph("Tests/network_test_3.csv", "Tests/stations_test_3.csv");
+
+    try {
+        Menu menu;
+        menu.main_menu();
+    }
+    catch (exception& e) {
+        cout << e.what() << '\n';
+    }
+
+    return 0;
+
+    //Graph g = Graph("Tests/network_test_3.csv", "Tests/stations_test_3.csv");
     //cout << g.getIndexOfRailway({"I","H"});
-    vector<string> reduce = {"B", "D"};
-    vector<string> base = {"A","E"};
-    cout << g.Task4_1_2(base, reduce);
+    //vector<string> reduce = {"B", "D"};
+    //vector<string> base = {"A","E"};
+    //cout << g.Task4_1_2(base, reduce);
 
 //
 //    g.printImage();
