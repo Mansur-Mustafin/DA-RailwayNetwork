@@ -462,6 +462,23 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
     return res;
 }
 
+int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations) {
+    vector<int> reduce;
+    int res = 0;
+
+    for(auto name: name_of_stations){
+        int index = key[name];
+        vector<int> v = adjacencyList[index];
+        for(auto i : v){
+            reduce.push_back(i / 2);
+        }
+    }
+
+    res = Task4_1(base, reduce);
+
+    return res;
+}
+
 int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k){
     if (!check_keys(base) || !check_segments(reduce)){
         return -1;
@@ -628,3 +645,5 @@ void Graph::printImage() {
     }
     cout << endl << endl;
 }
+
+
