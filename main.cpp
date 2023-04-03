@@ -5,15 +5,19 @@ using namespace std;
 
 int main() {
     Graph g = Graph("network_test_3.csv", "stations_test_3.csv");
-    g.add_railway("A", "E", false, 11);
+
     //Graph g = Graph("network.csv", "stations.csv");
     while (true) {
         vector<string> base = {"A","E"};
-        cout << "Enter number of task: <2_1> <2_2> <2_2_2> <2_3> <2_4> <3_1> <4_1> <4_2>\n";
+        cout << "Enter number of task: <2_1> <2_1_2> <2_2> <2_2_2> <2_3> <2_4> <3_1> <4_1> <4_2>\n";
         string number;
         getline(cin, number);
         if (number == "2_1") {
             cout << g.Task2_1(base);
+        } else if (number == "2_1_2") {
+            vector<string> from = {"A"};
+            vector<string> to = {"E"};
+            g.Task2_1_2(from, to);
         } else if (number == "2_2") {
             g.Task2_2(base);
         } else if (number == "2_2_2") {

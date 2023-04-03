@@ -106,6 +106,12 @@ bool Graph::check_segments(const vector<int> &seg){
     return true;
 }
 
+bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
+    vector<string> intersection;
+    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
+    return intersection.empty();
+}
+
 int Graph::Task2_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -114,11 +120,43 @@ int Graph::Task2_1(const vector<string> &base) {
     int r = ford_falk(key[base[0]], key[base[1]], copy_railways);
 
     for (auto &x : copy_railways) {
-        if (x.getFlow() > 0) {
+        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
             cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
         }
     }
     return r;
+}
+
+int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
+    if(!check_keys(from) || !check_keys(to)){
+        return -1;
+    }
+    if(!check_Disjoint(from, to)){
+        return -1;
+    }
+    add_station("FROM", false);
+    add_station("TO", false);
+    for(const auto& station : from){
+        add_railway("FROM", station, false);
+    }
+    for(const auto& station : to){
+        add_railway(station, "TO", false);
+    }
+
+    vector<string> base = {"FROM", "TO"};
+    cout << Task2_1(base);
+
+    for(const auto& station : from){
+        adjacencyList[key[station]].pop_back();
+    }
+    for(const auto& station : to){
+        adjacencyList[key[station]].pop_back();
+    }
+    adjacencyList.pop_back();
+    adjacencyList.pop_back();
+    stations.pop_back();
+    stations.pop_back();
+    return 0;
 }
 
 void Graph::Task2_2(vector<string> &base) {
@@ -408,6 +446,8 @@ bool Graph::check_keys(const vector<string> &base) {
     return true;
 }
 
+
+
 void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
     while (true) {
         pair<int, vector<int>> res = dijkstra(s, t, rail);
@@ -421,3 +461,5 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
         }
     }
 }
+
+
