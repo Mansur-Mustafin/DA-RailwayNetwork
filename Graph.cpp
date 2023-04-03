@@ -279,6 +279,32 @@ void Graph::Task2_4(const vector<string> &base) {
     cout << count << "\n";
 }
 
+int Graph::Task2_4_2(const string &station) {
+
+    if (key.count(station) == 0) {
+        return -1;
+    }
+
+    vector<int> source;
+    for(int i = 0; i < adjacencyList.size(); i++){
+        if(adjacencyList[i].size() == 1){
+            source.push_back(i);
+        }
+    }
+
+    vector<string> from;
+    if(source.empty()) return -1;
+    for(auto index : source){
+        from.push_back(stations[index].getName());
+    }
+
+
+
+    int r = Task2_1_2(from, {station});
+
+    return r;
+}
+
 int Graph::Task3_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -462,5 +488,7 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
         }
     }
 }
+
+
 
 
