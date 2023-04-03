@@ -145,7 +145,7 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     }
 
     vector<string> base = {"FROM", "TO"};
-    cout << Task2_1(base);
+    int r =  Task2_1(base);
 
     for(const auto& station : from){
         adjacencyList[key[station]].pop_back();
@@ -157,7 +157,7 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     adjacencyList.pop_back();
     stations.pop_back();
     stations.pop_back();
-    return 0;
+    return r;
 }
 
 void Graph::Task2_2(vector<string> &base) {

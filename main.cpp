@@ -43,7 +43,7 @@ int main() {
         } else if (number == "2_1_2") {
             vector<string> from = {"A"};
             vector<string> to = {"E"};
-            g.Task2_1_2(from, to);
+            cout << "Max Flow:" << g.Task2_1_2(from, to);
         } else if (number == "2_2") {
             g.Task2_2(base);
         } else if (number == "2_2_2") {
