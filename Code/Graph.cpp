@@ -9,7 +9,11 @@
 #include <algorithm>
 #include <queue>
 #include <map>
-
+/**
+ * Constructor of the Class Graph
+ * @param input_edge_name_
+ * @param input_vertex_name_
+ */
 Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
     input_edge(input_edge_name_);
     input_vertex(input_vertex_name_);
@@ -18,6 +22,10 @@ Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
     input_vertex_name = input_vertex_name_;
 }
 
+/**
+ * This function inserts a vertex (in this case a Station) into the given Graph
+ * @param input_name
+ */
 void Graph::input_vertex(const string &input_name) {
     Station v;
     string s;
