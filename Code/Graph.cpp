@@ -533,6 +533,16 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
     return 0;
 }
 
+int Graph::getIndexOfRailway(pair<string, string> n) {
+    int index = 0;
+    for(auto railway : railways){
+        if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
+        (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
+        index++;
+    }
+    return -1;
+}
+
 pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
     set<pair<int, int>> q;
     vector<int> d(adjacencyList.size(), 1e9);
@@ -581,8 +591,6 @@ bool Graph::check_keys(const vector<string> &base) {
     return true;
 }
 
-
-
 void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
     while (true) {
         pair<int, vector<int>> res = dijkstra(s, t, rail);
@@ -597,3 +605,7 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
     }
 }
 
+int Graph::Task2_4_3(const vector<string> &base) {
+    // TODO
+    return 0;
+}
