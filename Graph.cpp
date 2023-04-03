@@ -116,6 +116,7 @@ int Graph::Task2_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
     }
+    if(base[0] == base[1]) return -1;
     vector<Railway> copy_railways = railways;
     int r = ford_falk(key[base[0]], key[base[1]], copy_railways);
 
