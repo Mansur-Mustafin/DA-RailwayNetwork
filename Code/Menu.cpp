@@ -11,7 +11,7 @@ using namespace std;
 void Menu::add_station(){
     cout<<"Please enter the station name: \n";
     string name;
-    getline(cin,name);
+    getline(cin>>ws,name);
     cout<<endl;
     cout<<"Please enter the station district: \n";
     string distric;
@@ -35,7 +35,7 @@ void Menu::add_station(){
 void Menu::add_railway(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -52,7 +52,7 @@ void Menu::add_railway(){
 void Menu::Task2_1(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -65,7 +65,7 @@ void Menu::Task2_1(){
 void Menu::Task2_1_2(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -74,13 +74,13 @@ void Menu::Task2_1_2(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
-    g.Task2_1(base);
+    
 }
 
 void Menu::Task2_2(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -95,7 +95,7 @@ void Menu::Task2_2(){
 void Menu::Task2_2_2(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -110,7 +110,7 @@ void Menu::Task2_2_2(){
 void Menu::Task2_3(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -128,7 +128,7 @@ void Menu::Task2_3(){
 void Menu::Task2_3_2(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -146,7 +146,7 @@ void Menu::Task2_3_2(){
 void Menu::Task2_4(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -165,7 +165,7 @@ void Menu::Task2_4(){
 void Menu::Task2_4_2(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -184,7 +184,7 @@ void Menu::Task2_4_2(){
 void Menu::Task3_1(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -199,7 +199,7 @@ void Menu::Task3_1(){
 void Menu::Task4_1(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
@@ -222,7 +222,7 @@ void Menu::Task4_1(){
 void Menu::Task4_2(){
     cout<<"Please enter the source station name: \n";
     string source_name;
-    getline(cin,source_name);
+    getline(cin>>ws,source_name);
     cout<<endl;
     cout<<"Please enter the destination station name:\n";
     string dest_name;
