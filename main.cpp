@@ -6,15 +6,9 @@ using namespace std;
 
 int main() {
     Graph g = Graph("Tests/network_test_3.csv", "Tests/stations_test_3.csv");
-    cout << g.getIndexOfRailway({"I","H"});
+    //cout << g.getIndexOfRailway({"I","H"});
 
-    // TODO PRINT OF TRAIN
-    ifstream file("train_image.txt");
-    string line;
-    while (std::getline(file, line)) {
-        std::cout << line << '\n';
-    }
-    // TODO PRINT OF TRAUN END
+    g.printImage();
 
     //Graph g = Graph("network.csv", "stations.csv");
     while (true) {

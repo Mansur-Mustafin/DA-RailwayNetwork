@@ -618,3 +618,13 @@ int Graph::Task2_4_3(const vector<string> &base) {
     // TODO
     return 0;
 }
+
+void Graph::printImage() {
+    ifstream file("train_image.txt");
+    string line;
+    cout << endl;
+    while (std::getline(file, line)) {
+        std::cout << line << '\n';
+    }
+    cout << endl << endl;
+}

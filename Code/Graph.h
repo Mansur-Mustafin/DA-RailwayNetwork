@@ -48,6 +48,7 @@ public:
     int Task2_4_3(const vector<string> &base);
     int Task4_1(const vector<string> &base, const vector<int> &reduce);
     int Task4_2(const vector<string> &base, const vector<int> &reduce, int k);
+    void printImage();
 };
 
 
