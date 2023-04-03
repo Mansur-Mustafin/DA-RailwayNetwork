@@ -19,7 +19,7 @@ int main() {
     Graph g = Graph("network.csv", "stations.csv");
     while (true) {
         vector<string> base = {"Porto Campanhã","Trofa"};
-        cout << "Enter number of task: <2_1> <2_1_2> <2_2> <2_2_2> <2_3> <2_4> <2_4_2> <3_1> <4_1> <4_2>\n";
+        cout << "Enter number of task: <2_1> <2_1_2> <2_2> <2_2_2> <2_3> <2_3_2> <2_4> <2_4_2> <3_1> <4_1> <4_2>\n";
         string number;
         getline(cin, number);
         if (number == "2_1") {
@@ -37,6 +37,8 @@ int main() {
         } else if (number == "2_3") {
             // TODO
             g.Task2_3(base, 10, false);
+        } else if (number == "2_3_2") {
+            g.Task2_3_2(base, 10, false);
         } else if (number == "2_4") {
             string s;
             getline(cin, s);

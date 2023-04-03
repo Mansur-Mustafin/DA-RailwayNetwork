@@ -7,6 +7,8 @@
 #include <iostream>
 #include <set>
 #include <algorithm>
+#include <queue>
+#include <map>
 
 Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
     input_edge(input_edge_name_);
@@ -110,6 +112,26 @@ bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
     vector<string> intersection;
     set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
     return intersection.empty();
+}
+
+ostream &operator<<(ostream &out, set<int> &s){
+    cout << "{";
+    for (auto x : s){
+        cout << x << ", ";
+    }
+    cout << "}";
+    return out;
+}
+
+ostream &operator<<(ostream &out, queue<Railway> &s){
+    cout << "{";
+    queue<Railway> t = s;
+    while (!t.empty()){
+        cout << t.front() << ", ";
+        t.pop();
+    }
+    cout << "}";
+    return out;
 }
 
 int Graph::Task2_1(const vector<string> &base) {
@@ -262,6 +284,94 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     }
 }
 
+void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
+    if (!check_keys(base)){
+        return;
+    }
+    // TODO k and flag
+    vector<Railway> copy_railways = railways;
+    ford_falk(key[base[0]], key[base[1]], copy_railways);
+    unordered_map<string, set<int>> result;
+    map<std::pair<string, string>, set<int>> trains;
+    queue<Railway> q;
+
+    int train_id = 1;
+    for (auto &x : copy_railways){
+        if (x.getStationA() == base[0] && x.getFlow() > 0){
+            q.push(x);
+            for (size_t i = 0; i < x.getFlow(); i++){
+                trains[{x.getStationA(), x.getStationB()}].insert(train_id);
+                train_id++;
+            }
+        }
+    }
+
+    for (auto &t : trains){
+        cout << t.first.first << "-" << t.first.second << ": " << t.second << endl;
+    }
+
+    while (!q.empty()){
+        auto &x = q.front();
+
+        if (x.getFlow() <= 0){
+            continue;
+        }
+        cout << q << "\n---------------\n";
+        q.pop();
+
+        set<int> &local_trains = trains[{x.getStationA(), x.getStationB()}];
+        if (flag){
+            if (stations[key[x.getStationA()]].getMunicipality() !=
+                stations[key[x.getStationB()]].getMunicipality()){
+                for (auto train_id : trains[{x.getStationA(), x.getStationB()}]){
+                    result[stations[key[x.getStationB()]].getMunicipality()].insert(train_id);
+                }
+            }
+        }
+        else if (stations[key[x.getStationA()]].getDistrict() !=
+                 stations[key[x.getStationB()]].getDistrict()){
+            for (auto train_id : trains[{x.getStationA(), x.getStationB()}]){
+                result[stations[key[x.getStationB()]].getDistrict()].insert(train_id);
+            }
+        }
+
+        for (auto &y : copy_railways){
+            if (y.getStationA() == x.getStationB() && y.getFlow() > 0){
+                for (size_t i = 0; i < y.getFlow() && !local_trains.empty(); i++){
+                    int train_id = *local_trains.begin();
+                    trains[{y.getStationA(), y.getStationB()}].insert(train_id);
+                    local_trains.erase(local_trains.begin());
+                }
+            }
+        }
+
+        cout << x << endl;
+        cout << stations[key[x.getStationB()]].getDistrict() << " = "
+             << result[stations[key[x.getStationB()]].getDistrict()] << endl;
+
+        for (auto &t : trains){
+            if (!t.second.empty()){
+                cout << t.first.first << "-" << t.first.second
+                     << ": " << t.second << endl;
+            }
+        }
+
+        for (auto v : adjacencyList[key[x.getStationB()]]){
+            if (copy_railways[v].getFlow()> 0){
+                q.push(copy_railways[v]);
+            }
+        }
+    }
+    vector<pair<int, string>> ans;
+    for (auto &x : result){
+        ans.emplace_back(x.second.size(), x.first);
+    }
+    sort(ans.rbegin(), ans.rend());
+    for (int i = 0; i < ans.size() && i < k; i++){
+        cout << ans[i].second << " " << ans[i].first << "\n";
+    }
+}
+
 void Graph::Task2_4(const vector<string> &base) {
     if (key.count(base[2]) == 0) {
         cout << -1;
@@ -297,8 +407,6 @@ int Graph::Task2_4_2(const string &station) {
     for(auto index : source){
         from.push_back(stations[index].getName());
     }
-
-
 
     int r = Task2_1_2(from, {station});
 
