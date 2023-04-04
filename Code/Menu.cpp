@@ -8,6 +8,37 @@
 
 using namespace std;
 
+void Menu::choose_network(){
+    string stations,network;
+    cout<<"Do you want to change the network?:\n"
+          "Press 1 if yes                     \n"
+          "Press 2 if no                      \n";
+    int answer;
+    cin>>answer;
+    cout<<endl;
+
+    switch (answer) {
+        case 1:
+            cout<<"Please enter the name of the stations file with extension:\n";
+            getline(cin>>ws,stations);
+            cout<<endl;
+            cout<<"Please enter the name of the network file with extension:\n";
+            getline(cin,network);
+            cout<<endl;
+            g.set_input_edge_name(stations);
+            g.set_input_vertex_name(network);
+            if(g.get_input_edge_name()==stations && g.get_input_vertex_name()==network){
+                cout<<"Done";
+                main_menu();
+            }
+            break;
+
+        case 2:
+            main_menu();
+            break;
+    }
+}
+
 void Menu::add_station(){
     cout<<"Please enter the station name: \n";
     string name;
@@ -74,7 +105,7 @@ void Menu::Task2_1_2(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
-    
+    //g.Task2_1_2(base);
 }
 
 void Menu::Task2_2(){
@@ -104,7 +135,7 @@ void Menu::Task2_2_2(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
-    g.Task2_2(base);
+    //g.Task2_2_2(base);
 }
 
 void Menu::Task2_3(){
@@ -140,7 +171,7 @@ void Menu::Task2_3_2(){
     int number;
     cout<<"Please enter a number:\n";
     cin>>number;
-    g.Task2_3(base,number,true);
+    g.Task2_3_2(base,number,true);
 }
 
 void Menu::Task2_4(){
@@ -178,7 +209,26 @@ void Menu::Task2_4_2(){
     cout<<"Please enter a station name:\n";
     cin>>station_name;
     base.push_back(station_name);
-    g.Task2_4(base);
+    //g.Task2_4_2(base);
+}
+
+void Menu::Task2_4_3(){
+    cout<<"Please enter the source station name: \n";
+    string source_name;
+    getline(cin>>ws,source_name);
+    cout<<endl;
+    cout<<"Please enter the destination station name:\n";
+    string dest_name;
+    getline(cin,dest_name);
+    cout<<endl;
+    vector<string> base;
+    base.emplace_back(source_name);
+    base.emplace_back(dest_name);
+    string station_name;
+    cout<<"Please enter a station name:\n";
+    cin>>station_name;
+    base.push_back(station_name);
+    //g.Task2_4_3(base);
 }
 
 void Menu::Task3_1(){
@@ -217,6 +267,29 @@ void Menu::Task4_1(){
         cin >> reduce[i];
     }
     g.Task4_1(base,reduce);
+}
+
+void Menu::Task4_1_2(){
+    cout<<"Please enter the source station name: \n";
+    string source_name;
+    getline(cin>>ws,source_name);
+    cout<<endl;
+    cout<<"Please enter the destination station name:\n";
+    string dest_name;
+    getline(cin,dest_name);
+    cout<<endl;
+    vector<string> base;
+    base.emplace_back(source_name);
+    base.emplace_back(dest_name);
+    int n;
+    cout <<"How many segments you want to erase ?:\n";
+    cin >> n;
+    vector<int> reduce(n, 0);
+    for (size_t i = 0; i < n; i++){
+        cout <<"Please enter the index of one segment:\n";
+        cin >> reduce[i];
+    }
+    //g.Task4_1_2(base,reduce);
 }
 
 void Menu::Task4_2(){
@@ -309,11 +382,14 @@ void Menu::basic_service() {
                 break;
 
             case 24:
-                Task2_4();;
+                Task2_4();
                 break;
 
             case 242:
-                Task2_4_2();;
+                Task2_4_2();
+                break;
+            case 243:
+                Task2_4_3();
                 break;
         }
     }
@@ -391,6 +467,9 @@ void Menu::line_failures() {
 
             case 41:
                 Task4_1();
+                break;
+            case 412:
+                Task4_1_2();
                 break;
 
             case 42:

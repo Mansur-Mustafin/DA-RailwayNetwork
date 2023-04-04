@@ -13,6 +13,7 @@ class Menu {
 public:
 
     void main_menu();
+    void choose_network();
     void add_station();
     void add_railway();
     void Task2_1();
@@ -23,8 +24,10 @@ public:
     void Task2_3_2();
     void Task2_4();
     void Task2_4_2();
+    void Task2_4_3();
     void Task3_1();
     void Task4_1();
+    void Task4_1_2();
     void Task4_2();
     void basic_service();
     void operation_cost();
