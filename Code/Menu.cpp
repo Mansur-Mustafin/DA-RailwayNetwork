@@ -94,18 +94,23 @@ void Menu::Task2_1(){
     g.Task2_1(base);
 }
 void Menu::Task2_1_2(){
-    cout<<"Please enter the source station name: \n";
-    string source_name;
-    getline(cin>>ws,source_name);
-    cout<<endl;
-    cout<<"Please enter the destination station name:\n";
-    string dest_name;
-    getline(cin,dest_name);
-    cout<<endl;
-    vector<string> base;
-    base.emplace_back(source_name);
-    base.emplace_back(dest_name);
-    //g.Task2_1_2(base);
+    int n;
+    cout <<"How many source stations you want ?:\n";
+    cin >> n;
+    vector<string> source(n,"");
+    for (size_t i = 0; i < n; i++){
+        cout <<"Please enter the name of one source station:\n";
+        getline(cin >>ws, source[i]);
+    }
+
+    cout <<"How many destination stations you want ?:\n";
+    cin >> n;
+    vector<string> destination(n,"");
+    for (size_t i = 0; i < n; i++){
+        cout <<"Please enter the name of one destination station:\n";
+        getline(cin >>ws, destination[i]);
+    }
+    g.Task2_1_2(source,destination);
 }
 
 void Menu::Task2_2(){
@@ -326,7 +331,7 @@ void Menu::basic_service() {
                    "|                                               Basic Service                                               |\n"
                    "|===========================================================================================================|\n"
                    "| Maximum number of trains that can simultaneously travel between two  stations                     [21]    |\n"
-                   "| Maximum number of trains that can simultaneously travel between two  stations (version 2)         [112]   |\n"
+                   "| Maximum number of trains that can simultaneously travel between two  stations (version 2)         [212]   |\n"
                    "| Pairs of stations that require the most amount amount of trains                                   [22]    |\n"
                    "| Pairs of stations that require the most amount amount of trains (version 2)                       [222]   |\n"
                    "| Top-k municipalities and districts, regarding their transportation needs                          [23]    |\n"
