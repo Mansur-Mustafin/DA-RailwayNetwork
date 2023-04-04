@@ -1,14 +1,6 @@
 var searchData=
 [
-  ['task2_5f1_0',['Task2_1',['../class_graph.html#afa3b4f37f07454787c3f4b1fe011d19c',1,'Graph']]],
-  ['task2_5f1_5f2_1',['Task2_1_2',['../class_graph.html#a42008c5d3772516a9622de6904d14b73',1,'Graph']]],
-  ['task2_5f2_2',['Task2_2',['../class_graph.html#a9edf7f7deea21d38b7fcff8f25f0a8aa',1,'Graph']]],
-  ['task2_5f2_5f2_3',['Task2_2_2',['../class_graph.html#ad449db408ffd817fb77006289a5dce2b',1,'Graph']]],
-  ['task2_5f3_4',['Task2_3',['../class_graph.html#a0dc85c790cdb727ec24e440d436462fe',1,'Graph']]],
-  ['task2_5f3_5f2_5',['Task2_3_2',['../class_graph.html#a935f5b9e057826127d2e565862c60398',1,'Graph']]],
-  ['task2_5f4_6',['Task2_4',['../class_graph.html#a2654f43b2e755cd58b7b5eecb08fea18',1,'Graph']]],
-  ['task2_5f4_5f2_7',['Task2_4_2',['../class_graph.html#a5b02b5f9a90d694d43bd571b5119e794',1,'Graph']]],
-  ['task3_5f1_8',['Task3_1',['../class_graph.html#a300af4cf698a09e48d6b0a5279068f23',1,'Graph']]],
-  ['task4_5f1_9',['Task4_1',['../class_graph.html#a854b7fed986443c1e9e51f83d7a550ad',1,'Graph']]],
-  ['task4_5f2_10',['Task4_2',['../class_graph.html#a33ceb8b36991d78514f0257eaceccc33',1,'Graph']]]
+  ['main_0',['main',['../_c_make_c_compiler_id_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCXXCompilerId.cpp'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
+  ['main_5fmenu_1',['main_menu',['../class_menu.html#a670b01c91a1c1a77302f1e5a1566bf6a',1,'Menu']]],
+  ['mincostflow_2',['minCostFlow',['../class_graph.html#a19f3d855851d0fc77b7318dfcb492193',1,'Graph']]]
 ];

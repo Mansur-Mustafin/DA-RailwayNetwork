@@ -5,9 +5,12 @@
 #include "Railway.h"
 #include <iostream>
 /**
- * This boolean function determines if the string contains only numbers
+ * This boolean function determines if the string contains only numbers.
+ *
+ * The time complexity of this function is O(n).
  * @param s
- * @return True if the string is a number. False if the string is empty or contains characters that don't represent numbers
+ * @return True if the string is a number. False if the string is empty or contains characters that don't
+ * represent numbers.
  */
 bool is_number(const string &s) {
     for (char x : s) {
@@ -19,10 +22,10 @@ bool is_number(const string &s) {
 }
 
 /**
- * This operator specifies how an object of the class Railway should be altered, given an input stream
+ * This operator specifies how an object of the class Railway should be altered, given an input stream.
  * @param in
  * @param edge
- * @return input stream containing the stations, capacity, service and cost of the Railway
+ * @return input stream containing the stations, capacity, service and cost of the Railway.
  */
 istream &operator>>(istream &in, Railway &edge) {
     getline(in, edge.station_A, ',');
@@ -40,10 +43,10 @@ istream &operator>>(istream &in, Railway &edge) {
 }
 
 /**
- * This operator specifies how an object of the class Railway should be written into an output stream
+ * This operator specifies how an object of the class Railway should be written into an output stream.
  * @param in
  * @param edge
- * @return output stream containing the stations, capacity, service and flow of the Railway
+ * @return output stream containing the stations, capacity, service and flow of the Railway.
  */
 ostream &operator<<(ostream &out, const Railway &edge) {
     out << edge.station_A << " -> ";
@@ -54,63 +57,63 @@ ostream &operator<<(ostream &out, const Railway &edge) {
     return out;
 }
 /**
- * This function returns Station A of a given Railway
- * @return a string with the station A (or number 1) of the given Railway
+ * This function returns Station A of a given Railway.
+ * @return a string with the station A (or number 1) of the given Railway.
  */
 string Railway::getStationA() const {
     return station_A;
 }
 
 /**
- * This function returns Station B of a given Railway
- * @return a string with the Station B of the given Railway
+ * This function returns Station B of a given Railway.
+ * @return a string with the Station B of the given Railway.
  */
 string Railway::getStationB() const {
     return station_B;
 }
 
 /**
- * This function returns the capacity of a given Railway
- * @return an integer with the value equal to the capacity of the given Railway
+ * This function returns the capacity of a given Railway.
+ * @return an integer with the value equal to the capacity of the given Railway.
  */
 int Railway::getCapacity() const {
     return capacity;
 }
 
 /**
- * This function returns the type of service of a given Railway
- * @return a string with the type of service of the given Railway
+ * This function returns the type of service of a given Railway.
+ * @return a string with the type of service of the given Railway.
  */
 string Railway::getService() const {
     return service;
 }
 
 /**
- * This function returns the flow of a given Railway
- * @return an integer with the value equal to the flow of the given Railway
+ * This function returns the flow of a given Railway.
+ * @return an integer with the value equal to the flow of the given Railway.
  */
 int Railway::getFlow() const {
     return flow;
 }
 
 /**
- * This function returns the previous position of a given Railway
- * @return an integer with the value equal to the previous position of the given Railway
+ * This function returns the previous position of a given Railway.
+ * @return an integer with the value equal to the previous position of the given Railway.
  */
 int Railway::getPrevPosition() const {
     return prev_position;
 }
 
 /**
- * This function returns the cost of a given Railway
- * @return an integer with the value equal to the cost of the given Railway
+ * This function returns the cost of a given Railway.
+ * @return an integer with the value equal to the cost of the given Railway.
  */
 int Railway::getCost() const {
     return cost;
 }
 
 /**
- * This function alters the previous position of the Railway to the value of the given parameter newPosition
+ * This function alters the previous position of the Railway to the value of the given parameter newPosition.
  * @param newPosition
  */
 void Railway::setPrevPosition(int newPosition) {
@@ -118,7 +121,7 @@ void Railway::setPrevPosition(int newPosition) {
 }
 
 /**
- * This function alters the capacity of the Railway to the value of the given parameter newCapacity
+ * This function alters the capacity of the Railway to the value of the given parameter newCapacity.
  * @param newCapacity
  */
 void Railway::setCapacity(int newCapacity) {
@@ -126,7 +129,7 @@ void Railway::setCapacity(int newCapacity) {
 }
 
 /**
- * This function increments the flow of the Railway by the value of the given parameter delta
+ * This function increments the flow of the Railway by the value of the given parameter delta.
  * @param delta
  */
 void Railway::addFlow(int delta) {
@@ -134,7 +137,7 @@ void Railway::addFlow(int delta) {
 }
 
 /**
- * This function decrements the flow of the Railway by the value of the given parameter delta
+ * This function decrements the flow of the Railway by the value of the given parameter delta.
  * @param delta
  */
 void Railway::subFlow(int delta) {
@@ -142,7 +145,7 @@ void Railway::subFlow(int delta) {
 }
 
 /**
- * This function alters Station A of the Railway to the Station given by the parameter stationA
+ * This function alters Station A of the Railway to the Station given by the parameter stationA.
  * @param stationA
  */
 void Railway::setStationA(const std::string& stationA) {
@@ -150,7 +153,7 @@ void Railway::setStationA(const std::string& stationA) {
 }
 
 /**
- * This function alters Station B of the Railway to the Station given by the parameter stationB
+ * This function alters Station B of the Railway to the Station given by the parameter stationB.
  * @param stationB
  */
 void Railway::setStationB(const std::string& stationB) {
@@ -158,7 +161,7 @@ void Railway::setStationB(const std::string& stationB) {
 }
 
 /**
- * This function alters the cost of the Railway to the value given by the parameter c
+ * This function alters the cost of the Railway to the value given by the parameter c.
  * @param c
  */
 void Railway::setCost(int c) {
@@ -166,7 +169,7 @@ void Railway::setCost(int c) {
 }
 
 /**
- * This functions sets the service of the Railway to the service given by parameter service_
+ * This functions sets the service of the Railway to the service given by parameter service_.
  * @param service_
  */
 void Railway::setService(string service_) {

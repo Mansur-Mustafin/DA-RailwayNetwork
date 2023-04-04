@@ -11,7 +11,7 @@
 #include <map>
 
 /**
- * Constructor of the Class Graph
+ * Constructor of the Class Graph.
  * @param input_edge_name_
  * @param input_vertex_name_
  */
@@ -24,7 +24,9 @@ Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
 }
 
 /**
- * This function inserts a vertex (in this case a Station) into the given Graph
+ * This function inserts the Stations (in this case as vertices) in the string input_name into the given Graph.
+ *
+ * The time complexity of this function is O(n).
  * @param input_name
  */
 void Graph::input_vertex(const string &input_name) {
@@ -42,6 +44,12 @@ void Graph::input_vertex(const string &input_name) {
     fin.close();
 }
 
+/**
+ * This function inserts the Railways (in this case as edges) in the string input_name into the given Graph.
+ *
+ * The time complexity of this function is O(n).
+ * @param input_name
+ */
 void Graph::input_edge(const string &input_name) {
     Railway e;
     string s;
@@ -57,6 +65,14 @@ void Graph::input_edge(const string &input_name) {
     fin.close();
 }
 
+/**
+ * This function inputs into the vector adjacencyList subvectors of two integers, that dictate which Stations
+ * are connected to each other by analysing the vector of Railways. Each subvector has the index of Station A and
+ * the index of Station B. This function also updates the number of stations for each station in the graph.
+ *
+ * The time complexity of this function is O(V + E) where V is the number of vertices (or stations) and E is the number
+ * of edges (or railways).
+ */
 void Graph::build_adjacencyList() {
     adjacencyList.resize(stations.size());
     for (int i = 0; i < railways.size(); i += 2) {
@@ -70,6 +86,19 @@ void Graph::build_adjacencyList() {
     }
 }
 
+/**
+ * This function adds the Station of attributes given by the parameters to the vector stations.
+ * If the boolean parameter f is true, then it will write the attributes of the Station into an output stream,
+ * that can be used to write them into a file.
+ *
+ * The complexity of this function is O(1).
+ * @param name
+ * @param f
+ * @param district
+ * @param municipality
+ * @param township
+ * @param line
+ */
 void Graph::add_station(const string& name, bool f, const string& district, const string& municipality, const string& township, const string& line) {
     Station v (name, district, municipality, township, line);
     int ptr = (--stations.end())->getInd();
@@ -84,6 +113,20 @@ void Graph::add_station(const string& name, bool f, const string& district, cons
     adjacencyList.push_back({});
 }
 
+/**
+ * This function adds the Railway of attributes given by the parameters to the vector railways. After the railway is
+ * added into the vector in both directions (Station A to Station B and vice versa), it will alter the adjacency list,
+ * taking into account the new railways that were added.
+ * If the boolean parameter f is true, then it will write the attributes of the Railway into an output stream,
+ * that can be used to write them into a file.
+ *
+ * The complexity of this function is O(1).
+ * @param nameA
+ * @param nameB
+ * @param f
+ * @param capacity
+ * @param service
+ */
 void Graph::add_railway(const string& nameA, const string& nameB, bool f, int capacity, const string& service) {
     Railway e;
     e.setStationA(nameA);
@@ -108,6 +151,13 @@ void Graph::add_railway(const string& nameA, const string& nameB, bool f, int ca
     }
 }
 
+/**
+ * This function determines whether a segment defined by a vector of integers belongs the Graph or not.
+ *
+ * The time complexity of this function is O(n).
+ * @param seg
+ * @return false if the segment cannot exist in the Graph and true otherwise.
+ */
 bool Graph::check_segments(const vector<int> &seg){
     for (auto i : seg){
         if (2 * i >= railways.size()){
@@ -117,12 +167,29 @@ bool Graph::check_segments(const vector<int> &seg){
     return true;
 }
 
+/**
+ * This function determines whether stations are connected in the graph or, in other words, whether if it is
+ * possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.
+ *
+ * The time complexity of this function is O(1).
+ * @param v1
+ * @param v2
+ * @return true if the stations can reach each other and false if they cannot.
+ */
 bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
     vector<string> intersection;
     set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
     return intersection.empty();
 }
 
+/**
+ * This operator specifies how a set of integers should be written into an output stream.
+ *
+ * The time complexity of this operator is O(n).
+ * @param out
+ * @param s
+ * @return output stream with the integers contained in the parameter s.
+ */
 ostream &operator<<(ostream &out, set<int> &s){
     cout << "{";
     for (auto x : s){
@@ -132,6 +199,14 @@ ostream &operator<<(ostream &out, set<int> &s){
     return out;
 }
 
+/**
+ * This operator specifies how a queue of objects of the class Railway should be written into an output stream.
+ *
+ * The time complexity of this operator is O(n).
+ * @param out
+ * @param s
+ * @return output stream with the Railways contained in the parameter s.
+ */
 ostream &operator<<(ostream &out, queue<Railway> &s){
     cout << "{";
     queue<Railway> t = s;
@@ -143,6 +218,11 @@ ostream &operator<<(ostream &out, queue<Railway> &s){
     return out;
 }
 
+/**
+ * This function determines the maximum flow between two stations.
+ * @param base
+ * @return an integer with the maximum flow between two stations.
+ */
 int Graph::Task2_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -159,6 +239,12 @@ int Graph::Task2_1(const vector<string> &base) {
     return r;
 }
 
+/**
+ * This function determines the maximum flow between a group of "source" Stations and "sink" Stations.
+ * @param from
+ * @param to
+ * @return an integer with the maximum flow between two stations.
+ */
 int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     if(!check_keys(from) || !check_keys(to)){
         return -1;
@@ -191,6 +277,10 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     return r;
 }
 
+/**
+ * This function prints the stations whose railway has the highest flow and the respective flow between them
+ * @param base
+ */
 void Graph::Task2_2(vector<string> &base) {
     if (!check_keys(base)) {
         return;
@@ -215,7 +305,9 @@ void Graph::Task2_2(vector<string> &base) {
     }
 }
 
-
+/**
+ * This function prints the pairs of stations whose railways have the maximum flow
+ */
 void Graph::Task2_2_2() {
     vector<Railway> copy_railways = railways;
     vector<Station> copy_stations = stations;
@@ -254,6 +346,12 @@ void Graph::Task2_2_2() {
     }
 }
 
+/**
+ *
+ * @param base
+ * @param k
+ * @param flag
+ */
 void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     if (!check_keys(base)) {
         return;
@@ -293,6 +391,12 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     }
 }
 
+/**
+ *
+ * @param base
+ * @param k
+ * @param flag
+ */
 void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
     if (!check_keys(base)){
         return;
@@ -381,6 +485,10 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
     }
 }
 
+/**
+ * This function prints the number of trains that can get into a Station when there is maximum flow.
+ * @param base
+ */
 void Graph::Task2_4(const vector<string> &base) {
     if (key.count(base[2]) == 0) {
         cout << -1;
@@ -398,6 +506,11 @@ void Graph::Task2_4(const vector<string> &base) {
     cout << count << "\n";
 }
 
+/**
+ * This function determines the number of trains that can get into a Station.
+ * @param station
+ * @return an integer with the number of trains that can get into a Station.
+ */
 int Graph::Task2_4_2(const string &station) {
 
     if (key.count(station) == 0) {
@@ -422,6 +535,12 @@ int Graph::Task2_4_2(const string &station) {
     return r;
 }
 
+/**
+ * This function determines the maximum amount of trains that can simultaneously travel between two specific stations
+ * with minimum cost.
+ * @param base
+ * @return an integer with the maximum number of trains that can travel simultaneously between two stations.
+ */
 int Graph::Task3_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
@@ -440,6 +559,13 @@ int Graph::Task3_1(const vector<string> &base) {
     return result * 2;
 }
 
+/**
+ * This function determines the maximum number of trains that can travel in a specific railway of a reduced Graph.
+ * @param base
+ * @param reduce
+ * @return an integer with the maximum number of trains that can travel simultaneously between in a railway
+ * of a subgraph (or reduced Graph).
+ */
 int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
     if (!check_keys(base) || !check_segments(reduce)){
         return -1;
@@ -466,6 +592,14 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
     return res;
 }
 
+/**
+ * This function determines the maximum number of trains that can travel between two
+ * specific stations of a reduced Graph.
+ * @param base
+ * @param name_of_stations
+ * @return an integer with the maximum number of trains that can travel simultaneously between two specific stations
+ * of a subgraph (or reduced Graph).
+ */
 int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations) {
     vector<int> reduce;
     int res = 0;
@@ -483,6 +617,13 @@ int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_s
     return res;
 }
 
+/**
+ *
+ * @param base
+ * @param reduce
+ * @param k
+ * @return
+ */
 int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k){
     if (!check_keys(base) || !check_segments(reduce)){
         return -1;
@@ -523,6 +664,18 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k)
     return 0;
 }
 
+/**
+ * This function implements the Ford-Fulkerson algorithm on the Graph in order to find the maximum flow from a "source"
+ * vertex represented by parameter s to a "sink" vertex represented by parameter t.
+ *
+ * The time complexity of this function is O(F * E) where F is the maximum flow of the Graph and E is the number of
+ * edges.
+ * @param s
+ * @param t
+ * @param rail
+ * @param skip
+ * @return an integer with the value of the maximum flow between the "source" vertex and the "sink" vertex.
+ */
 int Graph::ford_falk(int s, int t, vector<Railway> &rail, int skip) {
     int result = 0;
     while (true) {
@@ -539,6 +692,19 @@ int Graph::ford_falk(int s, int t, vector<Railway> &rail, int skip) {
     return result;
 }
 
+/**
+ * This function implements the Depth First Search algorithm on the Graph in order to find the maximum flow between
+ * two vertices of the Graph.
+ *
+ * The time complexity of this function is O(E) where E represents the number of edges of the Graph.
+ * @param v
+ * @param t
+ * @param current_min
+ * @param mark
+ * @param rail
+ * @return 0 if the vertex v has been visited before, current_min if the vertex v is equal to vertex t and the minimum
+ * flow that can be added otherwise.
+ */
 int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway> &rail) {
     if (mark[v]) {
         return 0;
@@ -563,6 +729,14 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
     return 0;
 }
 
+/**
+ * This function obtains the index of the Railway whose Stations' names are contained in the parameter n.
+ *
+ * The time complexity of this function is O(n).
+ * @param n
+ * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
+ * is not found in the vector railways of the Graph.
+ */
 int Graph::getIndexOfRailway(pair<string, string> n) {
     int index = 0;
     for(auto railway : railways){
@@ -573,6 +747,17 @@ int Graph::getIndexOfRailway(pair<string, string> n) {
     return -1;
 }
 
+/**
+ * This function implements the Dijkstra algorithm in order to find the shortest path between two vertices in a
+ * Graph.
+ *
+ * The time complexity of this function is O((V+E) * log V) where V represents the number of vertices and E represents
+ * the number of edges.
+ * @param s
+ * @param t
+ * @param rail
+ * @return a pair of values: the minimum capacity along the path and a vector of edges representing the path.
+ */
 pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
     set<pair<int, int>> q;
     vector<int> d(adjacencyList.size(), 1e9);
@@ -612,6 +797,15 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
     return make_pair(minCapacity, edgesPath);
 }
 
+/**
+ * This function determines whether a vector containing the names of stations contains a name of a station that
+ * does not belong to the unordered map key and therefore is not a valid name of a Station in the Graph.
+ *
+ * The time complexity of this function is O(n).
+ * @param base
+ * @return true if all the names in the parameter base exist in the unordered map key of the Graph and false if at least
+ * one of the names does not.
+ */
 bool Graph::check_keys(const vector<string> &base) {
     for (auto &x : base) {
         if (key.count(x) == 0) {
@@ -621,6 +815,16 @@ bool Graph::check_keys(const vector<string> &base) {
     return true;
 }
 
+/**
+ * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
+ * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
+ * minimizing the cost.
+ *
+ * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
+ * @param s
+ * @param t
+ * @param rail
+ */
 void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
     while (true) {
         pair<int, vector<int>> res = dijkstra(s, t, rail);
@@ -640,6 +844,11 @@ int Graph::Task2_4_3(const vector<string> &base) {
     return 0;
 }
 
+/**
+ * This function writes an "image" contained in a text document into the terminal.
+ *
+ * The time complexity of this function is O(n).
+ */
 void Graph::printImage() {
     ifstream file("train_image.txt");
     string line;

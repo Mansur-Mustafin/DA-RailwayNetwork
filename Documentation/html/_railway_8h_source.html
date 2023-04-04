@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">DA Project 2023
    </div>
-   <div id="projectbrief">Project carried out within the curricular unit Design of Algorythms 2023. Made by Group G03_2</div>
+   <div id="projectbrief">Project carried out within the curricular unit Design of Algorithms 2023. Made by Group G03_2</div>
   </td>
  </tr>
  </tbody>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_railway_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,11 +89,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_23fdee2f6995db16c755697cdf620cf4.html">Code</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">Railway.h</div></div>
 </div><!--header-->
@@ -87,63 +103,77 @@ $(function() {
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_railway.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="class_railway.html">Railway</a> {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_railway.html#a056b57eb577d928580ee3cb7f5cc3c7c">getStationA</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_railway.html#a39e09cdb8bed5a736900a1c516fe3807">getStationB</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#a0e993ddf32ed32579cca9e61ffca12d4">getCapacity</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_railway.html#afb5f429d4d22affd2af7ab7fcf0738ec">getService</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#a7f65c5631c9f9f5cd65cfbdf7146ff21">getFlow</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#adc42c9dd393dbb93133435a52e0323a3">getPrevPosition</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#acbdd2a1fb732ec3e700c7c5fabdd5e22">getCost</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec">setPrevPosition</a>(<span class="keywordtype">int</span> newPosition);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a586f4cbe816307ffb0861e472b606862">setCapacity</a>(<span class="keywordtype">int</span> newCapacity);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#ad6b03a0bf724777cd72713c751cdcf79">setStationA</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; stationA);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6">setStationB</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; stationB);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6">setService</a>(<span class="keywordtype">string</span> service);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a371dc2e405f2f42cbda9c82a8d281107">setCost</a>(<span class="keywordtype">int</span> c);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f">addFlow</a>(<span class="keywordtype">int</span> delta);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098">subFlow</a>(<span class="keywordtype">int</span> delta);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_railway.html#ae666bae011aad02c573d4752a3d390b3">   28</a></span>    <a class="code hl_function" href="class_railway.html#ae666bae011aad02c573d4752a3d390b3">Railway</a>(<span class="keywordtype">int</span> flow, <span class="keywordtype">int</span> to, <span class="keywordtype">int</span> prev_position)</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            : flow(flow), prev_position(prev_position){};</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_railway.html#abf74d41edb5721a3dd08b3a6e0876fd6">   30</a></span>    <a class="code hl_function" href="class_railway.html#abf74d41edb5721a3dd08b3a6e0876fd6">Railway</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">friend</span> istream &amp;<a class="code hl_friend" href="class_railway.html#a027c802f213b91920678d8f50a559a44">operator&gt;&gt;</a>(istream &amp;is, <a class="code hl_class" href="class_railway.html">Railway</a> &amp;edge);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">friend</span> ostream &amp;<a class="code hl_friend" href="class_railway.html#ac54b7566c5c35a5fa351ba6b1265d001">operator&lt;&lt;</a>(ostream &amp;ot, <span class="keyword">const</span> <a class="code hl_class" href="class_railway.html">Railway</a> &amp;edge);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">string</span> station_A;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">string</span> station_B;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> capacity = 0;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">string</span> service;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> flow = 0;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> prev_position = 0;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> cost = 0;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif </span><span class="comment">//DA_RAILWAYNETWORK_RAILWAY_H</span></div>
-<div class="ttc" id="aclass_railway_html"><div class="ttname"><a href="class_railway.html">Railway</a></div><div class="ttdef"><b>Definition:</b> Railway.h:11</div></div>
-<div class="ttc" id="aclass_railway_html_a027c802f213b91920678d8f50a559a44"><div class="ttname"><a href="class_railway.html#a027c802f213b91920678d8f50a559a44">Railway::operator&gt;&gt;</a></div><div class="ttdeci">friend istream &amp; operator&gt;&gt;(istream &amp;is, Railway &amp;edge)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:27</div></div>
-<div class="ttc" id="aclass_railway_html_a056b57eb577d928580ee3cb7f5cc3c7c"><div class="ttname"><a href="class_railway.html#a056b57eb577d928580ee3cb7f5cc3c7c">Railway::getStationA</a></div><div class="ttdeci">string getStationA() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:60</div></div>
-<div class="ttc" id="aclass_railway_html_a0e993ddf32ed32579cca9e61ffca12d4"><div class="ttname"><a href="class_railway.html#a0e993ddf32ed32579cca9e61ffca12d4">Railway::getCapacity</a></div><div class="ttdeci">int getCapacity() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:76</div></div>
-<div class="ttc" id="aclass_railway_html_a18c3f7494fcaf4a41ec319e9336666ec"><div class="ttname"><a href="class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec">Railway::setPrevPosition</a></div><div class="ttdeci">void setPrevPosition(int newPosition)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:116</div></div>
-<div class="ttc" id="aclass_railway_html_a371dc2e405f2f42cbda9c82a8d281107"><div class="ttname"><a href="class_railway.html#a371dc2e405f2f42cbda9c82a8d281107">Railway::setCost</a></div><div class="ttdeci">void setCost(int c)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:164</div></div>
-<div class="ttc" id="aclass_railway_html_a39e09cdb8bed5a736900a1c516fe3807"><div class="ttname"><a href="class_railway.html#a39e09cdb8bed5a736900a1c516fe3807">Railway::getStationB</a></div><div class="ttdeci">string getStationB() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:68</div></div>
-<div class="ttc" id="aclass_railway_html_a3c7a1a6672f01d6759a7c3a8f094e098"><div class="ttname"><a href="class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098">Railway::subFlow</a></div><div class="ttdeci">void subFlow(int delta)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:140</div></div>
-<div class="ttc" id="aclass_railway_html_a586f4cbe816307ffb0861e472b606862"><div class="ttname"><a href="class_railway.html#a586f4cbe816307ffb0861e472b606862">Railway::setCapacity</a></div><div class="ttdeci">void setCapacity(int newCapacity)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:124</div></div>
-<div class="ttc" id="aclass_railway_html_a7f65c5631c9f9f5cd65cfbdf7146ff21"><div class="ttname"><a href="class_railway.html#a7f65c5631c9f9f5cd65cfbdf7146ff21">Railway::getFlow</a></div><div class="ttdeci">int getFlow() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:92</div></div>
-<div class="ttc" id="aclass_railway_html_a8d7ead64e1bca526ad8d810bd4ab02e6"><div class="ttname"><a href="class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6">Railway::setService</a></div><div class="ttdeci">void setService(string service)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:172</div></div>
-<div class="ttc" id="aclass_railway_html_a9c5bed8e94ca29b37232b71177de8c6f"><div class="ttname"><a href="class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f">Railway::addFlow</a></div><div class="ttdeci">void addFlow(int delta)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:132</div></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_railway.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_railway.html">Railway</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_railway.html#a056b57eb577d928580ee3cb7f5cc3c7c">getStationA</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_railway.html#a39e09cdb8bed5a736900a1c516fe3807">getStationB</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#a0e993ddf32ed32579cca9e61ffca12d4">getCapacity</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_railway.html#afb5f429d4d22affd2af7ab7fcf0738ec">getService</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#a7f65c5631c9f9f5cd65cfbdf7146ff21">getFlow</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#adc42c9dd393dbb93133435a52e0323a3">getPrevPosition</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_railway.html#acbdd2a1fb732ec3e700c7c5fabdd5e22">getCost</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec">setPrevPosition</a>(<span class="keywordtype">int</span> newPosition);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a586f4cbe816307ffb0861e472b606862">setCapacity</a>(<span class="keywordtype">int</span> newCapacity);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#ad6b03a0bf724777cd72713c751cdcf79">setStationA</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; stationA);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6">setStationB</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; stationB);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6">setService</a>(<span class="keywordtype">string</span> <a class="code hl_variable" href="class_railway.html#afac1e31d95a6df03aa33e5b5d66b7c47">service</a>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a371dc2e405f2f42cbda9c82a8d281107">setCost</a>(<span class="keywordtype">int</span> c);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f">addFlow</a>(<span class="keywordtype">int</span> delta);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098">subFlow</a>(<span class="keywordtype">int</span> delta);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_railway.html#ae666bae011aad02c573d4752a3d390b3">   42</a></span>    <a class="code hl_function" href="class_railway.html#ae666bae011aad02c573d4752a3d390b3">Railway</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="class_railway.html#a072a1b0f0031103f2a0681cb54967fb1">flow</a>, <span class="keywordtype">int</span> to, <span class="keywordtype">int</span> <a class="code hl_variable" href="class_railway.html#ac40db35c80d4d7dc61fa83c932b3ada1">prev_position</a>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            : <a class="code hl_variable" href="class_railway.html#a072a1b0f0031103f2a0681cb54967fb1">flow</a>(<a class="code hl_variable" href="class_railway.html#a072a1b0f0031103f2a0681cb54967fb1">flow</a>), <a class="code hl_variable" href="class_railway.html#ac40db35c80d4d7dc61fa83c932b3ada1">prev_position</a>(<a class="code hl_variable" href="class_railway.html#ac40db35c80d4d7dc61fa83c932b3ada1">prev_position</a>){};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_railway.html#abf74d41edb5721a3dd08b3a6e0876fd6">   48</a></span>    <a class="code hl_function" href="class_railway.html#abf74d41edb5721a3dd08b3a6e0876fd6">Railway</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">friend</span> istream &amp;<a class="code hl_friend" href="class_railway.html#a027c802f213b91920678d8f50a559a44">operator&gt;&gt;</a>(istream &amp;is, <a class="code hl_class" href="class_railway.html">Railway</a> &amp;edge);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">friend</span> ostream &amp;<a class="code hl_friend" href="class_railway.html#ac54b7566c5c35a5fa351ba6b1265d001">operator&lt;&lt;</a>(ostream &amp;ot, <span class="keyword">const</span> <a class="code hl_class" href="class_railway.html">Railway</a> &amp;edge);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_railway.html#a3158e83515f9e0a84503d58a0f40b1a6">   52</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="class_railway.html#a3158e83515f9e0a84503d58a0f40b1a6">station_A</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_railway.html#a06e2ef1e0c10840acf2470e80751d1d6">   53</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="class_railway.html#a06e2ef1e0c10840acf2470e80751d1d6">station_B</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_railway.html#a02fe55529b0b451be3ef6fd7450d8c54">   54</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_railway.html#a02fe55529b0b451be3ef6fd7450d8c54">capacity</a> = 0;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_railway.html#afac1e31d95a6df03aa33e5b5d66b7c47">   55</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="class_railway.html#afac1e31d95a6df03aa33e5b5d66b7c47">service</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_railway.html#a072a1b0f0031103f2a0681cb54967fb1">   56</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_railway.html#a072a1b0f0031103f2a0681cb54967fb1">flow</a> = 0;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_railway.html#ac40db35c80d4d7dc61fa83c932b3ada1">   57</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_railway.html#ac40db35c80d4d7dc61fa83c932b3ada1">prev_position</a> = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_railway.html#ab170418a3de230fe593b6104d0cadc85">   58</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_railway.html#ab170418a3de230fe593b6104d0cadc85">cost</a> = 0;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">//DA_RAILWAYNETWORK_RAILWAY_H</span></div>
+<div class="ttc" id="aclass_railway_html"><div class="ttname"><a href="class_railway.html">Railway</a></div><div class="ttdoc">Class representing a Railway.</div><div class="ttdef"><b>Definition:</b> Railway.h:18</div></div>
+<div class="ttc" id="aclass_railway_html_a027c802f213b91920678d8f50a559a44"><div class="ttname"><a href="class_railway.html#a027c802f213b91920678d8f50a559a44">Railway::operator&gt;&gt;</a></div><div class="ttdeci">friend istream &amp; operator&gt;&gt;(istream &amp;is, Railway &amp;edge)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:30</div></div>
+<div class="ttc" id="aclass_railway_html_a02fe55529b0b451be3ef6fd7450d8c54"><div class="ttname"><a href="class_railway.html#a02fe55529b0b451be3ef6fd7450d8c54">Railway::capacity</a></div><div class="ttdeci">int capacity</div><div class="ttdef"><b>Definition:</b> Railway.h:54</div></div>
+<div class="ttc" id="aclass_railway_html_a056b57eb577d928580ee3cb7f5cc3c7c"><div class="ttname"><a href="class_railway.html#a056b57eb577d928580ee3cb7f5cc3c7c">Railway::getStationA</a></div><div class="ttdeci">string getStationA() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:63</div></div>
+<div class="ttc" id="aclass_railway_html_a06e2ef1e0c10840acf2470e80751d1d6"><div class="ttname"><a href="class_railway.html#a06e2ef1e0c10840acf2470e80751d1d6">Railway::station_B</a></div><div class="ttdeci">string station_B</div><div class="ttdef"><b>Definition:</b> Railway.h:53</div></div>
+<div class="ttc" id="aclass_railway_html_a072a1b0f0031103f2a0681cb54967fb1"><div class="ttname"><a href="class_railway.html#a072a1b0f0031103f2a0681cb54967fb1">Railway::flow</a></div><div class="ttdeci">int flow</div><div class="ttdef"><b>Definition:</b> Railway.h:56</div></div>
+<div class="ttc" id="aclass_railway_html_a0e993ddf32ed32579cca9e61ffca12d4"><div class="ttname"><a href="class_railway.html#a0e993ddf32ed32579cca9e61ffca12d4">Railway::getCapacity</a></div><div class="ttdeci">int getCapacity() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:79</div></div>
+<div class="ttc" id="aclass_railway_html_a18c3f7494fcaf4a41ec319e9336666ec"><div class="ttname"><a href="class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec">Railway::setPrevPosition</a></div><div class="ttdeci">void setPrevPosition(int newPosition)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:119</div></div>
+<div class="ttc" id="aclass_railway_html_a3158e83515f9e0a84503d58a0f40b1a6"><div class="ttname"><a href="class_railway.html#a3158e83515f9e0a84503d58a0f40b1a6">Railway::station_A</a></div><div class="ttdeci">string station_A</div><div class="ttdef"><b>Definition:</b> Railway.h:52</div></div>
+<div class="ttc" id="aclass_railway_html_a371dc2e405f2f42cbda9c82a8d281107"><div class="ttname"><a href="class_railway.html#a371dc2e405f2f42cbda9c82a8d281107">Railway::setCost</a></div><div class="ttdeci">void setCost(int c)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:167</div></div>
+<div class="ttc" id="aclass_railway_html_a39e09cdb8bed5a736900a1c516fe3807"><div class="ttname"><a href="class_railway.html#a39e09cdb8bed5a736900a1c516fe3807">Railway::getStationB</a></div><div class="ttdeci">string getStationB() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:71</div></div>
+<div class="ttc" id="aclass_railway_html_a3c7a1a6672f01d6759a7c3a8f094e098"><div class="ttname"><a href="class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098">Railway::subFlow</a></div><div class="ttdeci">void subFlow(int delta)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:143</div></div>
+<div class="ttc" id="aclass_railway_html_a586f4cbe816307ffb0861e472b606862"><div class="ttname"><a href="class_railway.html#a586f4cbe816307ffb0861e472b606862">Railway::setCapacity</a></div><div class="ttdeci">void setCapacity(int newCapacity)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:127</div></div>
+<div class="ttc" id="aclass_railway_html_a7f65c5631c9f9f5cd65cfbdf7146ff21"><div class="ttname"><a href="class_railway.html#a7f65c5631c9f9f5cd65cfbdf7146ff21">Railway::getFlow</a></div><div class="ttdeci">int getFlow() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:95</div></div>
+<div class="ttc" id="aclass_railway_html_a8d7ead64e1bca526ad8d810bd4ab02e6"><div class="ttname"><a href="class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6">Railway::setService</a></div><div class="ttdeci">void setService(string service)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:175</div></div>
+<div class="ttc" id="aclass_railway_html_a9c5bed8e94ca29b37232b71177de8c6f"><div class="ttname"><a href="class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f">Railway::addFlow</a></div><div class="ttdeci">void addFlow(int delta)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:135</div></div>
+<div class="ttc" id="aclass_railway_html_ab170418a3de230fe593b6104d0cadc85"><div class="ttname"><a href="class_railway.html#ab170418a3de230fe593b6104d0cadc85">Railway::cost</a></div><div class="ttdeci">int cost</div><div class="ttdef"><b>Definition:</b> Railway.h:58</div></div>
 <div class="ttc" id="aclass_railway_html_abf74d41edb5721a3dd08b3a6e0876fd6"><div class="ttname"><a href="class_railway.html#abf74d41edb5721a3dd08b3a6e0876fd6">Railway::Railway</a></div><div class="ttdeci">Railway()=default</div></div>
-<div class="ttc" id="aclass_railway_html_ac54b7566c5c35a5fa351ba6b1265d001"><div class="ttname"><a href="class_railway.html#ac54b7566c5c35a5fa351ba6b1265d001">Railway::operator&lt;&lt;</a></div><div class="ttdeci">friend ostream &amp; operator&lt;&lt;(ostream &amp;ot, const Railway &amp;edge)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:48</div></div>
-<div class="ttc" id="aclass_railway_html_acbdd2a1fb732ec3e700c7c5fabdd5e22"><div class="ttname"><a href="class_railway.html#acbdd2a1fb732ec3e700c7c5fabdd5e22">Railway::getCost</a></div><div class="ttdeci">int getCost() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:108</div></div>
-<div class="ttc" id="aclass_railway_html_ad6b03a0bf724777cd72713c751cdcf79"><div class="ttname"><a href="class_railway.html#ad6b03a0bf724777cd72713c751cdcf79">Railway::setStationA</a></div><div class="ttdeci">void setStationA(const string &amp;stationA)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:148</div></div>
-<div class="ttc" id="aclass_railway_html_adc42c9dd393dbb93133435a52e0323a3"><div class="ttname"><a href="class_railway.html#adc42c9dd393dbb93133435a52e0323a3">Railway::getPrevPosition</a></div><div class="ttdeci">int getPrevPosition() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:100</div></div>
-<div class="ttc" id="aclass_railway_html_ae55bb9552aff7c456b0d317a2bf2afd6"><div class="ttname"><a href="class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6">Railway::setStationB</a></div><div class="ttdeci">void setStationB(const string &amp;stationB)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:156</div></div>
-<div class="ttc" id="aclass_railway_html_ae666bae011aad02c573d4752a3d390b3"><div class="ttname"><a href="class_railway.html#ae666bae011aad02c573d4752a3d390b3">Railway::Railway</a></div><div class="ttdeci">Railway(int flow, int to, int prev_position)</div><div class="ttdef"><b>Definition:</b> Railway.h:28</div></div>
-<div class="ttc" id="aclass_railway_html_afb5f429d4d22affd2af7ab7fcf0738ec"><div class="ttname"><a href="class_railway.html#afb5f429d4d22affd2af7ab7fcf0738ec">Railway::getService</a></div><div class="ttdeci">string getService() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:84</div></div>
+<div class="ttc" id="aclass_railway_html_ac40db35c80d4d7dc61fa83c932b3ada1"><div class="ttname"><a href="class_railway.html#ac40db35c80d4d7dc61fa83c932b3ada1">Railway::prev_position</a></div><div class="ttdeci">int prev_position</div><div class="ttdef"><b>Definition:</b> Railway.h:57</div></div>
+<div class="ttc" id="aclass_railway_html_ac54b7566c5c35a5fa351ba6b1265d001"><div class="ttname"><a href="class_railway.html#ac54b7566c5c35a5fa351ba6b1265d001">Railway::operator&lt;&lt;</a></div><div class="ttdeci">friend ostream &amp; operator&lt;&lt;(ostream &amp;ot, const Railway &amp;edge)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:51</div></div>
+<div class="ttc" id="aclass_railway_html_acbdd2a1fb732ec3e700c7c5fabdd5e22"><div class="ttname"><a href="class_railway.html#acbdd2a1fb732ec3e700c7c5fabdd5e22">Railway::getCost</a></div><div class="ttdeci">int getCost() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:111</div></div>
+<div class="ttc" id="aclass_railway_html_ad6b03a0bf724777cd72713c751cdcf79"><div class="ttname"><a href="class_railway.html#ad6b03a0bf724777cd72713c751cdcf79">Railway::setStationA</a></div><div class="ttdeci">void setStationA(const string &amp;stationA)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:151</div></div>
+<div class="ttc" id="aclass_railway_html_adc42c9dd393dbb93133435a52e0323a3"><div class="ttname"><a href="class_railway.html#adc42c9dd393dbb93133435a52e0323a3">Railway::getPrevPosition</a></div><div class="ttdeci">int getPrevPosition() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:103</div></div>
+<div class="ttc" id="aclass_railway_html_ae55bb9552aff7c456b0d317a2bf2afd6"><div class="ttname"><a href="class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6">Railway::setStationB</a></div><div class="ttdeci">void setStationB(const string &amp;stationB)</div><div class="ttdef"><b>Definition:</b> Railway.cpp:159</div></div>
+<div class="ttc" id="aclass_railway_html_ae666bae011aad02c573d4752a3d390b3"><div class="ttname"><a href="class_railway.html#ae666bae011aad02c573d4752a3d390b3">Railway::Railway</a></div><div class="ttdeci">Railway(int flow, int to, int prev_position)</div><div class="ttdef"><b>Definition:</b> Railway.h:42</div></div>
+<div class="ttc" id="aclass_railway_html_afac1e31d95a6df03aa33e5b5d66b7c47"><div class="ttname"><a href="class_railway.html#afac1e31d95a6df03aa33e5b5d66b7c47">Railway::service</a></div><div class="ttdeci">string service</div><div class="ttdef"><b>Definition:</b> Railway.h:55</div></div>
+<div class="ttc" id="aclass_railway_html_afb5f429d4d22affd2af7ab7fcf0738ec"><div class="ttname"><a href="class_railway.html#afb5f429d4d22affd2af7ab7fcf0738ec">Railway::getService</a></div><div class="ttdeci">string getService() const</div><div class="ttdef"><b>Definition:</b> Railway.cpp:87</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_23fdee2f6995db16c755697cdf620cf4.html">Code</a></li><li class="navelem"><a class="el" href="_railway_8h.html">Railway.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+  </ul>
+</div>
 </body>
 </html>

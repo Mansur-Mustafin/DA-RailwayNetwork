@@ -14,6 +14,20 @@
 
 using namespace std;
 
+/**
+ * @brief Class representing a Graph with Stations as vertices and Railways as edges
+ *
+ * This class represents a Graph, where the vertices are the Train Stations and the edges are Railways. The graph saves
+ * the Railways and Train Stations in two vectors, each with objects of classes Railways and Stations, respectively.
+ *
+ * This class has a vector of vectors of integers, used to organize the connections (or adjacencies) of the Stations.
+ *
+ * This class has an unordered map of strings and integers, where the strings represent the names of the Stations and the
+ * integers represent the indexes, therefore allowing us to get the name of a station with its index.
+ *
+ * This class has two strings input_edge_name and input_vertex_name, used for inputting the wanted
+ * Stations and/or Railways, using the functions input_vertex and input_edge.
+ */
 class Graph {
     int dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway> &rail);
     pair<int, vector<int>> dijkstra(int s, int t, vector<Railway> &edgesList);

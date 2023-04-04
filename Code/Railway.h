@@ -8,6 +8,13 @@
 #include <string>
 
 using namespace std;
+
+/**
+ *@brief Class representing a Railway.
+ *
+ * This class represents a Railway, with the stations it travels to and from, its capacity, type of service, flow,
+ * previous position and cost.
+ */
 class Railway {
 public:
     string getStationA() const;
@@ -25,8 +32,19 @@ public:
     void setCost(int c);
     void addFlow(int delta);
     void subFlow(int delta);
+
+    /**
+     * Constructor of the class Railway with the given parameters flow, to and prev_position.
+     * @param flow
+     * @param to
+     * @param prev_position
+     */
     Railway(int flow, int to, int prev_position)
             : flow(flow), prev_position(prev_position){};
+
+    /**
+     * Default Constructor of the class Railway.
+     */
     Railway() = default;
     friend istream &operator>>(istream &is, Railway &edge);
     friend ostream &operator<<(ostream &ot, const Railway &edge);

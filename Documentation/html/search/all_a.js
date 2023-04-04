@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['railway_0',['Railway',['../class_railway.html',1,'Railway'],['../class_railway.html#ae666bae011aad02c573d4752a3d390b3',1,'Railway::Railway(int flow, int to, int prev_position)'],['../class_railway.html#abf74d41edb5721a3dd08b3a6e0876fd6',1,'Railway::Railway()=default']]],
-  ['railway_2ecpp_1',['Railway.cpp',['../_railway_8cpp.html',1,'']]],
-  ['railway_2eh_2',['Railway.h',['../_railway_8h.html',1,'']]]
+  ['line_0',['line',['../class_station.html#a49c6e75f4e4d46f2ad01bad229ee0d71',1,'Station']]],
+  ['line_5ffailures_1',['line_failures',['../class_menu.html#a6e1c1c8bf38712cf7cd086977d0a92f7',1,'Menu']]]
 ];

@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -23,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">DA Project 2023
    </div>
-   <div id="projectbrief">Project carried out within the curricular unit Design of Algorythms 2023. Made by Group G03_2</div>
+   <div id="projectbrief">Project carried out within the curricular unit Design of Algorithms 2023. Made by Group G03_2</div>
   </td>
  </tr>
  </tbody>
@@ -47,6 +51,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('class_graph.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,14 +89,18 @@ $(function() {
 </div>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_graph-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Graph Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class representing a <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> with Stations as vertices and Railways as edges.  
+ <a href="class_graph.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
@@ -85,6 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2dca58b788e3cdc00619bc87073f6f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61d0656cb9dad67c9b1e97a3b9d9245c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a61d0656cb9dad67c9b1e97a3b9d9245c">add_railway</a> (const string &amp;nameA, const string &amp;nameB, bool f=true, int capacity=1e9, const string &amp;service=&quot;STANDARD&quot;)</td></tr>
 <tr class="separator:a61d0656cb9dad67c9b1e97a3b9d9245c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913457b930f65e6f7faf067c1e387684"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a913457b930f65e6f7faf067c1e387684">getIndexOfRailway</a> (pair&lt; string, string &gt;)</td></tr>
+<tr class="separator:a913457b930f65e6f7faf067c1e387684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa3b4f37f07454787c3f4b1fe011d19c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#afa3b4f37f07454787c3f4b1fe011d19c">Task2_1</a> (const vector&lt; string &gt; &amp;base)</td></tr>
 <tr class="separator:afa3b4f37f07454787c3f4b1fe011d19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42008c5d3772516a9622de6904d14b73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a42008c5d3772516a9622de6904d14b73">Task2_1_2</a> (const vector&lt; string &gt; &amp;from, const vector&lt; string &gt; &amp;to)</td></tr>
@@ -99,18 +126,66 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a935f5b9e057826127d2e565862c60398"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a300af4cf698a09e48d6b0a5279068f23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a300af4cf698a09e48d6b0a5279068f23">Task3_1</a> (const vector&lt; string &gt; &amp;base)</td></tr>
 <tr class="separator:a300af4cf698a09e48d6b0a5279068f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae33b9c376b943ee40e64981db24d4be1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae33b9c376b943ee40e64981db24d4be1">Graph</a> (const string &amp;input_edge_name, const string &amp;input_vertex_name)</td></tr>
+<tr class="memitem:ae33b9c376b943ee40e64981db24d4be1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae33b9c376b943ee40e64981db24d4be1">Graph</a> (const string &amp;<a class="el" href="class_graph.html#ae88ddfc274c7c7a7fb750deda3fa42d1">input_edge_name</a>, const string &amp;<a class="el" href="class_graph.html#a2739bd189b1ac7dfb24f6747087e451d">input_vertex_name</a>)</td></tr>
 <tr class="separator:ae33b9c376b943ee40e64981db24d4be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2654f43b2e755cd58b7b5eecb08fea18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a2654f43b2e755cd58b7b5eecb08fea18">Task2_4</a> (const vector&lt; string &gt; &amp;station)</td></tr>
 <tr class="separator:a2654f43b2e755cd58b7b5eecb08fea18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b02b5f9a90d694d43bd571b5119e794"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a5b02b5f9a90d694d43bd571b5119e794">Task2_4_2</a> (const string &amp;station)</td></tr>
 <tr class="separator:a5b02b5f9a90d694d43bd571b5119e794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9071f83c481e6e4d38e4b6318fa787"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a2b9071f83c481e6e4d38e4b6318fa787">Task2_4_3</a> (const vector&lt; string &gt; &amp;base)</td></tr>
+<tr class="separator:a2b9071f83c481e6e4d38e4b6318fa787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a854b7fed986443c1e9e51f83d7a550ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a854b7fed986443c1e9e51f83d7a550ad">Task4_1</a> (const vector&lt; string &gt; &amp;base, const vector&lt; int &gt; &amp;reduce)</td></tr>
 <tr class="separator:a854b7fed986443c1e9e51f83d7a550ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aade89b4ae6fe1116c522952362ed2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7aade89b4ae6fe1116c522952362ed2d">Task4_1_2</a> (const vector&lt; string &gt; &amp;base, const vector&lt; string &gt; &amp;name_of_stations)</td></tr>
+<tr class="separator:a7aade89b4ae6fe1116c522952362ed2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33ceb8b36991d78514f0257eaceccc33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a33ceb8b36991d78514f0257eaceccc33">Task4_2</a> (const vector&lt; string &gt; &amp;base, const vector&lt; int &gt; &amp;reduce, int k)</td></tr>
 <tr class="separator:a33ceb8b36991d78514f0257eaceccc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a771ca7f491b7b42a66d59a3d98294012"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a771ca7f491b7b42a66d59a3d98294012">printImage</a> ()</td></tr>
+<tr class="separator:a771ca7f491b7b42a66d59a3d98294012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aab1073cbf47a5bae08f1c63ac8daccae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aab1073cbf47a5bae08f1c63ac8daccae">dfs</a> (int v, int t, int current_min, vector&lt; bool &gt; &amp;mark, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail)</td></tr>
+<tr class="separator:aab1073cbf47a5bae08f1c63ac8daccae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea5d148cb514a446fc6293e288e43ad"><td class="memItemLeft" align="right" valign="top">pair&lt; int, vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7ea5d148cb514a446fc6293e288e43ad">dijkstra</a> (int s, int t, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;edgesList)</td></tr>
+<tr class="separator:a7ea5d148cb514a446fc6293e288e43ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19f3d855851d0fc77b7318dfcb492193"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a19f3d855851d0fc77b7318dfcb492193">minCostFlow</a> (int s, int t, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail)</td></tr>
+<tr class="separator:a19f3d855851d0fc77b7318dfcb492193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab63ee8e082485ca0a601c0e563952a07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ab63ee8e082485ca0a601c0e563952a07">check_keys</a> (const vector&lt; string &gt; &amp;base)</td></tr>
+<tr class="separator:ab63ee8e082485ca0a601c0e563952a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5b97a6b48e43fa04ce3918c37e9b4c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a6d5b97a6b48e43fa04ce3918c37e9b4c">check_segments</a> (const vector&lt; int &gt; &amp;seg)</td></tr>
+<tr class="separator:a6d5b97a6b48e43fa04ce3918c37e9b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1270f6396f38a1a102595ba59b108593"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1270f6396f38a1a102595ba59b108593">input_vertex</a> (const string &amp;input_name)</td></tr>
+<tr class="separator:a1270f6396f38a1a102595ba59b108593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacf577256d26c6bb8a2b266b457fb93f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aacf577256d26c6bb8a2b266b457fb93f">input_edge</a> (const string &amp;input_name)</td></tr>
+<tr class="separator:aacf577256d26c6bb8a2b266b457fb93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95bda9b4265c87f74980eb5148863edd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a95bda9b4265c87f74980eb5148863edd">build_adjacencyList</a> ()</td></tr>
+<tr class="separator:a95bda9b4265c87f74980eb5148863edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47e663571154169b8b16890fa568a7a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a47e663571154169b8b16890fa568a7a1">ford_falk</a> (int s, int t, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail, int skip=-1)</td></tr>
+<tr class="separator:a47e663571154169b8b16890fa568a7a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac80ed640ec9c182f509bb60609cab144"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ac80ed640ec9c182f509bb60609cab144">adjacencyList</a></td></tr>
+<tr class="separator:ac80ed640ec9c182f509bb60609cab144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a4957313b3e951eaba9233880c5819e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1a4957313b3e951eaba9233880c5819e">railways</a></td></tr>
+<tr class="separator:a1a4957313b3e951eaba9233880c5819e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e5199decb06765a91383a599259182"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a72e5199decb06765a91383a599259182">stations</a></td></tr>
+<tr class="separator:a72e5199decb06765a91383a599259182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88909a84fd0b1008d3a00ae533f3146b"><td class="memItemLeft" align="right" valign="top">unordered_map&lt; string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a88909a84fd0b1008d3a00ae533f3146b">key</a></td></tr>
+<tr class="separator:a88909a84fd0b1008d3a00ae533f3146b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae88ddfc274c7c7a7fb750deda3fa42d1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae88ddfc274c7c7a7fb750deda3fa42d1">input_edge_name</a> = &quot;network_test_1csv&quot;</td></tr>
+<tr class="separator:ae88ddfc274c7c7a7fb750deda3fa42d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2739bd189b1ac7dfb24f6747087e451d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a2739bd189b1ac7dfb24f6747087e451d">input_vertex_name</a> = &quot;stations_test_1csv&quot;</td></tr>
+<tr class="separator:a2739bd189b1ac7dfb24f6747087e451d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class representing a <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> with Stations as vertices and Railways as edges. </p>
+<p>This class represents a <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>, where the vertices are the Train Stations and the edges are Railways. The graph saves the Railways and Train Stations in two vectors, each with objects of classes Railways and Stations, respectively.</p>
+<p>This class has a vector of vectors of integers, used to organize the connections (or adjacencies) of the Stations.</p>
+<p>This class has an unordered map of strings and integers, where the strings represent the names of the Stations and the integers represent the indexes, therefore allowing us to get the name of a station with its index.</p>
+<p>This class has two strings input_edge_name and input_vertex_name, used for inputting the wanted Stations and/or Railways, using the functions input_vertex and input_edge. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae33b9c376b943ee40e64981db24d4be1" name="ae33b9c376b943ee40e64981db24d4be1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae33b9c376b943ee40e64981db24d4be1">&#9670;&#160;</a></span>Graph()</h2>
 
@@ -136,7 +211,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor of the Class <a class="el" href="class_graph.html">Graph</a> </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Constructor of the Class <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input_edge_name_</td><td></td></tr>
     <tr><td class="paramname">input_vertex_name_</td><td></td></tr>
@@ -190,6 +265,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function adds the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> of attributes given by the parameters to the vector railways. After the railway is added into the vector in both directions (<a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A to <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B and vice versa), it will alter the adjacency list, taking into account the new railways that were added. If the boolean parameter f is true, then it will write the attributes of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> into an output stream, that can be used to write them into a file.</p>
+<p>The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nameA</td><td></td></tr>
+    <tr><td class="paramname">nameB</td><td></td></tr>
+    <tr><td class="paramname">f</td><td></td></tr>
+    <tr><td class="paramname">capacity</td><td></td></tr>
+    <tr><td class="paramname">service</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -242,6 +328,452 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function adds the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> of attributes given by the parameters to the vector stations. If the boolean parameter f is true, then it will write the attributes of the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> into an output stream, that can be used to write them into a file.</p>
+<p>The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">f</td><td></td></tr>
+    <tr><td class="paramname">district</td><td></td></tr>
+    <tr><td class="paramname">municipality</td><td></td></tr>
+    <tr><td class="paramname">township</td><td></td></tr>
+    <tr><td class="paramname">line</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a95bda9b4265c87f74980eb5148863edd" name="a95bda9b4265c87f74980eb5148863edd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95bda9b4265c87f74980eb5148863edd">&#9670;&#160;</a></span>build_adjacencyList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::build_adjacencyList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function inputs into the vector adjacencyList subvectors of two integers, that dictate which Stations are connected to each other by analysing the vector of Railways. Each subvector has the index of <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A and the index of <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B. This function also updates the number of stations for each station in the graph.</p>
+<p>The time complexity of this function is O(V + E) where V is the number of vertices (or stations) and E is the number of edges (or railways). </p>
+
+</div>
+</div>
+<a id="ab63ee8e082485ca0a601c0e563952a07" name="ab63ee8e082485ca0a601c0e563952a07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab63ee8e082485ca0a601c0e563952a07">&#9670;&#160;</a></span>check_keys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Graph::check_keys </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function determines whether a vector containing the names of stations contains a name of a station that does not belong to the unordered map key and therefore is not a valid name of a <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> in the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
+<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if all the names in the parameter base exist in the unordered map key of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> and false if at least one of the names does not. </dd></dl>
+
+</div>
+</div>
+<a id="a6d5b97a6b48e43fa04ce3918c37e9b4c" name="a6d5b97a6b48e43fa04ce3918c37e9b4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5b97a6b48e43fa04ce3918c37e9b4c">&#9670;&#160;</a></span>check_segments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Graph::check_segments </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>seg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function determines whether a segment defined by a vector of integers belongs the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> or not.</p>
+<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seg</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>false if the segment cannot exist in the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> and true otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aab1073cbf47a5bae08f1c63ac8daccae" name="aab1073cbf47a5bae08f1c63ac8daccae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1073cbf47a5bae08f1c63ac8daccae">&#9670;&#160;</a></span>dfs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::dfs </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>current_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; bool &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mark</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function implements the Depth First Search algorithm on the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> in order to find the maximum flow between two vertices of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
+<p>The time complexity of this function is O(E) where E represents the number of edges of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td></td></tr>
+    <tr><td class="paramname">t</td><td></td></tr>
+    <tr><td class="paramname">current_min</td><td></td></tr>
+    <tr><td class="paramname">mark</td><td></td></tr>
+    <tr><td class="paramname">rail</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the vertex v has been visited before, current_min if the vertex v is equal to vertex t and the minimum flow that can be added otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7ea5d148cb514a446fc6293e288e43ad" name="a7ea5d148cb514a446fc6293e288e43ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ea5d148cb514a446fc6293e288e43ad">&#9670;&#160;</a></span>dijkstra()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pair&lt; int, vector&lt; int &gt; &gt; Graph::dijkstra </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function implements the Dijkstra algorithm in order to find the shortest path between two vertices in a <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
+<p>The time complexity of this function is O((V+E) * log V) where V represents the number of vertices and E represents the number of edges. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+    <tr><td class="paramname">t</td><td></td></tr>
+    <tr><td class="paramname">rail</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pair of values: the minimum capacity along the path and a vector of edges representing the path. </dd></dl>
+
+</div>
+</div>
+<a id="a47e663571154169b8b16890fa568a7a1" name="a47e663571154169b8b16890fa568a7a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47e663571154169b8b16890fa568a7a1">&#9670;&#160;</a></span>ford_falk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::ford_falk </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>skip</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function implements the Ford-Fulkerson algorithm on the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> in order to find the maximum flow from a "source" vertex represented by parameter s to a "sink" vertex represented by parameter t.</p>
+<p>The time complexity of this function is O(F * E) where F is the maximum flow of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> and E is the number of edges. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+    <tr><td class="paramname">t</td><td></td></tr>
+    <tr><td class="paramname">rail</td><td></td></tr>
+    <tr><td class="paramname">skip</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer with the value of the maximum flow between the "source" vertex and the "sink" vertex. </dd></dl>
+
+</div>
+</div>
+<a id="a913457b930f65e6f7faf067c1e387684" name="a913457b930f65e6f7faf067c1e387684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a913457b930f65e6f7faf067c1e387684">&#9670;&#160;</a></span>getIndexOfRailway()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::getIndexOfRailway </td>
+          <td>(</td>
+          <td class="paramtype">pair&lt; string, string &gt;&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function obtains the index of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> whose Stations' names are contained in the parameter n.</p>
+<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer with value equal to the index of the pretended <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a>, or -1 if the pretended <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> is not found in the vector railways of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </dd></dl>
+
+</div>
+</div>
+<a id="aacf577256d26c6bb8a2b266b457fb93f" name="aacf577256d26c6bb8a2b266b457fb93f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacf577256d26c6bb8a2b266b457fb93f">&#9670;&#160;</a></span>input_edge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::input_edge </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>input_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function inserts the Railways (in this case as edges) in the string input_name into the given <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
+<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1270f6396f38a1a102595ba59b108593" name="a1270f6396f38a1a102595ba59b108593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1270f6396f38a1a102595ba59b108593">&#9670;&#160;</a></span>input_vertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::input_vertex </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>input_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function inserts the Stations (in this case as vertices) in the string input_name into the given <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
+<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a19f3d855851d0fc77b7318dfcb492193" name="a19f3d855851d0fc77b7318dfcb492193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19f3d855851d0fc77b7318dfcb492193">&#9670;&#160;</a></span>minCostFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::minCostFlow </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while minimizing the cost.</p>
+<p>The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+    <tr><td class="paramname">t</td><td></td></tr>
+    <tr><td class="paramname">rail</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a771ca7f491b7b42a66d59a3d98294012" name="a771ca7f491b7b42a66d59a3d98294012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a771ca7f491b7b42a66d59a3d98294012">&#9670;&#160;</a></span>printImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::printImage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes an "image" contained in a text document into the terminal.</p>
+<p>The time complexity of this function is O(n). </p>
 
 </div>
 </div>
@@ -260,6 +792,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function determines the maximum flow between two stations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer with the maximum flow between two stations. </dd></dl>
 
 </div>
 </div>
@@ -288,6 +827,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function determines the maximum flow between a group of "source" Stations and "sink" Stations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td></td></tr>
+    <tr><td class="paramname">to</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer with the maximum flow between two stations. </dd></dl>
 
 </div>
 </div>
@@ -306,6 +853,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function prints the stations whose railway has the highest flow and the respective flow between them </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -323,6 +876,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function prints the pairs of stations whose railways have the maximum flow </p>
 
 </div>
 </div>
@@ -357,6 +911,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+    <tr><td class="paramname">k</td><td></td></tr>
+    <tr><td class="paramname">flag</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -391,6 +953,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+    <tr><td class="paramname">k</td><td></td></tr>
+    <tr><td class="paramname">flag</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -404,11 +974,17 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void Graph::Task2_4 </td>
           <td>(</td>
           <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
-          <td class="paramname"><em>station</em></td><td>)</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function prints the number of trains that can get into a <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> when there is maximum flow. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -423,6 +999,31 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const string &amp;&#160;</td>
           <td class="paramname"><em>station</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function determines the number of trains that can get into a <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer with the number of trains that can get into a <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a2b9071f83c481e6e4d38e4b6318fa787" name="a2b9071f83c481e6e4d38e4b6318fa787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9071f83c481e6e4d38e4b6318fa787">&#9670;&#160;</a></span>Task2_4_3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::Task2_4_3 </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -445,6 +1046,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function determines the maximum amount of trains that can simultaneously travel between two specific stations with minimum cost. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an integer with the maximum number of trains that can travel simultaneously between two stations. </dd></dl>
 
 </div>
 </div>
@@ -465,6 +1073,42 @@ Public Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const vector&lt; int &gt; &amp;&#160;</td>
           <td class="paramname"><em>reduce</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td></td></tr>
+    <tr><td class="paramname">reduce</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a7aade89b4ae6fe1116c522952362ed2d" name="a7aade89b4ae6fe1116c522952362ed2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aade89b4ae6fe1116c522952362ed2d">&#9670;&#160;</a></span>Task4_1_2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::Task4_1_2 </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>name_of_stations</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -510,14 +1154,151 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac80ed640ec9c182f509bb60609cab144" name="ac80ed640ec9c182f509bb60609cab144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80ed640ec9c182f509bb60609cab144">&#9670;&#160;</a></span>adjacencyList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;vector&lt;int&gt; &gt; Graph::adjacencyList</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae88ddfc274c7c7a7fb750deda3fa42d1" name="ae88ddfc274c7c7a7fb750deda3fa42d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae88ddfc274c7c7a7fb750deda3fa42d1">&#9670;&#160;</a></span>input_edge_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Graph::input_edge_name = &quot;network_test_1csv&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2739bd189b1ac7dfb24f6747087e451d" name="a2739bd189b1ac7dfb24f6747087e451d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2739bd189b1ac7dfb24f6747087e451d">&#9670;&#160;</a></span>input_vertex_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Graph::input_vertex_name = &quot;stations_test_1csv&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88909a84fd0b1008d3a00ae533f3146b" name="a88909a84fd0b1008d3a00ae533f3146b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88909a84fd0b1008d3a00ae533f3146b">&#9670;&#160;</a></span>key</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unordered_map&lt;string, int&gt; Graph::key</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a4957313b3e951eaba9233880c5819e" name="a1a4957313b3e951eaba9233880c5819e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a4957313b3e951eaba9233880c5819e">&#9670;&#160;</a></span>railways</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="class_railway.html">Railway</a>&gt; Graph::railways</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72e5199decb06765a91383a599259182" name="a72e5199decb06765a91383a599259182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72e5199decb06765a91383a599259182">&#9670;&#160;</a></span>stations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="class_station.html">Station</a>&gt; Graph::stations</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Code/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
 <li>Code/<a class="el" href="_graph_8cpp.html">Graph.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_graph.html">Graph</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+  </ul>
+</div>
 </body>
 </html>
