@@ -3,6 +3,27 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\Tests\network_test_1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Tests\network_test_7.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Tests\stations_test_5.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Tests\stations_test_6.csv">
           <value>
             <Attribute>
@@ -10,28 +31,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\cmake-build-debug\Tests\network.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\cmake-build-debug\Tests\network_test_3.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\cmake-build-debug\Tests\stations.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\cmake-build-debug\Tests\stations_test_3.csv">
+        <entry key="\cmake-build-debug\network.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -46,6 +46,20 @@
           </value>
         </entry>
         <entry key="\cmake-build-debug\stations_test_4.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\cmake-build-debug\test5.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\cmake-build-debug\test5network.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
