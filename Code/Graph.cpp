@@ -486,7 +486,7 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
 }
 
 /**
- * This function prints the number of trains that can get into a Station when there is maximum flow.
+ * This function prints the number of trains that get into a Station when there is maximum flow.
  * @param base
  */
 void Graph::Task2_4(const vector<string> &base) {
@@ -844,6 +844,11 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
     }
 }
 
+/**
+ * This function returns the maximum number of trains that can get into a station when there is maximum flow.
+ * @param base
+ * @return an integer with value equal to the number of trains that can get into a station when there is maximum flow.
+ */
 int Graph::Task2_4_3(const vector<string> &base) {
     if (!check_keys(base)) return -1;
     if(base[0] == base[1]) return -1;

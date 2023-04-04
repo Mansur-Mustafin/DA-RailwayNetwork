@@ -4,5 +4,6 @@ var searchData=
   ['add_5fstation_1',['add_station',['../class_graph.html#a2dca58b788e3cdc00619bc87073f6f3b',1,'Graph::add_station()'],['../class_menu.html#a07f42eed2e3d9830d5f702435d8072cd',1,'Menu::add_station()']]],
   ['add_5fstations_5fraiwlyas_2',['add_stations_raiwlyas',['../class_menu.html#a2fbcbb641b45e36b63eee8d6382bc38e',1,'Menu']]],
   ['addflow_3',['addFlow',['../class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f',1,'Railway']]],
-  ['addnumberstations_4',['addNumberStations',['../class_station.html#a9a47e3956f44ebc5c12e8e4e6c14f133',1,'Station']]]
+  ['addnumberstations_4',['addNumberStations',['../class_station.html#a9a47e3956f44ebc5c12e8e4e6c14f133',1,'Station']]],
+  ['all_5fpairs_5fwith_5fmaxflow_5',['All_pairs_with_maxflow',['../class_menu.html#ac56c3c61fd51000207af848e564064d1',1,'Menu']]]
 ];

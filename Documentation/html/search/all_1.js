@@ -6,5 +6,6 @@ var searchData=
   ['addflow_3',['addFlow',['../class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f',1,'Railway']]],
   ['addnumberstations_4',['addNumberStations',['../class_station.html#a9a47e3956f44ebc5c12e8e4e6c14f133',1,'Station']]],
   ['adjacencylist_5',['adjacencyList',['../class_graph.html#ac80ed640ec9c182f509bb60609cab144',1,'Graph']]],
-  ['architecture_5fid_6',['ARCHITECTURE_ID',['../_c_make_c_compiler_id_8c.html#aba35d0d200deaeb06aee95ca297acb28',1,'ARCHITECTURE_ID():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#aba35d0d200deaeb06aee95ca297acb28',1,'ARCHITECTURE_ID():&#160;CMakeCXXCompilerId.cpp']]]
+  ['all_5fpairs_5fwith_5fmaxflow_6',['All_pairs_with_maxflow',['../class_menu.html#ac56c3c61fd51000207af848e564064d1',1,'Menu']]],
+  ['architecture_5fid_7',['ARCHITECTURE_ID',['../_c_make_c_compiler_id_8c.html#aba35d0d200deaeb06aee95ca297acb28',1,'ARCHITECTURE_ID():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#aba35d0d200deaeb06aee95ca297acb28',1,'ARCHITECTURE_ID():&#160;CMakeCXXCompilerId.cpp']]]
 ];

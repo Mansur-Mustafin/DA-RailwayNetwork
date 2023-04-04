@@ -12,6 +12,5 @@ var searchData=
   ['task3_5f1_9',['Task3_1',['../class_graph.html#a300af4cf698a09e48d6b0a5279068f23',1,'Graph']]],
   ['task4_5f1_10',['Task4_1',['../class_graph.html#a854b7fed986443c1e9e51f83d7a550ad',1,'Graph::Task4_1()'],['../class_menu.html#a985374a2ef79fbc130f88566b70c23bf',1,'Menu::Task4_1()']]],
   ['task4_5f1_5f2_11',['Task4_1_2',['../class_graph.html#a7aade89b4ae6fe1116c522952362ed2d',1,'Graph::Task4_1_2()'],['../class_menu.html#aaa620bb1db9d3ac50a2c59a02f29be05',1,'Menu::Task4_1_2()']]],
-  ['task4_5f2_12',['Task4_2',['../class_graph.html#a33ceb8b36991d78514f0257eaceccc33',1,'Graph::Task4_2()'],['../class_menu.html#aa359a75a29f646edf195a8bc4c9e9dce',1,'Menu::Task4_2()']]],
-  ['township_13',['township',['../class_station.html#a0552badaff28cc06411b808af462d382',1,'Station']]]
+  ['task4_5f2_12',['Task4_2',['../class_graph.html#a33ceb8b36991d78514f0257eaceccc33',1,'Graph::Task4_2()'],['../class_menu.html#aa359a75a29f646edf195a8bc4c9e9dce',1,'Menu::Task4_2()']]]
 ];

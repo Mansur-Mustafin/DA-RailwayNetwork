@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['operation_5fcost_0',['operation_cost',['../class_menu.html#a3fdb88e192d9d64e20a444f4752e621a',1,'Menu']]],
-  ['operator_3c_3c_1',['operator&lt;&lt;',['../_graph_8cpp.html#a5856a1a48106a5c066ed5d61a02ecb15',1,'operator&lt;&lt;(ostream &amp;out, set&lt; int &gt; &amp;s):&#160;Graph.cpp'],['../_graph_8cpp.html#a636daf04ef23650fd37bb374b9ccaae1',1,'operator&lt;&lt;(ostream &amp;out, queue&lt; Railway &gt; &amp;s):&#160;Graph.cpp'],['../_railway_8cpp.html#af46d1706b215451664174f313bd3210a',1,'operator&lt;&lt;(ostream &amp;out, const Railway &amp;edge):&#160;Railway.cpp'],['../_station_8cpp.html#abe6c34fe29c8b30d871639fe7d1975cf',1,'operator&lt;&lt;(ostream &amp;out, const Station &amp;vertex):&#160;Station.cpp']]],
-  ['operator_3e_3e_2',['operator&gt;&gt;',['../_railway_8cpp.html#afeb141b426ef153046272937be4c896c',1,'operator&gt;&gt;(istream &amp;in, Railway &amp;edge):&#160;Railway.cpp'],['../_station_8cpp.html#a1187be216a5cb86b8701cec0536fafbd',1,'operator&gt;&gt;(istream &amp;in, Station &amp;vertex):&#160;Station.cpp']]]
+  ['main_0',['main',['../_c_make_c_compiler_id_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCXXCompilerId.cpp'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
+  ['main_5fmenu_1',['main_menu',['../class_menu.html#a670b01c91a1c1a77302f1e5a1566bf6a',1,'Menu']]],
+  ['max_5fflow_2',['Max_flow',['../class_menu.html#add12beda03fbd97500fddc8834ab186d',1,'Menu']]],
+  ['max_5fflow_5fbetween_5ftwo_5fgroups_3',['Max_flow_between_two_groups',['../class_menu.html#abcadee4360dc6dc5fe2c0b01d4f22ea9',1,'Menu']]],
+  ['max_5fnumber_5fof_5ftrains_5fthat_5fcan_5fenter_5fa_5fstation_4',['Max_number_of_trains_that_can_enter_a_station',['../class_menu.html#a288cd555d6c84b52eebf6b0791438fb4',1,'Menu']]],
+  ['max_5fnumber_5fof_5ftrains_5fthat_5fcan_5fenter_5fa_5fstation_5fwith_5fmax_5fflow_5',['Max_number_of_trains_that_can_enter_a_station_with_max_flow',['../class_menu.html#a6b39364f0facd4f65c757afee4bfdc6d',1,'Menu']]],
+  ['max_5ftrains_5fbetween_5ftwo_5fstations_5fwith_5fmin_5fcost_6',['Max_trains_between_two_stations_with_min_cost',['../class_menu.html#af32d63480e4e1271c18b7b73db43584b',1,'Menu']]],
+  ['mincostflow_7',['minCostFlow',['../class_graph.html#a19f3d855851d0fc77b7318dfcb492193',1,'Graph']]]
 ];
