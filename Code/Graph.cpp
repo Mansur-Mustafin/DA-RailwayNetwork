@@ -433,6 +433,10 @@ int Graph::Task3_1(const vector<string> &base) {
         if (copy_railway.getFlow() > 0)
             result += (copy_railway.getFlow() * copy_railway.getCost());
     }
+    for (auto &copy_railway : copy_railways) {
+        if (copy_railway.getFlow() > 0)
+            cout << copy_railway;
+    }
     return result * 2;
 }
 

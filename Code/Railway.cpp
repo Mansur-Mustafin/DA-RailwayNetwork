@@ -46,11 +46,11 @@ istream &operator>>(istream &in, Railway &edge) {
  * @return output stream containing the stations, capacity, service and flow of the Railway
  */
 ostream &operator<<(ostream &out, const Railway &edge) {
-    out << edge.station_A << " ";
+    out << edge.station_A << " -> ";
     out << edge.station_B << " ";
-    out << edge.capacity << " ";
-    out << edge.flow << " ";
-    out << edge.service;
+    out << edge.flow << "/";
+    out << edge.capacity << " (";
+    out << edge.service << ")" << endl;
     return out;
 }
 /**
