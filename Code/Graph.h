@@ -30,7 +30,6 @@ class Graph {
     void input_edge(const string &input_name);
     void build_adjacencyList();
     int ford_falk(int s, int t, vector<Railway> &rail, int skip = -1);
-
 public:
     void add_station(const string& name, bool f = true, const string& district = "", const string& municipality = "", const string& township = "", const string& line = ""); // f : write to file?
     void add_railway(const string& nameA, const string& nameB, bool f = true, int capacity = 1e9, const string& service = "STANDARD");
@@ -50,10 +49,6 @@ public:
     int Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations);
     int Task4_2(const vector<string> &base, const vector<int> &reduce, int k);
     void printImage();
-    void set_input_edge_name(string name);
-    void set_input_vertex_name(string name);
-    string get_input_edge_name();
-    string get_input_vertex_name();
 };
 
 

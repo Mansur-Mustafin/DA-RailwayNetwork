@@ -10,32 +10,37 @@ using namespace std;
 
 void Menu::choose_network(){
     string stations,network;
-    cout<<"Do you want to change the network?:\n"
-          "Press 1 if yes                     \n"
-          "Press 2 if no                      \n";
+    cout<<"          Do you want to change the network?\n"
+          "|==================================================| \n"
+          "|       Yes [1]                   Not  [2]         | \n"
+          "|==================================================| " << endl;
     int answer;
     cin>>answer;
     cout<<endl;
 
+    if (cin.fail() || cin.peek() != '\n') {
+        cerr << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+        choose_network();
+    }
+
     switch (answer) {
         case 1:
-            cout<<"Please enter the name of the stations file with extension:\n";
+            cout<<"Please enter the name of the stations file without extension:\n";
             getline(cin>>ws,stations);
             cout<<endl;
-            cout<<"Please enter the name of the network file with extension:\n";
+            cout<<"Please enter the name of the network file without extension:\n";
             getline(cin,network);
             cout<<endl;
-            g.set_input_edge_name(network);
-            g.set_input_vertex_name(stations);
-            if(g.get_input_edge_name()==network && g.get_input_vertex_name()==stations){
-                cout<<"Done";
-                main_menu();
-            }
+            g = Graph(network + ".scv", stations + ".scv");
             break;
-
         case 2:
             main_menu();
             break;
+        default:
+            cerr << "Invalid input" << endl << endl;
+            choose_network();
     }
 }
 
@@ -354,7 +359,7 @@ void Menu::basic_service() {
         if (cin.fail() || cin.peek() != '\n') {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-            cout << "Invalid input" << endl;
+            cerr << "Invalid input" << endl;
             continue;
         }
 
@@ -424,7 +429,7 @@ void Menu::operation_cost(){
         if (cin.fail() || cin.peek() != '\n') {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-            cout << "Invalid input" << endl;
+            cerr << "Invalid input" << endl;
             continue;
         }
 
@@ -463,7 +468,7 @@ void Menu::line_failures() {
         if (cin.fail() || cin.peek() != '\n') {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-            cout << "Invalid input" << endl;
+            cerr << "Invalid input" << endl;
             continue;
         }
 
@@ -485,7 +490,7 @@ void Menu::line_failures() {
                 break;
 
             default:
-                cout << "Invalid input" << endl;
+                cerr << "Invalid input" << endl;
 
         }
     }
@@ -513,7 +518,7 @@ void Menu::add_stations_raiwlyas() {
         if (cin.fail() || cin.peek() != '\n') {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-            cout << "Invalid input" << endl;
+            cerr << "Invalid input" << endl;
             continue;
         }
 
@@ -557,7 +562,7 @@ void Menu::main_menu() {
         if (cin.fail() || cin.peek() != '\n') {
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-            cout << "Invalid input" << endl;
+            cerr << "Invalid input" << endl;
             continue;
         }
 
@@ -580,7 +585,7 @@ void Menu::main_menu() {
                 line_failures();
                 break;
             default:
-                cout << "Invalid input" << endl;
+                cerr << "Invalid input" << endl;
 
         }
 

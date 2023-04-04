@@ -11,7 +11,6 @@
 
 class Menu {
 public:
-
     void main_menu();
     void choose_network();
     void add_station();

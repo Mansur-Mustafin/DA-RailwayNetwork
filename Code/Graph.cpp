@@ -23,22 +23,6 @@ Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
     input_vertex_name = input_vertex_name_;
 }
 
-void Graph::set_input_edge_name(string name){
-    input_edge_name = name;
-}
-
-void Graph::set_input_vertex_name(string name){
-    input_vertex_name = name;
-}
-
-string Graph::get_input_edge_name(){
-    return input_edge_name;
-}
-
-string Graph::get_input_vertex_name(){
-    return input_vertex_name;
-}
-
 /**
  * This function inserts a vertex (in this case a Station) into the given Graph
  * @param input_name
