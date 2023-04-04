@@ -589,6 +589,11 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
 //        cout << seg;
 //    }
 
+    for (auto &copy_railway : copy_reduced_railways) {
+        if (copy_railway.getFlow() > 0)
+            cout << copy_railway;
+    }
+
     return res;
 }
 
@@ -840,8 +845,38 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
 }
 
 int Graph::Task2_4_3(const vector<string> &base) {
-    // TODO
-    return 0;
+    if (!check_keys(base)) return -1;
+    if(base[0] == base[1]) return -1;
+    if(base[0] == base[2]) return -1;
+    if(base[1] == base[2]) return Task2_1({base[0], base[1]});
+
+    vector<Railway> copy_railways = railways;
+
+    for (auto &x : copy_railways) {
+        x.setCost(1e8);
+    }
+    for (int x : adjacencyList[key[base[2]]]) {
+        copy_railways[x].setCost(0);
+        for (auto &y : adjacencyList[key[copy_railways[x].getStationB()]]) {
+            if (copy_railways[y].getStationB() == base[2]) {
+                copy_railways[y].setCost(0);
+            }
+        }
+    }
+
+    minCostFlow(key[base[0]], key[base[1]], copy_railways);
+
+    for (auto &x : copy_railways) {
+        int ans = 0;
+        if (x.getFlow() > 0) {
+            cout << x;
+        }
+    }
+    int ans = 0;
+    for (int x : adjacencyList[key[base[2]]]) {
+        ans += max(0, copy_railways[x].getFlow());
+    }
+    return ans;
 }
 
 /**

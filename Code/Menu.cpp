@@ -85,7 +85,7 @@ void Menu::add_railway(){
     g.add_railway(source_name, dest_name, true, capacity, service);
 }
 
-void Menu::Task2_1(){
+void Menu::Max_flow(){
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -98,7 +98,7 @@ void Menu::Task2_1(){
     base.emplace_back(dest_name);
     g.Task2_1(base);
 }
-void Menu::Task2_1_2(){
+void Menu::Max_flow_between_two_groups(){
     int n;
     cout <<"How many source stations you want ?:\n";
     cin >> n;
@@ -118,7 +118,7 @@ void Menu::Task2_1_2(){
     g.Task2_1_2(source,destination);
 }
 
-void Menu::Task2_2(){
+void Menu::Heaviest_edge(){
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -133,7 +133,7 @@ void Menu::Task2_2(){
     g.Task2_2(base);
 }
 
-void Menu::Task2_2_2(){
+void Menu::All_pairs_with_maxflow(){
     //cout<<"Please enter the source station name: \n";
     //string source_name;
     //getline(cin>>ws,source_name);
@@ -184,7 +184,7 @@ void Menu::Task2_3_2(){
     g.Task2_3_2(base,number,true);
 }
 
-void Menu::Task2_4(){
+void Menu::Number_of_trains_that_enter_a_station_with_max_flow(){
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -203,7 +203,7 @@ void Menu::Task2_4(){
     g.Task2_4(base);
 }
 
-void Menu::Task2_4_2(){
+void Menu::Max_number_of_trains_that_can_enter_a_station(){
     cout<<"Please enter the station name: \n";
     string name;
     getline(cin>>ws,name);
@@ -222,26 +222,26 @@ void Menu::Task2_4_2(){
     g.Task2_4_2(name);
 }
 
-void Menu::Task2_4_3(){
-    //cout<<"Please enter the source station name: \n";
-    //string source_name;
-    //getline(cin>>ws,source_name);
-    //cout<<endl;
-    //cout<<"Please enter the destination station name:\n";
-    //string dest_name;
-    //getline(cin,dest_name);
-    //cout<<endl;
-    //vector<string> base;
-    //base.emplace_back(source_name);
-    //base.emplace_back(dest_name);
-    //string station_name;
-    //cout<<"Please enter a station name:\n";
-    //cin>>station_name;
-    //base.push_back(station_name);
-    //g.Task2_4_3(base);
+void Menu::Max_number_of_trains_that_can_enter_a_station_with_max_flow(){
+    cout<<"Please enter the source station name: \n";
+    string source_name;
+    getline(cin>>ws,source_name);
+    cout<<endl;
+    cout<<"Please enter the destination station name:\n";
+    string dest_name;
+    getline(cin,dest_name);
+    cout<<endl;
+    vector<string> base;
+    base.emplace_back(source_name);
+    base.emplace_back(dest_name);
+    string station_name;
+    cout<<"Please enter a station name:\n";
+    cin>>station_name;
+    base.push_back(station_name);
+    g.Task2_4_3(base);
 }
 
-void Menu::Task3_1(){
+void Menu::Max_trains_between_two_stations_with_min_cost(){
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -328,7 +328,8 @@ void Menu::Task4_2(){
     g.Task4_2(base,reduce,number);
 }
 
-void Menu::basic_service() {
+void Menu::main_menu() {
+
     while (true) {
         cout << endl;
         cout
@@ -344,112 +345,11 @@ void Menu::basic_service() {
                    "| Maximum number of trains that can simultaneously arrive at a station                              [24]    |\n"
                    "| Maximum number of trains that can simultaneously arrive at a station (version 2)                  [242]   |\n"
                    "| Maximum number of trains that can simultaneously arrive at a station (version 3)                  [243]   |\n"
-                   "|==================================================|========================================================|\n"
-                   "|               Other operations                   |                                                         \n"
-                   "|==================================================|                                                         \n"
-                   "|  Back                                   [0]      |                                                         \n"
-                   "|==================================================|                                                         \n";
-
-        cout << endl;
-        cout << "Please choose an option:";
-        int option;
-        cin >> option;
-        cout << endl;
-
-        if (cin.fail() || cin.peek() != '\n') {
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-            cerr << "Invalid input" << endl;
-            continue;
-        }
-
-        switch (option) {
-            case 0:
-                main_menu();
-                break;
-
-            case 21:
-                Task2_1();
-                break;
-
-            case 212:
-                Task2_1_2();
-                break;
-
-            case 22:
-                Task2_2();
-                break;
-
-            case 222:
-                Task2_2_2();
-                break;
-
-            case 23:
-                Task2_3();
-                break;
-
-            case 232:
-                Task2_3_2();
-                break;
-
-            case 24:
-                Task2_4();
-                break;
-
-            case 242:
-                Task2_4_2();
-                break;
-            case 243:
-                Task2_4_3();
-                break;
-        }
-    }
-}
-
-void Menu::operation_cost(){
-    while (true) {
-        cout << endl;
-        cout
-                <<"|===========================================================================================================|\n"
-                  "|                                               Operation Cost                                              |\n"
-                  "|==================================================|========================================================|\n"
-                  "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost    [31]    |\n"
-                  "|==================================================|========================================================|\n"
-                  "|               Other operations                   |                                                         \n"
-                  "|==================================================|                                                         \n"
-                  "|  Back                                   [0]      |                                                         \n"
-                  "|==================================================|                                                         \n";
-
-        cout << endl;
-        cout << "Please choose an option:";
-        int option;
-        cin >> option;
-        cout << endl;
-
-        if (cin.fail() || cin.peek() != '\n') {
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-            cerr << "Invalid input" << endl;
-            continue;
-        }
-
-        switch (option) {
-            case 0:
-                main_menu();
-                break;
-
-            case 31:
-                Task3_1();
-                break;
-        }
-    }
-}
-
-void Menu::line_failures() {
-    while (true) {
-        cout << endl;
-        cout
-                << "|===========================================================================================================|\n"
+                   "|===========================================================================================================|\n"
+                   "|                                               Operation Cost                                              |\n"
+                   "|===========================================================================================================|\n"
+                   "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost    [31]    |\n"
+                   "|===========================================================================================================|\n"
                    "|                                               Line Failures                                               |\n"
                    "|===========================================================================================================|\n"
                    "| Maximum number of trains that can simultaneously travel between two stations in a reduced network [41]    |\n"
@@ -457,103 +357,12 @@ void Menu::line_failures() {
                    "| Top-k most affected stations for each segment failure                                             [42]    |\n"
                    "|==================================================|========================================================|\n"
                    "|               Other operations                   |                                                         \n"
-                   "|==================================================|                                                         \n"
-                   "|  Back                                   [0]      |                                                         \n"
-                   "|==================================================|                                                         \n";
-        cout << endl;
-        cout << "Please choose an option:";
-        int option;
-        cin >> option;
-        cout << endl;
-        if (cin.fail() || cin.peek() != '\n') {
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-            cerr << "Invalid input" << endl;
-            continue;
-        }
-
-        switch (option) {
-            case 0:
-                main_menu();
-                break;
-
-            case 41:
-                Task4_1();
-                break;
-
-            case 412:
-                Task4_1_2();
-                break;
-
-            case 42:
-                Task4_2();
-                break;
-
-            default:
-                cerr << "Invalid input" << endl;
-
-        }
-    }
-}
-
-void Menu::add_stations_raiwlyas() {
-    while (true) {
-        cout << endl;
-        cout
-                << "|==================================================|\n"
-                   "|               Add Stations/Railways              |\n"
                    "|==================================================|\n"
-                   "| Add stations to the network             [11]      |\n"
-                   "| Add railways to the network             [12]      |\n"
-                   "|==================================================|\n"
-                   "|               Other operations                   |\n"
-                   "|==================================================|\n"
+                   "|  Add stations to the network            [11]     |\n"
+                   "|  Add railways to the network            [12]     |\n"
                    "|  Back                                   [0]      |\n"
                    "|==================================================|\n";
-        cout << endl;
-        cout << "Please choose an option:";
-        int option;
-        cin >> option;
-        cout << endl;
-        if (cin.fail() || cin.peek() != '\n') {
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-            cerr << "Invalid input" << endl;
-            continue;
-        }
 
-        switch (option) {
-            case 0:
-                main_menu();
-
-            case 11:
-                add_station();
-                break;
-
-            case 12:
-                add_railway();
-                break;
-
-        }
-    }
-}
-
-void Menu::main_menu() {
-
-    while (true) {
-        cout << endl;
-        cout
-        << "|==================================================|\n"
-           "|             Add Stations/Railways       [1]      |\n"
-           "|==================================================|\n"
-           "|                Basic Service            [2]      |\n"
-           "|==================================================|\n"
-           "|                Operation Cost           [3]      |\n"
-           "|==================================================|\n"
-           "|                Line Failures            [4]      |\n"
-           "|==================================================|\n"
-           "|                    Exit                 [0]      |\n"
-           "|==================================================|\n";
         cout << endl;
         cout << "Please choose an option:";
         int option;
@@ -569,21 +378,66 @@ void Menu::main_menu() {
         switch (option) {
             case 0:
                 exit(0);
-            case 1:
-                add_stations_raiwlyas();
+
+            case 21:
+                Max_flow();
                 break;
 
-            case 2:
-                basic_service();
+            case 212:
+                Max_flow_between_two_groups();
                 break;
 
-            case 3:
-                operation_cost();
+            case 22:
+                Heaviest_edge();
                 break;
 
-            case 4:
-                line_failures();
+            case 222:
+                All_pairs_with_maxflow();
                 break;
+
+            case 23:
+                Task2_3();
+                break;
+
+            case 232:
+                Task2_3_2();
+                break;
+
+            case 24:
+                Number_of_trains_that_enter_a_station_with_max_flow();
+                break;
+
+            case 242:
+                Max_number_of_trains_that_can_enter_a_station();
+                break;
+            case 243:
+                Max_number_of_trains_that_can_enter_a_station_with_max_flow();
+                break;
+
+            case 31:
+                Max_trains_between_two_stations_with_min_cost();
+                break;
+
+            case 41:
+                Task4_1();
+                break;
+
+            case 412:
+                Task4_1_2();
+                break;
+
+            case 42:
+                Task4_2();
+                break;
+
+            case 11:
+                add_station();
+                break;
+
+            case 12:
+                add_railway();
+                break;
+
             default:
                 cerr << "Invalid input" << endl;
 
