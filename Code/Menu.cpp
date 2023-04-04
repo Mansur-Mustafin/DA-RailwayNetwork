@@ -289,7 +289,7 @@ void Menu::Task4_1_2(){
     int n;
     cout <<"How many stations u want to add ?:\n";
     cin >> n;
-    vector<string> stations(n, 0);
+    vector<string> stations(n, "");
     for (size_t i = 0; i < n; i++){
         cout <<"Please enter the name of one station:\n";
         cin >> stations[i];
