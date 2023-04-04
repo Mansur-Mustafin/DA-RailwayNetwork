@@ -129,18 +129,18 @@ void Menu::Task2_2(){
 }
 
 void Menu::Task2_2_2(){
-    cout<<"Please enter the source station name: \n";
-    string source_name;
-    getline(cin>>ws,source_name);
-    cout<<endl;
-    cout<<"Please enter the destination station name:\n";
-    string dest_name;
-    getline(cin,dest_name);
-    cout<<endl;
-    vector<string> base;
-    base.emplace_back(source_name);
-    base.emplace_back(dest_name);
-    //g.Task2_2_2(base);
+    //cout<<"Please enter the source station name: \n";
+    //string source_name;
+    //getline(cin>>ws,source_name);
+    //cout<<endl;
+    //cout<<"Please enter the destination station name:\n";
+    //string dest_name;
+    //getline(cin,dest_name);
+    //cout<<endl;
+    //vector<string> base;
+    //base.emplace_back(source_name);
+    //base.emplace_back(dest_name);
+    g.Task2_2_2();
 }
 
 void Menu::Task2_3(){
@@ -199,40 +199,40 @@ void Menu::Task2_4(){
 }
 
 void Menu::Task2_4_2(){
-    cout<<"Please enter the source station name: \n";
-    string source_name;
-    getline(cin>>ws,source_name);
+    cout<<"Please enter the station name: \n";
+    string name;
+    getline(cin>>ws,name);
     cout<<endl;
-    cout<<"Please enter the destination station name:\n";
-    string dest_name;
-    getline(cin,dest_name);
-    cout<<endl;
-    vector<string> base;
-    base.emplace_back(source_name);
-    base.emplace_back(dest_name);
-    string station_name;
-    cout<<"Please enter a station name:\n";
-    cin>>station_name;
-    base.push_back(station_name);
-    //g.Task2_4_2(base);
+    //cout<<"Please enter the destination station name:\n";
+    //string dest_name;
+    //getline(cin,dest_name);
+    //cout<<endl;
+    //vector<string> base;
+    //base.emplace_back(source_name);
+    //base.emplace_back(dest_name);
+    //string station_name;
+    //cout<<"Please enter a station name:\n";
+    //cin>>station_name;
+    //base.push_back(station_name);
+    g.Task2_4_2(name);
 }
 
 void Menu::Task2_4_3(){
-    cout<<"Please enter the source station name: \n";
-    string source_name;
-    getline(cin>>ws,source_name);
-    cout<<endl;
-    cout<<"Please enter the destination station name:\n";
-    string dest_name;
-    getline(cin,dest_name);
-    cout<<endl;
-    vector<string> base;
-    base.emplace_back(source_name);
-    base.emplace_back(dest_name);
-    string station_name;
-    cout<<"Please enter a station name:\n";
-    cin>>station_name;
-    base.push_back(station_name);
+    //cout<<"Please enter the source station name: \n";
+    //string source_name;
+    //getline(cin>>ws,source_name);
+    //cout<<endl;
+    //cout<<"Please enter the destination station name:\n";
+    //string dest_name;
+    //getline(cin,dest_name);
+    //cout<<endl;
+    //vector<string> base;
+    //base.emplace_back(source_name);
+    //base.emplace_back(dest_name);
+    //string station_name;
+    //cout<<"Please enter a station name:\n";
+    //cin>>station_name;
+    //base.push_back(station_name);
     //g.Task2_4_3(base);
 }
 
