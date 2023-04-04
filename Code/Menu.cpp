@@ -287,14 +287,14 @@ void Menu::Task4_1_2(){
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
     int n;
-    cout <<"How many segments you want to erase ?:\n";
+    cout <<"How many stations u want to add ?:\n";
     cin >> n;
-    vector<int> reduce(n, 0);
+    vector<string> stations(n, 0);
     for (size_t i = 0; i < n; i++){
-        cout <<"Please enter the index of one segment:\n";
-        cin >> reduce[i];
+        cout <<"Please enter the name of one station:\n";
+        cin >> stations[i];
     }
-    //g.Task4_1_2(base,reduce);
+    g.Task4_1_2(base,stations);
 }
 
 void Menu::Task4_2(){
@@ -338,6 +338,7 @@ void Menu::basic_service() {
                    "| Top-k municipalities and districts, regarding their transportation needs (version 2)              [232]   |\n"
                    "| Maximum number of trains that can simultaneously arrive at a station                              [24]    |\n"
                    "| Maximum number of trains that can simultaneously arrive at a station (version 2)                  [242]   |\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station (version 3)                  [243]   |\n"
                    "|==================================================|========================================================|\n"
                    "|               Other operations                   |                                                         \n"
                    "|==================================================|                                                         \n"
@@ -447,6 +448,7 @@ void Menu::line_failures() {
                    "|                                               Line Failures                                               |\n"
                    "|===========================================================================================================|\n"
                    "| Maximum number of trains that can simultaneously travel between two stations in a reduced network [41]    |\n"
+                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network [412]   |\n"
                    "| Top-k most affected stations for each segment failure                                             [42]    |\n"
                    "|==================================================|========================================================|\n"
                    "|               Other operations                   |                                                         \n"
@@ -473,6 +475,7 @@ void Menu::line_failures() {
             case 41:
                 Task4_1();
                 break;
+
             case 412:
                 Task4_1_2();
                 break;
@@ -517,6 +520,7 @@ void Menu::add_stations_raiwlyas() {
         switch (option) {
             case 0:
                 main_menu();
+
             case 11:
                 add_station();
                 break;
