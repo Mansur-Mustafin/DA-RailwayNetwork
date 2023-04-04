@@ -5,7 +5,6 @@
 #ifndef DA_RAILWAYNETWORK_MENU_H
 #define DA_RAILWAYNETWORK_MENU_H
 
-#endif //DA_RAILWAYNETWORK_MENU_H
 
 #include "Graph.h"
 
@@ -36,3 +35,6 @@ public:
 private:
     Graph g = Graph("network_test_1.csv", "stations_test_1.csv");
 };
+
+
+#endif //DA_RAILWAYNETWORK_MENU_H
