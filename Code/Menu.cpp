@@ -25,9 +25,9 @@ void Menu::choose_network(){
             cout<<"Please enter the name of the network file with extension:\n";
             getline(cin,network);
             cout<<endl;
-            g.set_input_edge_name(stations);
-            g.set_input_vertex_name(network);
-            if(g.get_input_edge_name()==stations && g.get_input_vertex_name()==network){
+            g.set_input_edge_name(network);
+            g.set_input_vertex_name(stations);
+            if(g.get_input_edge_name()==network && g.get_input_vertex_name()==stations){
                 cout<<"Done";
                 main_menu();
             }

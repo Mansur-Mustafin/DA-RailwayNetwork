@@ -24,8 +24,8 @@ class Graph {
     vector<Railway> railways;
     vector<Station> stations;                     // stations
     unordered_map<string, int> key;               // name -> index in vector
-    string input_edge_name;
-    string input_vertex_name;
+    string input_edge_name = "network_test_1csv";
+    string input_vertex_name = "stations_test_1csv";
     void input_vertex(const string &input_name);
     void input_edge(const string &input_name);
     void build_adjacencyList();
