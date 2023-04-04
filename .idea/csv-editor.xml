@@ -10,7 +10,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\cmake-build-debug\Tests\network_test_1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\cmake-build-debug\Tests\network_test_3.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\cmake-build-debug\Tests\stations_test_1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
