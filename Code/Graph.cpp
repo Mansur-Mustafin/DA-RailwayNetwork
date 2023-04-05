@@ -554,6 +554,30 @@ int Graph::Task2_4_2(const string &station) {
 }
 
 /**
+ * This function returns the maximum number of trains that can get into a station when there is maximum flow.
+ * @param base
+ * @return an integer with value equal to the number of trains that can get into a station when there is maximum flow.
+ */
+int Graph::Task2_4_3(const vector<string> &base) {
+    cout << "From " << base[0] << " to " << base[1] << " maximize the " << base[2] << endl;
+    if (!check_keys(base)) {
+        return -1;
+    }
+    if(base[0] == base[1]) return -1;
+    if(base[1] == base[2]) return Task2_1({base[0], base[1]});
+    vector<Railway> copy_railways = railways;
+
+    int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
+
+    for (auto &x : copy_railways) {
+        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
+            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+        }
+    }
+    return r;
+}
+
+/**
  * This function determines the maximum amount of trains that can simultaneously travel between two specific stations
  * with minimum cost.
  * @param base
@@ -850,51 +874,6 @@ bool Graph::check_keys(const vector<string> &base) {
     return true;
 }
 
-/**
- * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
- * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
- * minimizing the cost.
- *
- * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
- * @param s
- * @param t
- * @param rail
- */
-void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
-    while (true) {
-        pair<int, vector<int>> res = dijkstra(s, t, rail);
-        if (res.first <= 0) {
-            break;
-        }
-        for (int x : res.second) {
-            Railway e = rail[x];
-            rail[x].addFlow(res.first);
-            rail[e.getPrevPosition()].subFlow(res.first);
-        }
-    }
-}
-
-/**
- * This function returns the maximum number of trains that can get into a station when there is maximum flow.
- * @param base
- * @return an integer with value equal to the number of trains that can get into a station when there is maximum flow.
- */
-int Graph::Task2_4_3(const vector<string> &base) {
-    if (!check_keys(base)) {
-        return -1;
-    }
-    if(base[0] == base[1]) return -1;
-    vector<Railway> copy_railways = railways;
-
-    int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
-
-    for (auto &x : copy_railways) {
-        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
-            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
-        }
-    }
-    return r;
-}
 
 int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
     int result = 0;
@@ -920,7 +899,33 @@ int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
     return result;
 }
 
-int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int skip) {
+/**
+ * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
+ * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
+ * minimizing the cost.
+ *
+ * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
+ * @param s
+ * @param t
+ * @param rail
+ */
+void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
+    while (true) {
+        pair<int, vector<int>> res = dijkstra(s, t, rail);
+        if (res.first <= 0) {
+            break;
+        }
+        for (int x : res.second) {
+            Railway e = rail[x];
+            rail[x].addFlow(res.first);
+            rail[e.getPrevPosition()].subFlow(res.first);
+        }
+    }
+}
+
+
+
+int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail) {
     int result = 0;
     while(true){
         vector<int> mark(adjacencyList.size(), -1);
@@ -944,8 +949,23 @@ int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int
                 rail[rail[r].getPrevPosition()].subFlow(x);
                 cur = prev;
             }
+        }else{
+            result += xp;
+            int cur = t;
+            while (cur != s) {
+                int prev = mark[cur];
+                int r = 0;
+                for(auto i : adjacencyList[prev]){
+                    if(rail[i].getStationB() == stations[cur].getName()){
+                        r = i;
+                    }
+                }
+                rail[r].addFlow(xp);
+                rail[rail[r].getPrevPosition()].subFlow(xp);
+                cur = prev;
+            }
         }
-        result += xp;
+
     }
     return result;
 }
@@ -978,7 +998,58 @@ int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
     return 0;
 }
 
-int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int> mark) {
+
+
+int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
+
+    mark.assign(adjacencyList.size(), -1);
+    mark[s] = -2;
+    queue<pair<int, int>> q;
+    q.push({s, 1e9});
+    int first_flow = 0;
+    while (!q.empty()) {
+        int w = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v : adjacencyList[w]) {
+            if(rail[v].getFlow() < rail[v].getCapacity() ){
+                int index_to_go = key[rail[v].getStationB()];
+                if(mark[index_to_go] == -1 && index_to_go != t){
+                    mark[index_to_go] = w;
+                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
+                    if(index_to_go == u){
+                        first_flow = new_flow;
+                    }
+                    q.push({index_to_go, new_flow});
+                }
+            }
+        }
+    }
+    if(first_flow == 0) return 0;
+
+    q.push({u, first_flow});
+
+    while (!q.empty()) {
+        int w = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v : adjacencyList[w]) {
+            if(rail[v].getFlow() < rail[v].getCapacity() ){
+                int index_to_go = key[rail[v].getStationB()];
+                if(mark[index_to_go] == -1 && index_to_go != u){
+                    mark[index_to_go] = w;
+                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
+                    if(index_to_go == t){
+                        return new_flow;
+                    }
+                    q.push({index_to_go, new_flow});
+                }
+            }
+        }
+    }
+
     return 0;
 }
 
