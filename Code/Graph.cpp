@@ -277,6 +277,24 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     return r;
 }
 
+// endmond karp
+int Graph::Task2_1_3(const vector<string> &base) {
+    if (!check_keys(base)) {
+        return -1;
+    }
+    if(base[0] == base[1]) return -1;
+    vector<Railway> copy_railways = railways;
+
+    int r = edmonds_karp(key[base[0]], key[base[1]], copy_railways);
+
+    for (auto &x : copy_railways) {
+        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
+            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+        }
+    }
+    return r;
+}
+
 /**
  * This function prints the stations whose railway has the highest flow and the respective flow between them.
  * @param base
@@ -553,13 +571,26 @@ int Graph::Task3_1(const vector<string> &base) {
     minCostFlow(key[base[0]], key[base[1]], copy_railways);
     int result = 0;
     for (auto &copy_railway : copy_railways) {
-        if (copy_railway.getFlow() > 0)
+        if (copy_railway.getFlow() > 0){
             result += (copy_railway.getFlow() * copy_railway.getCost());
+            //cout << copy_railway;
+        }
     }
-    for (auto &copy_railway : copy_railways) {
-        if (copy_railway.getFlow() > 0)
-            cout << copy_railway;
+    for(auto it = copy_railways.rbegin(); it != copy_railways.rend(); it++){
+        if(it->getFlow() > 0){
+            cout << (*it);
+        }
     }
+//    int c = 0;
+//    for (auto &copy_railway : copy_railways) {
+//        if (copy_railway.getFlow() > 0){
+//            cout << copy_railway;
+//            cout << copy_railway.getCost() * 2 << " * " << copy_railway.getFlow() << " = " <<  copy_railway.getCost() * 2 * copy_railway.getFlow() << " (for now r:" << c + copy_railway.getCost() * 2 * copy_railway.getFlow() << ")" << endl;
+//            c += copy_railway.getCost() * 2 * copy_railway.getFlow();
+//            cout << endl;
+//        }
+//    }
+//    cout << "result : " << c << endl;
     return result * 2;
 }
 
@@ -582,7 +613,6 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
         copy_reduced_railways[2 * reduce[i] + 1].setCapacity(0);
     }
 
-    ford_falk(key[base[0]], key[base[1]], copy_railways);
     int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
 
 //    for (auto &seg : copy_railways){
@@ -856,38 +886,106 @@ void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
  * @return an integer with value equal to the number of trains that can get into a station when there is maximum flow.
  */
 int Graph::Task2_4_3(const vector<string> &base) {
-    if (!check_keys(base)) return -1;
+    if (!check_keys(base)) {
+        return -1;
+    }
     if(base[0] == base[1]) return -1;
-    if(base[0] == base[2]) return -1;
-    if(base[1] == base[2]) return Task2_1({base[0], base[1]});
-
     vector<Railway> copy_railways = railways;
 
+    int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
+
     for (auto &x : copy_railways) {
-        x.setCost(1e8);
+        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
+            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+        }
     }
-    for (int x : adjacencyList[key[base[2]]]) {
-        copy_railways[x].setCost(0);
-        for (auto &y : adjacencyList[key[copy_railways[x].getStationB()]]) {
-            if (copy_railways[y].getStationB() == base[2]) {
-                copy_railways[y].setCost(0);
+    return r;
+}
+
+int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
+    int result = 0;
+    while(true){
+        vector<int> mark(adjacencyList.size(), -1);
+        int x = bfs(s, t, -1, rail, mark);
+        if(x == 0) break;
+        result += x;
+        int cur = t;
+        while (cur != s) {
+            int prev = mark[cur];
+            int r = 0;
+            for(auto i : adjacencyList[prev]){
+                if(rail[i].getStationB() == stations[cur].getName()){
+                    r = i;
+                }
+            }
+            rail[r].addFlow(x);
+            rail[rail[r].getPrevPosition()].subFlow(x);
+            cur = prev;
+        }
+    }
+    return result;
+}
+
+int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int skip) {
+    int result = 0;
+    while(true){
+        vector<int> mark(adjacencyList.size(), -1);
+
+        int xp = bfs_priority(s, t, u, rail, mark);
+
+        if(xp == 0){
+            int x = bfs(s, t, u, rail, mark);
+            if(x == 0) break;
+            result += x;
+            int cur = t;
+            while (cur != s) {
+                int prev = mark[cur];
+                int r = 0;
+                for(auto i : adjacencyList[prev]){
+                    if(rail[i].getStationB() == stations[cur].getName()){
+                        r = i;
+                    }
+                }
+                rail[r].addFlow(x);
+                rail[rail[r].getPrevPosition()].subFlow(x);
+                cur = prev;
+            }
+        }
+        result += xp;
+    }
+    return result;
+}
+
+int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
+    mark.assign(adjacencyList.size(), -1);
+    mark[s] = -2;
+    queue<pair<int, int>> q;
+    q.push({s, 1e9});
+
+    while (!q.empty()) {
+        int u = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v : adjacencyList[u]) {
+            if(rail[v].getFlow() < rail[v].getCapacity() ){
+                int index_to_go = key[rail[v].getStationB()];
+                if(mark[index_to_go] == -1){
+                    mark[index_to_go] = u;
+                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
+                    if(index_to_go == t){
+                        return new_flow;
+                    }
+                    q.push({index_to_go, new_flow});
+                }
             }
         }
     }
+    return 0;
+}
 
-    minCostFlow(key[base[0]], key[base[1]], copy_railways);
-
-    for (auto &x : copy_railways) {
-        int ans = 0;
-        if (x.getFlow() > 0) {
-            cout << x;
-        }
-    }
-    int ans = 0;
-    for (int x : adjacencyList[key[base[2]]]) {
-        ans += max(0, copy_railways[x].getFlow());
-    }
-    return ans;
+int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int> mark) {
+    return 0;
 }
 
 /**
@@ -904,5 +1002,3 @@ void Graph::printImage() {
     }
     cout << endl << endl;
 }
-
-

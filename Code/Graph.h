@@ -44,12 +44,17 @@ class Graph {
     void input_edge(const string &input_name);
     void build_adjacencyList();
     int ford_falk(int s, int t, vector<Railway> &rail, int skip = -1);
+    int edmonds_karp(int s, int t, vector<Railway> &rail);
+    int edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int skip = -1);
+    int bfs(int s, int t, int u, vector<Railway> &rail, vector<int> &mark);
+    int bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int> mark);
 public:
     void add_station(const string& name, bool f = true, const string& district = "", const string& municipality = "", const string& township = "", const string& line = ""); // f : write to file?
     void add_railway(const string& nameA, const string& nameB, bool f = true, int capacity = 1e9, const string& service = "STANDARD");
     int getIndexOfRailway(pair<string, string>);
     int Task2_1(const vector<string> &base);
     int Task2_1_2(const vector<string> &from, const vector<string> &to);
+    int Task2_1_3(const vector<string> &base);
     void Task2_2(vector<string> &base);
     void Task2_2_2();
     void Task2_3(vector<string> &base, int k, bool flag);
