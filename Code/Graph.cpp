@@ -152,7 +152,6 @@ void Graph::add_railway(const string& nameA, const string& nameB, bool f, int ca
 }
 
 /**
-<<<<<<< HEAD
  * This function determines whether a segment defined by a vector of integers belongs the Graph or not.
  *
  * @complexity The time complexity of this function is O(n).
@@ -170,23 +169,6 @@ bool Graph::check_segments(const vector<int> &seg){
 }
 
 /**
- * This function determines whether stations are connected in the graph or, in other words, whether if it is
- * possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.
- *
- * @complexity The time complexity of this function is O(1).
- * @param v1 - Vector of strings number one, with the strings being the names of Stations
- * @param v2 - Vector of strings number two, with the strings being the names of Stations
- * @return true if the stations can reach each other and false if they cannot.
- */
-bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
-    vector<string> intersection;
-    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
-    return intersection.empty();
-}
-
-/**
-=======
->>>>>>> 617219e24c649cd9da7795e7e71bce49c02a524f
  * This operator specifies how a set of integers should be written into an output stream.
  *
  * @complexity The time complexity of this operator is O(n) where n is the number of elements of the set s.
@@ -694,7 +676,7 @@ int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_s
  * @param base
  * @param reduce
  * @param k
- * @return
+ * @return 0 if the code ran successfully and -1 otherwise.
  */
 int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k){
     if (!check_keys(base) || !check_segments(reduce)){
@@ -883,10 +865,10 @@ int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
  * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
  * minimizing the cost.
  *
- * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
- * @param s
- * @param t
- * @param rail
+ * @complexity The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
+ * @param s - Integer representing the "source" Station
+ * @param t - Integer representing the "target" Station
+ * @param rail - Vector of objects of the class Railway
  */
 void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
     while (true) {
@@ -1070,8 +1052,8 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
 /**
  * This function obtains the index of the Railway whose Stations' names are contained in the parameter n.
  *
- * The time complexity of this function is O(n).
- * @param n
+ * @complexity The time complexity of this function is O(n).
+ * @param n - pair of strings with the name of station A and station B of the pretended railway
  * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
  * is not found in the vector railways of the Graph.
  */
@@ -1089,12 +1071,12 @@ int Graph::getIndexOfRailway(pair<string, string> n) {
  * This function determines whether stations are connected in the graph or, in other words, whether if it is
  * possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.
  *
- * The time complexity of this function is O(1).
- * @param v1
- * @param v2
+ * @complexity The time complexity of this function is O(1).
+ * @param v1 - Vector of strings number one, with the strings being the names of Stations
+ * @param v2 - Vector of strings number two, with the strings being the names of Stations
  * @return true if the stations can reach each other and false if they cannot.
  */
-bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
+bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
     vector<string> intersection;
     set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
     return intersection.empty();
