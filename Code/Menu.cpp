@@ -9,6 +9,7 @@
 using namespace std;
 
 void Menu::choose_network(){
+    g.printImage();
     string stations,network;
     cout<<"          Do you want to change the network?\n"
           "|==================================================| \n"
@@ -376,13 +377,13 @@ void Menu::main_menu() {
                    "| Maximum flow in a reduced network segments                                                                    [41] |\n"
                    "| Maximum flow in a reduced network stations                                                                    [42] |\n"
                    "| Top-k most affected stations for each segment failure                                                         [43] |\n"
-                   "|==================================================|=================================================================|\n"
-                   "|               Other operations                   |\n"
-                   "|==================================================|\n"
-                   "|  Add stations to the network            [11]     |\n"
-                   "|  Add railways to the network            [12]     |\n"
-                   "|  Exit                                   [0]      |\n"
-                   "|==================================================|\n";
+                   "|====================================================================================================================|\n"
+                   "|                                               Other operations                                                     |\n"
+                   "|====================================================================================================================|\n"
+                   "|  Add stations to the network                                                                                  [11] |\n"
+                   "|  Add railways to the network                                                                                  [12] |\n"
+                   "|  Exit                                                                                                          [0] |\n"
+                   "|====================================================================================================================|\n";
 
         cout << endl;
         cout << "Please choose an option:";
@@ -462,9 +463,6 @@ void Menu::main_menu() {
 
             default:
                 cerr << "Invalid input" << endl;
-
         }
-
     }
-
 }
