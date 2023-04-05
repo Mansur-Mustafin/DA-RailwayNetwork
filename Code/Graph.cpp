@@ -285,7 +285,7 @@ int Graph::Task2_1_3(const vector<string> &base) {
     if(base[0] == base[1]) return -1;
     vector<Railway> copy_railways = railways;
 
-    int r = edmonds_karp(key[base[0]], key[base[1]], key[base[2]], copy_railways);
+    int r = edmonds_karp(key[base[0]], key[base[1]], copy_railways);
 
     for (auto &x : copy_railways) {
         if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
@@ -886,7 +886,7 @@ int Graph::Task2_4_3(const vector<string> &base) {
     if(base[0] == base[1]) return -1;
     vector<Railway> copy_railways = railways;
 
-    int r = edmonds_karp(key[base[0]], key[base[1]], key[base[2]], copy_railways);
+    int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
 
     for (auto &x : copy_railways) {
         if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
@@ -896,7 +896,31 @@ int Graph::Task2_4_3(const vector<string> &base) {
     return r;
 }
 
-int Graph::edmonds_karp(int s, int t, int u, vector<Railway> &rail, int skip) {
+int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
+    int result = 0;
+    while(true){
+        vector<int> mark(adjacencyList.size(), -1);
+        int x = bfs(s, t, -1, rail, mark);
+        if(x == 0) break;
+        result += x;
+        int cur = t;
+        while (cur != s) {
+            int prev = mark[cur];
+            int r = 0;
+            for(auto i : adjacencyList[prev]){
+                if(rail[i].getStationB() == stations[cur].getName()){
+                    r = i;
+                }
+            }
+            rail[r].addFlow(x);
+            rail[rail[r].getPrevPosition()].subFlow(x);
+            cur = prev;
+        }
+    }
+    return result;
+}
+
+int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int skip) {
     int result = 0;
     while(true){
         vector<int> mark(adjacencyList.size(), -1);

@@ -16,9 +16,9 @@ int main() {
 //    }
 
     Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
-    vector<string> base = {"A","E","D"}; // A -> E (D)
-    cout << g.Task2_4_3(base);
-
+    vector<string> base = {"A","E"}; // A -> E (D)
+    cout << g.Task2_1_3(base) << endl;
+    cout << g.Task2_1(base);
 
     return 0;
 }
