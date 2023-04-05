@@ -152,37 +152,6 @@ void Graph::add_railway(const string& nameA, const string& nameB, bool f, int ca
 }
 
 /**
- * This function determines whether a segment defined by a vector of integers belongs the Graph or not.
- *
- * The time complexity of this function is O(n).
- * @param seg
- * @return false if the segment cannot exist in the Graph and true otherwise.
- */
-bool Graph::check_segments(const vector<int> &seg){
-    for (auto i : seg){
-        if (2 * i >= railways.size()){
-            return false;
-        }
-    }
-    return true;
-}
-
-/**
- * This function determines whether stations are connected in the graph or, in other words, whether if it is
- * possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.
- *
- * The time complexity of this function is O(1).
- * @param v1
- * @param v2
- * @return true if the stations can reach each other and false if they cannot.
- */
-bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
-    vector<string> intersection;
-    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
-    return intersection.empty();
-}
-
-/**
  * This operator specifies how a set of integers should be written into an output stream.
  *
  * The time complexity of this operator is O(n).
@@ -788,22 +757,82 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
     return 0;
 }
 
-/**
- * This function obtains the index of the Railway whose Stations' names are contained in the parameter n.
- *
- * The time complexity of this function is O(n).
- * @param n
- * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
- * is not found in the vector railways of the Graph.
- */
-int Graph::getIndexOfRailway(pair<string, string> n) {
-    int index = 0;
-    for(auto railway : railways){
-        if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
-        (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
-        index++;
+
+
+int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
+    int result = 0;
+    while(true){
+        vector<int> mark(adjacencyList.size(), -1);
+        int x = bfs(s, t, -1, rail, mark);
+        if(x == 0) break;
+        result += x;
+        int cur = t;
+        while (cur != s) {
+            int prev = mark[cur];
+            int r = 0;
+            for(auto i : adjacencyList[prev]){
+                if(rail[i].getStationB() == stations[cur].getName()){
+                    r = i;
+                }
+            }
+            rail[r].addFlow(x);
+            rail[rail[r].getPrevPosition()].subFlow(x);
+            cur = prev;
+        }
     }
-    return -1;
+    return result;
+}
+
+int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
+    mark.assign(adjacencyList.size(), -1);
+    mark[s] = -2;
+    queue<pair<int, int>> q;
+    q.push({s, 1e9});
+
+    while (!q.empty()) {
+        int u = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v : adjacencyList[u]) {
+            if(rail[v].getFlow() < rail[v].getCapacity() ){
+                int index_to_go = key[rail[v].getStationB()];
+                if(mark[index_to_go] == -1){
+                    mark[index_to_go] = u;
+                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
+                    if(index_to_go == t){
+                        return new_flow;
+                    }
+                    q.push({index_to_go, new_flow});
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+/**
+ * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
+ * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
+ * minimizing the cost.
+ *
+ * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
+ * @param s
+ * @param t
+ * @param rail
+ */
+void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
+    while (true) {
+        pair<int, vector<int>> res = dijkstra(s, t, rail);
+        if (res.first <= 0) {
+            break;
+        }
+        for (int x : res.second) {
+            Railway e = rail[x];
+            rail[x].addFlow(res.first);
+            rail[e.getPrevPosition()].subFlow(res.first);
+        }
+    }
 }
 
 /**
@@ -856,75 +885,6 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
     return make_pair(minCapacity, edgesPath);
 }
 
-/**
- * This function determines whether a vector containing the names of stations contains a name of a station that
- * does not belong to the unordered map key and therefore is not a valid name of a Station in the Graph.
- *
- * The time complexity of this function is O(n).
- * @param base
- * @return true if all the names in the parameter base exist in the unordered map key of the Graph and false if at least
- * one of the names does not.
- */
-bool Graph::check_keys(const vector<string> &base) {
-    for (auto &x : base) {
-        if (key.count(x) == 0) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
-int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
-    int result = 0;
-    while(true){
-        vector<int> mark(adjacencyList.size(), -1);
-        int x = bfs(s, t, -1, rail, mark);
-        if(x == 0) break;
-        result += x;
-        int cur = t;
-        while (cur != s) {
-            int prev = mark[cur];
-            int r = 0;
-            for(auto i : adjacencyList[prev]){
-                if(rail[i].getStationB() == stations[cur].getName()){
-                    r = i;
-                }
-            }
-            rail[r].addFlow(x);
-            rail[rail[r].getPrevPosition()].subFlow(x);
-            cur = prev;
-        }
-    }
-    return result;
-}
-
-/**
- * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
- * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
- * minimizing the cost.
- *
- * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
- * @param s
- * @param t
- * @param rail
- */
-void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
-    while (true) {
-        pair<int, vector<int>> res = dijkstra(s, t, rail);
-        if (res.first <= 0) {
-            break;
-        }
-        for (int x : res.second) {
-            Railway e = rail[x];
-            rail[x].addFlow(res.first);
-            rail[e.getPrevPosition()].subFlow(res.first);
-        }
-    }
-}
-
-
-
 int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail) {
     int result = 0;
     while(true){
@@ -969,36 +929,6 @@ int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail) {
     }
     return result;
 }
-
-int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
-    mark.assign(adjacencyList.size(), -1);
-    mark[s] = -2;
-    queue<pair<int, int>> q;
-    q.push({s, 1e9});
-
-    while (!q.empty()) {
-        int u = q.front().first;
-        int flow = q.front().second;
-        q.pop();
-
-        for (int v : adjacencyList[u]) {
-            if(rail[v].getFlow() < rail[v].getCapacity() ){
-                int index_to_go = key[rail[v].getStationB()];
-                if(mark[index_to_go] == -1){
-                    mark[index_to_go] = u;
-                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
-                    if(index_to_go == t){
-                        return new_flow;
-                    }
-                    q.push({index_to_go, new_flow});
-                }
-            }
-        }
-    }
-    return 0;
-}
-
-
 
 int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
 
@@ -1051,6 +981,73 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
     }
 
     return 0;
+}
+
+/**
+ * This function obtains the index of the Railway whose Stations' names are contained in the parameter n.
+ *
+ * The time complexity of this function is O(n).
+ * @param n
+ * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
+ * is not found in the vector railways of the Graph.
+ */
+int Graph::getIndexOfRailway(pair<string, string> n) {
+    int index = 0;
+    for(auto railway : railways){
+        if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
+           (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
+        index++;
+    }
+    return -1;
+}
+
+/**
+ * This function determines whether stations are connected in the graph or, in other words, whether if it is
+ * possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.
+ *
+ * The time complexity of this function is O(1).
+ * @param v1
+ * @param v2
+ * @return true if the stations can reach each other and false if they cannot.
+ */
+bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
+    vector<string> intersection;
+    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
+    return intersection.empty();
+}
+
+/**
+ * This function determines whether a segment defined by a vector of integers belongs the Graph or not.
+ *
+ * The time complexity of this function is O(n).
+ * @param seg
+ * @return false if the segment cannot exist in the Graph and true otherwise.
+ */
+bool Graph::check_segments(const vector<int> &seg){
+    for (auto i : seg){
+        if (2 * i >= railways.size()){
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * This function determines whether a vector containing the names of stations contains a name of a station that
+ * does not belong to the unordered map key and therefore is not a valid name of a Station in the Graph.
+ *
+ * The time complexity of this function is O(n).
+ * @param base
+ * @return true if all the names in the parameter base exist in the unordered map key of the Graph and false if at least
+ * one of the names does not.
+ */
+bool Graph::check_keys(const vector<string> &base) {
+    for (auto &x : base) {
+        if (key.count(x) == 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 /**

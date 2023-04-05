@@ -34,6 +34,7 @@ class Graph {
     void minCostFlow(int s, int t, vector<Railway> &rail);
     bool check_keys(const vector<string> &base);
     bool check_segments(const vector<int> &seg);
+    bool check_Disjoint(const vector<string>& v1, const vector<string>& v2);
     vector<vector<int>> adjacencyList;
     vector<Railway> railways;
     vector<Station> stations;                     // stations
