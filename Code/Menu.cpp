@@ -85,7 +85,7 @@ void Menu::add_railway(){
     g.add_railway(source_name, dest_name, true, capacity, service);
 }
 
-void Menu::Max_flow(){
+void Menu::Task2_1(){
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -98,7 +98,7 @@ void Menu::Max_flow(){
     base.emplace_back(dest_name);
     g.Task2_1(base);
 }
-void Menu::Max_flow_between_two_groups(){
+void Menu::Task2_1_2(){
     int n;
     cout <<"How many source stations you want ?:\n";
     cin >> n;
@@ -118,7 +118,7 @@ void Menu::Max_flow_between_two_groups(){
     g.Task2_1_2(source,destination);
 }
 
-void Menu::Heaviest_edge(){
+void Menu::Task2_2() {
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -133,7 +133,7 @@ void Menu::Heaviest_edge(){
     g.Task2_2(base);
 }
 
-void Menu::All_pairs_with_maxflow(){
+void Menu::Task2_2_2(){
     //cout<<"Please enter the source station name: \n";
     //string source_name;
     //getline(cin>>ws,source_name);
@@ -184,7 +184,7 @@ void Menu::Task2_3_2(){
     g.Task2_3_2(base,number,true);
 }
 
-void Menu::Number_of_trains_that_enter_a_station_with_max_flow(){
+void Menu::Task2_4() {
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -203,7 +203,7 @@ void Menu::Number_of_trains_that_enter_a_station_with_max_flow(){
     g.Task2_4(base);
 }
 
-void Menu::Max_number_of_trains_that_can_enter_a_station(){
+void Menu::Task2_4_2(){
     cout<<"Please enter the station name: \n";
     string name;
     getline(cin>>ws,name);
@@ -222,7 +222,7 @@ void Menu::Max_number_of_trains_that_can_enter_a_station(){
     g.Task2_4_2(name);
 }
 
-void Menu::Max_number_of_trains_that_can_enter_a_station_with_max_flow(){
+void Menu::Task2_4_3() {
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -241,7 +241,7 @@ void Menu::Max_number_of_trains_that_can_enter_a_station_with_max_flow(){
     g.Task2_4_3(base);
 }
 
-void Menu::Max_trains_between_two_stations_with_min_cost(){
+void Menu::Task3_1() {
     cout<<"Please enter the source station name: \n";
     string source_name;
     getline(cin>>ws,source_name);
@@ -272,9 +272,17 @@ void Menu::Task4_1(){
     cout <<"How many segments you want to erase ?:\n";
     cin >> n;
     vector<int> reduce(n, 0);
+    string source_reduce,destination_reduce;
+    pair<string,string> railway;
     for (size_t i = 0; i < n; i++){
-        cout <<"Please enter the index of one segment:\n";
-        cin >> reduce[i];
+        cout <<"Please enter the name of one source station:\n";
+        getline(cin,source_reduce);
+        cout <<"Please enter the name of one destination station:\n";
+        getline(cin,destination_reduce);
+        railway.first = source_reduce;
+        railway.second = destination_reduce;
+        int index = g.getIndexOfRailway(railway);
+        reduce[i] = index;
     }
     g.Task4_1(base,reduce);
 }
@@ -333,30 +341,30 @@ void Menu::main_menu() {
     while (true) {
         cout << endl;
         cout
-                << "|===========================================================================================================|\n"
-                   "|                                               Basic Service                                               |\n"
-                   "|===========================================================================================================|\n"
-                   "| Maximum number of trains that can simultaneously travel between two  stations                     [21]    |\n"
-                   "| Maximum number of trains that can simultaneously travel between two  stations (version 2)         [212]   |\n"
-                   "| Pairs of stations that require the most amount amount of trains                                   [22]    |\n"
-                   "| Pairs of stations that require the most amount amount of trains (version 2)                       [222]   |\n"
-                   "| Top-k municipalities and districts, regarding their transportation needs                          [23]    |\n"
-                   "| Top-k municipalities and districts, regarding their transportation needs (version 2)              [232]   |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station                              [24]    |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station (version 2)                  [242]   |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station (version 3)                  [243]   |\n"
-                   "|===========================================================================================================|\n"
-                   "|                                               Operation Cost                                              |\n"
-                   "|===========================================================================================================|\n"
-                   "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost    [31]    |\n"
-                   "|===========================================================================================================|\n"
-                   "|                                               Line Failures                                               |\n"
-                   "|===========================================================================================================|\n"
-                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network [41]    |\n"
-                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network [412]   |\n"
-                   "| Top-k most affected stations for each segment failure                                             [42]    |\n"
-                   "|==================================================|========================================================|\n"
-                   "|               Other operations                   |                                                         \n"
+                << "|=======================================================================================================================|\n"
+                   "|                                               Basic Service                                                           |\n"
+                   "|=======================================================================================================================|\n"
+                   "| Maximum number of trains that can simultaneously travel between two  stations                                 [21]    |\n"
+                   "| Maximum number of trains that can simultaneously travel between two groups of stations                        [212]   |\n"
+                   "| Pairs of stations that require the most amount amount of trains                                               [22]    |\n"
+                   "| Pairs of stations that require the most amount amount of trains using all network                             [222]   |\n"
+                   "| Top-k municipalities and districts, regarding their transportation needs                                      [23]    |\n"
+                   "| Top-k municipalities and districts, regarding their transportation needs with (version 2)                     [232]   |\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station                                          [24]    |\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station (version 2)                              [242]   |\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station (version 3)                              [243]   |\n"
+                   "|=======================================================================================================================|\n"
+                   "|                                               Operation Cost                                                          |\n"
+                   "|=======================================================================================================================|\n"
+                   "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost                [31]    |\n"
+                   "|=======================================================================================================================|\n"
+                   "|                                               Line Failures                                                           |\n"
+                   "|=======================================================================================================================|\n"
+                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network             [41]    |\n"
+                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network (version 2) [412]   |\n"
+                   "| Top-k most affected stations for each segment failure                                                         [42]    |\n"
+                   "|==================================================|====================================================================|\n"
+                   "|               Other operations                   |                                                                    \n"
                    "|==================================================|\n"
                    "|  Add stations to the network            [11]     |\n"
                    "|  Add railways to the network            [12]     |\n"
@@ -380,19 +388,19 @@ void Menu::main_menu() {
                 exit(0);
 
             case 21:
-                Max_flow();
+                Task2_1();
                 break;
 
             case 212:
-                Max_flow_between_two_groups();
+                Task2_1_2();
                 break;
 
             case 22:
-                Heaviest_edge();
+                Task2_2();
                 break;
 
             case 222:
-                All_pairs_with_maxflow();
+                Task2_2_2();
                 break;
 
             case 23:
@@ -404,18 +412,18 @@ void Menu::main_menu() {
                 break;
 
             case 24:
-                Number_of_trains_that_enter_a_station_with_max_flow();
+                Task2_4();
                 break;
 
             case 242:
-                Max_number_of_trains_that_can_enter_a_station();
+                Task2_4_2();
                 break;
             case 243:
-                Max_number_of_trains_that_can_enter_a_station_with_max_flow();
+                Task2_4_3();
                 break;
 
             case 31:
-                Max_trains_between_two_stations_with_min_cost();
+                Task3_1();
                 break;
 
             case 41:
