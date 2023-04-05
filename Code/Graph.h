@@ -53,6 +53,7 @@ public:
     int getIndexOfRailway(pair<string, string>);
     int Task2_1(const vector<string> &base);
     int Task2_1_2(const vector<string> &from, const vector<string> &to);
+    int Task2_1_3(const vector<string> &base);
     void Task2_2(vector<string> &base);
     void Task2_2_2();
     void Task2_3(vector<string> &base, int k, bool flag);

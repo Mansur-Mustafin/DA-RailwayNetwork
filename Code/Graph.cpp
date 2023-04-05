@@ -277,6 +277,24 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     return r;
 }
 
+// endmond karp
+int Graph::Task2_1_3(const vector<string> &base) {
+    if (!check_keys(base)) {
+        return -1;
+    }
+    if(base[0] == base[1]) return -1;
+    vector<Railway> copy_railways = railways;
+
+    int r = edmonds_karp(key[base[0]], key[base[1]], key[base[2]], copy_railways);
+
+    for (auto &x : copy_railways) {
+        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
+            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+        }
+    }
+    return r;
+}
+
 /**
  * This function prints the stations whose railway has the highest flow and the respective flow between them
  * @param base
