@@ -266,7 +266,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This function adds the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> of attributes given by the parameters to the vector railways. After the railway is added into the vector in both directions (<a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A to <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B and vice versa), it will alter the adjacency list, taking into account the new railways that were added. If the boolean parameter f is true, then it will write the attributes of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> into an output stream, that can be used to write them into a file.</p>
-<p>The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nameA</td><td></td></tr>
     <tr><td class="paramname">nameB</td><td></td></tr>
@@ -329,14 +329,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This function adds the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> of attributes given by the parameters to the vector stations. If the boolean parameter f is true, then it will write the attributes of the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> into an output stream, that can be used to write them into a file.</p>
-<p>The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td></td></tr>
-    <tr><td class="paramname">f</td><td></td></tr>
-    <tr><td class="paramname">district</td><td></td></tr>
-    <tr><td class="paramname">municipality</td><td></td></tr>
-    <tr><td class="paramname">township</td><td></td></tr>
-    <tr><td class="paramname">line</td><td></td></tr>
+    <tr><td class="paramname">name</td><td>Name of the station we want to add </td></tr>
+    <tr><td class="paramname">f</td><td>Boolean variable to determine if the station should be written into a file </td></tr>
+    <tr><td class="paramname">district</td><td>District of the station we want to add </td></tr>
+    <tr><td class="paramname">municipality</td><td>Municipality of the station we want to add </td></tr>
+    <tr><td class="paramname">township</td><td>Township of the station we want to add </td></tr>
+    <tr><td class="paramname">line</td><td>Line of the station we want to add </td></tr>
   </table>
   </dd>
 </dl>
@@ -366,7 +366,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function inputs into the vector adjacencyList subvectors of two integers, that dictate which Stations are connected to each other by analysing the vector of Railways. Each subvector has the index of <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A and the index of <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B. This function also updates the number of stations for each station in the graph.</p>
-<p>The time complexity of this function is O(V + E) where V is the number of vertices (or stations) and E is the number of edges (or railways). </p>
+<p>@complexity The time complexity of this function is O(V + E) where V is the number of vertices (or stations) and E is the number of edges (or railways) of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p>
 
 </div>
 </div>
@@ -394,7 +394,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function determines whether a vector containing the names of stations contains a name of a station that does not belong to the unordered map key and therefore is not a valid name of a <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> in the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
-<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(n) where n is the number of elements of the vector base. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">base</td><td></td></tr>
   </table>
@@ -428,7 +428,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function determines whether a segment defined by a vector of integers belongs the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> or not.</p>
-<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">seg</td><td></td></tr>
   </table>
@@ -490,7 +490,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function implements the Depth First Search algorithm on the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> in order to find the maximum flow between two vertices of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
-<p>The time complexity of this function is O(E) where E represents the number of edges of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(E) where E represents the number of edges of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td></td></tr>
     <tr><td class="paramname">t</td><td></td></tr>
@@ -544,7 +544,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function implements the Dijkstra algorithm in order to find the shortest path between two vertices in a <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
-<p>The time complexity of this function is O((V+E) * log V) where V represents the number of vertices and E represents the number of edges. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O((V+E) * log V) where V represents the number of vertices and E represents the number of edges of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td></td></tr>
     <tr><td class="paramname">t</td><td></td></tr>
@@ -602,7 +602,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function implements the Ford-Fulkerson algorithm on the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> in order to find the maximum flow from a "source" vertex represented by parameter s to a "sink" vertex represented by parameter t.</p>
-<p>The time complexity of this function is O(F * E) where F is the maximum flow of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> and E is the number of edges. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(F * E) where F is the maximum flow and E is the number of edges of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td></td></tr>
     <tr><td class="paramname">t</td><td></td></tr>
@@ -631,7 +631,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This function obtains the index of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> whose Stations' names are contained in the parameter n.</p>
-<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(n) where n is the number of railways of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td></td></tr>
   </table>
@@ -665,7 +665,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function inserts the Railways (in this case as edges) in the string input_name into the given <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
-<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(n) where n is the number of lines of the string input_name. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input_name</td><td></td></tr>
   </table>
@@ -698,7 +698,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function inserts the Stations (in this case as vertices) in the string input_name into the given <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
-<p>The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(n) where n is the number of lines of the string input_name. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input_name</td><td></td></tr>
   </table>
@@ -747,7 +747,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while minimizing the cost.</p>
-<p>The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>@complexity The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices of the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td></td></tr>
     <tr><td class="paramname">t</td><td></td></tr>
@@ -773,7 +773,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This function writes an "image" contained in a text document into the terminal.</p>
-<p>The time complexity of this function is O(n). </p>
+<p>@complexity The time complexity of this function is O(n) where n is the number of lines of the text file. </p>
 
 </div>
 </div>
@@ -853,7 +853,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function prints the stations whose railway has the highest flow and the respective flow between them </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function prints the stations whose railway has the highest flow and the respective flow between them. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">base</td><td></td></tr>
   </table>
@@ -876,7 +876,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function prints the pairs of stations whose railways have the maximum flow </p>
+<p>This function prints the pairs of stations whose railways have the maximum flow. </p>
 
 </div>
 </div>
@@ -911,7 +911,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>This function prints which municipalities and districts need more budget for purchasing and maintaining more trains, according to the overall capacity of the stations and railways included in each municipality and/or district. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">base</td><td></td></tr>
     <tr><td class="paramname">k</td><td></td></tr>
@@ -953,7 +953,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>This function prints which municipalities and districts need more budget for purchasing and maintaining more trains, according to the overall capacity of the stations and railways included in each municipality and/or district, but also taking into account that the network has a limited number of trains, given by the total flow of all the railways in the network. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">base</td><td></td></tr>
     <tr><td class="paramname">k</td><td></td></tr>
@@ -1166,7 +1166,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>This function prints the stations that would have a more significant loss of flow (or traffic of trains) when each segment of the network is deemed to be nonoperational. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">base</td><td></td></tr>
     <tr><td class="paramname">reduce</td><td></td></tr>
@@ -1312,8 +1312,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Code/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
-<li>Code/<a class="el" href="_graph_8cpp.html">Graph.cpp</a></li>
+<li>C:/Users/utilizador/Desktop/Universidade/Projeto DA 1/DA-RailwayNetwork/Code/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
+<li>C:/Users/utilizador/Desktop/Universidade/Projeto DA 1/DA-RailwayNetwork/Code/<a class="el" href="_graph_8cpp.html">Graph.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

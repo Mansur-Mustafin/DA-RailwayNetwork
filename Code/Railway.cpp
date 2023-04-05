@@ -7,7 +7,7 @@
 /**
  * This boolean function determines if the string contains only numbers.
  *
- * The time complexity of this function is O(n).
+ * @complexity The time complexity of this function is O(n).
  * @param s
  * @return True if the string is a number. False if the string is empty or contains characters that don't
  * represent numbers.
