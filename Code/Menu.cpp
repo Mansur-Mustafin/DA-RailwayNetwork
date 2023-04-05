@@ -276,7 +276,7 @@ void Menu::Task4_1(){
     pair<string,string> railway;
     for (size_t i = 0; i < n; i++){
         cout <<"Please enter the name of one source station:\n";
-        getline(cin,source_reduce);
+        getline(cin>>ws,source_reduce);
         cout <<"Please enter the name of one destination station:\n";
         getline(cin,destination_reduce);
         railway.first = source_reduce;
@@ -341,30 +341,30 @@ void Menu::main_menu() {
     while (true) {
         cout << endl;
         cout
-                << "|=======================================================================================================================|\n"
-                   "|                                               Basic Service                                                           |\n"
-                   "|=======================================================================================================================|\n"
-                   "| Maximum number of trains that can simultaneously travel between two  stations                                 [21]    |\n"
-                   "| Maximum number of trains that can simultaneously travel between two groups of stations                        [212]   |\n"
-                   "| Pairs of stations that require the most amount amount of trains                                               [22]    |\n"
-                   "| Pairs of stations that require the most amount amount of trains using all network                             [222]   |\n"
-                   "| Top-k municipalities and districts, regarding their transportation needs                                      [23]    |\n"
-                   "| Top-k municipalities and districts, regarding their transportation needs with (version 2)                     [232]   |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station                                          [24]    |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station (version 2)                              [242]   |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station (version 3)                              [243]   |\n"
-                   "|=======================================================================================================================|\n"
-                   "|                                               Operation Cost                                                          |\n"
-                   "|=======================================================================================================================|\n"
-                   "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost                [31]    |\n"
-                   "|=======================================================================================================================|\n"
-                   "|                                               Line Failures                                                           |\n"
-                   "|=======================================================================================================================|\n"
-                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network             [41]    |\n"
-                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network (version 2) [412]   |\n"
-                   "| Top-k most affected stations for each segment failure                                                         [42]    |\n"
-                   "|==================================================|====================================================================|\n"
-                   "|               Other operations                   |                                                                    \n"
+                << "|====================================================================================================================|\n"
+                   "|                                               Basic Service                                                        |\n"
+                   "|====================================================================================================================|\n"
+                   "| Maximum number of trains that can simultaneously travel between two  stations                                 [21] |\n"
+                   "| Maximum number of trains that can simultaneously travel between two groups of stations                        [212]|\n"
+                   "| Pairs of stations that require the most amount amount of trains                                               [22] |\n"
+                   "| Pairs of stations that require the most amount amount of trains using all network                             [222]|\n"
+                   "| Top-k municipalities and districts, regarding their transportation needs                                      [23] |\n"
+                   "| Top-k municipalities and districts, regarding their transportation needs with (version 2)                     [232]|\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station                                          [24] |\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station (version 2)                              [242]|\n"
+                   "| Maximum number of trains that can simultaneously arrive at a station (version 3)                              [243]|\n"
+                   "|====================================================================================================================|\n"
+                   "|                                               Operation Cost                                                       |\n"
+                   "|====================================================================================================================|\n"
+                   "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost                [31] |\n"
+                   "|====================================================================================================================|\n"
+                   "|                                               Line Failures                                                        |\n"
+                   "|====================================================================================================================|\n"
+                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network             [41] |\n"
+                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network (version 2) [412]|\n"
+                   "| Top-k most affected stations for each segment failure                                                         [42] |\n"
+                   "|==================================================|=================================================================|\n"
+                   "|               Other operations                   |                                                                  \n"
                    "|==================================================|\n"
                    "|  Add stations to the network            [11]     |\n"
                    "|  Add railways to the network            [12]     |\n"
