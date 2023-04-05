@@ -33,7 +33,8 @@ void Menu::choose_network(){
             cout<<"Please enter the name of the network file without extension:\n";
             getline(cin,network);
             cout<<endl;
-            g = Graph(network + ".scv", stations + ".scv");
+            g = Graph(network + ".csv", stations + ".csv");
+            main_menu();
             break;
         case 2:
             main_menu();
@@ -96,8 +97,10 @@ void Menu::Task2_1(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
+    cout << "Maximum flow " << source_name << " -> " << dest_name << " is: ";
     g.Task2_1(base);
 }
+
 void Menu::Task2_1_2(){
     int n;
     cout <<"How many source stations you want ?:\n";
@@ -115,6 +118,7 @@ void Menu::Task2_1_2(){
         cout <<"Please enter the name of one destination station:\n";
         getline(cin >>ws, destination[i]);
     }
+    cout << "Maximum flow is: ";
     g.Task2_1_2(source,destination);
 }
 
@@ -134,17 +138,6 @@ void Menu::Task2_2() {
 }
 
 void Menu::Task2_2_2(){
-    //cout<<"Please enter the source station name: \n";
-    //string source_name;
-    //getline(cin>>ws,source_name);
-    //cout<<endl;
-    //cout<<"Please enter the destination station name:\n";
-    //string dest_name;
-    //getline(cin,dest_name);
-    //cout<<endl;
-    //vector<string> base;
-    //base.emplace_back(source_name);
-    //base.emplace_back(dest_name);
     g.Task2_2_2();
 }
 
@@ -162,8 +155,17 @@ void Menu::Task2_3(){
     base.emplace_back(dest_name);
     int number;
     cout<<"Please enter a number:\n";
-    cin>>number;
-    g.Task2_3(base,number,true);
+    getline(cin>>number,source_name);
+    cout<<endl;
+    cout<<"Search municipalities [0] or districts [1]\n";
+    int choice;
+    getline(cin>>choice,source_name);
+    cout<<endl;
+    if(choice){
+        g.Task2_3(base,number,false);
+    }else{
+        g.Task2_3(base,number,true);
+    }
 }
 
 void Menu::Task2_3_2(){
@@ -180,8 +182,17 @@ void Menu::Task2_3_2(){
     base.emplace_back(dest_name);
     int number;
     cout<<"Please enter a number:\n";
-    cin>>number;
-    g.Task2_3_2(base,number,true);
+    getline(cin>>number,source_name);
+    cout<<endl;
+    cout<<"Search municipalities [0] or districts [1]\n";
+    int choice;
+    getline(cin>>choice,source_name);
+    cout<<endl;
+    if(choice){
+        g.Task2_3_2(base,number,false);
+    }else{
+        g.Task2_3_2(base,number,true);
+    }
 }
 
 void Menu::Task2_4() {
@@ -208,17 +219,6 @@ void Menu::Task2_4_2(){
     string name;
     getline(cin>>ws,name);
     cout<<endl;
-    //cout<<"Please enter the destination station name:\n";
-    //string dest_name;
-    //getline(cin,dest_name);
-    //cout<<endl;
-    //vector<string> base;
-    //base.emplace_back(source_name);
-    //base.emplace_back(dest_name);
-    //string station_name;
-    //cout<<"Please enter a station name:\n";
-    //cin>>station_name;
-    //base.push_back(station_name);
     g.Task2_4_2(name);
 }
 
@@ -303,9 +303,11 @@ void Menu::Task4_1_2(){
     cout <<"How many stations u want to add ?:\n";
     cin >> n;
     vector<string> stations(n, "");
+    string name_station;
     for (size_t i = 0; i < n; i++){
         cout <<"Please enter the name of one station:\n";
-        cin >> stations[i];
+        getline(cin>>ws,name_station);
+        stations[i] = name_station;
     }
     g.Task4_1_2(base,stations);
 }
@@ -328,11 +330,22 @@ void Menu::Task4_2(){
     int n;
     cout <<"How many segments you want to erase ?:\n";
     cin >> n;
+
     vector<int> reduce(n, 0);
+    string source_reduce,destination_reduce;
+    pair<string,string> railway;
+
     for (size_t i = 0; i < n; i++){
-        cout <<"Please enter the index of one segment:\n";
-        cin >> reduce[i];
+        cout <<"Please enter the name of one source station:\n";
+        getline(cin>>ws,source_reduce);
+        cout <<"Please enter the name of one destination station:\n";
+        getline(cin,destination_reduce);
+        railway.first = source_reduce;
+        railway.second = destination_reduce;
+        int index = g.getIndexOfRailway(railway);
+        reduce[i] = index;
     }
+
     g.Task4_2(base,reduce,number);
 }
 
@@ -344,31 +357,31 @@ void Menu::main_menu() {
                 << "|====================================================================================================================|\n"
                    "|                                               Basic Service                                                        |\n"
                    "|====================================================================================================================|\n"
-                   "| Maximum number of trains that can simultaneously travel between two  stations                                 [21] |\n"
-                   "| Maximum number of trains that can simultaneously travel between two groups of stations                        [212]|\n"
-                   "| Pairs of stations that require the most amount amount of trains                                               [22] |\n"
-                   "| Pairs of stations that require the most amount amount of trains using all network                             [222]|\n"
-                   "| Top-k municipalities and districts, regarding their transportation needs                                      [23] |\n"
-                   "| Top-k municipalities and districts, regarding their transportation needs with (version 2)                     [232]|\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station                                          [24] |\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station (version 2)                              [242]|\n"
-                   "| Maximum number of trains that can simultaneously arrive at a station (version 3)                              [243]|\n"
+                   "| Maximum flow between 2 stations                                                                               [21] |\n"
+                   "| Maximum flow between sets of stations                                                                         [22] |\n"
+                   "| The railway with highest amount of trains                                                                     [23] |\n"
+                   "| Pairs of stations that require the most amount of trains                                                      [24] |\n"
+                   "| Top-k municipalities or districts, regarding their transportation needs in full advantage                     [25] |\n"
+                   "| Top-k municipalities or districts, regarding their transportation needs in limit mode                         [26] |\n"
+                   "| Number of trains that arrived in station in max flow                                                          [27] |\n"
+                   "| Number of trains that arrived in station in full advantage                                                    [28] |\n"
+                   "| Maximize number of trains in max flow                                                                         [29] |\n"
                    "|====================================================================================================================|\n"
                    "|                                               Operation Cost                                                       |\n"
                    "|====================================================================================================================|\n"
-                   "| Maximum amount of trains that can simultaneously travel between two stations with minimum cost                [31] |\n"
+                   "| Minimum cost of maintaining maximum flow                                                                      [31] |\n"
                    "|====================================================================================================================|\n"
                    "|                                               Line Failures                                                        |\n"
                    "|====================================================================================================================|\n"
-                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network             [41] |\n"
-                   "| Maximum number of trains that can simultaneously travel between two stations in a reduced network (version 2) [412]|\n"
-                   "| Top-k most affected stations for each segment failure                                                         [42] |\n"
+                   "| Maximum flow in a reduced network segments                                                                    [41] |\n"
+                   "| Maximum flow in a reduced network stations                                                                    [42] |\n"
+                   "| Top-k most affected stations for each segment failure                                                         [43] |\n"
                    "|==================================================|=================================================================|\n"
-                   "|               Other operations                   |                                                                  \n"
+                   "|               Other operations                   |\n"
                    "|==================================================|\n"
                    "|  Add stations to the network            [11]     |\n"
                    "|  Add railways to the network            [12]     |\n"
-                   "|  Back                                   [0]      |\n"
+                   "|  Exit                                   [0]      |\n"
                    "|==================================================|\n";
 
         cout << endl;
@@ -391,34 +404,35 @@ void Menu::main_menu() {
                 Task2_1();
                 break;
 
-            case 212:
+            case 22:
                 Task2_1_2();
                 break;
 
-            case 22:
+            case 23:
                 Task2_2();
                 break;
 
-            case 222:
+            case 24:
                 Task2_2_2();
                 break;
 
-            case 23:
+            case 25:
                 Task2_3();
                 break;
 
-            case 232:
+            case 26:
                 Task2_3_2();
                 break;
 
-            case 24:
+            case 27:
                 Task2_4();
                 break;
 
-            case 242:
+            case 28:
                 Task2_4_2();
                 break;
-            case 243:
+
+            case 29:
                 Task2_4_3();
                 break;
 
@@ -430,11 +444,11 @@ void Menu::main_menu() {
                 Task4_1();
                 break;
 
-            case 412:
+            case 42:
                 Task4_1_2();
                 break;
 
-            case 42:
+            case 43:
                 Task4_2();
                 break;
 

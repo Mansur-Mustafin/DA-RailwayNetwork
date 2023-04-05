@@ -235,11 +235,14 @@ int Graph::Task2_1(const vector<string> &base) {
     vector<Railway> copy_railways = railways;
     int r = ford_falk(key[base[0]], key[base[1]], copy_railways);
 
+    cout << r << endl;
+
     for (auto &x : copy_railways) {
         if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
             cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
         }
     }
+
     return r;
 }
 
@@ -554,6 +557,11 @@ int Graph::Task2_4_2(const string &station) {
         }
     }
 
+    if(source.empty()){
+        cout << "Not sours stations. Result: " << stations[key[station]].getNumberStations();
+        return stations[key[station]].getNumberStations();
+    }
+
     vector<string> from;
     if(source.empty()) return -1;
     for(auto index : source){
@@ -581,11 +589,19 @@ int Graph::Task2_4_3(const vector<string> &base) {
 
     int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
 
+    int in = 0;
+
     for (auto &x : copy_railways) {
         if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
             cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+            if(x.getStationB() == base[2]){
+                in += x.getFlow();
+            }
         }
     }
+
+    cout << "Max Flow: " << r << endl;
+    cout << "Result of maximize: " << in << endl;
     return r;
 }
 
@@ -605,7 +621,6 @@ int Graph::Task3_1(const vector<string> &base) {
     for (auto &copy_railway : copy_railways) {
         if (copy_railway.getFlow() > 0){
             result += (copy_railway.getFlow() * copy_railway.getCost());
-            //cout << copy_railway;
         }
     }
     for(auto it = copy_railways.rbegin(); it != copy_railways.rend(); it++){
@@ -623,6 +638,7 @@ int Graph::Task3_1(const vector<string> &base) {
 //        }
 //    }
 //    cout << "result : " << c << endl;
+    cout << "Total Cost: " << result * 2 << endl;
     return result * 2;
 }
 
@@ -659,7 +675,7 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
         if (copy_railway.getFlow() > 0)
             cout << copy_railway;
     }
-
+    cout << "Max flow: " << res << endl;
     return res;
 }
 
