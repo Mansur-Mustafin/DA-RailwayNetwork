@@ -7,18 +7,17 @@ using namespace std;
 
 int main() {
 
-//    try {
-//        Menu menu;
-//        menu.choose_network();
-//    }
-//    catch (exception& e) {
-//        cout << e.what() << '\n';
-//    }
+    try {
+        Menu menu;
+        menu.choose_network();
+    }
+    catch (exception& e) {
+        cout << e.what() << '\n';
+    }
 
-    Graph g = Graph("network.csv", "stations.csv");
-    vector<string> base = {"Mato Miranda","Mato Miranda"}; // A -> E (D)
-    cout << g.Task2_1_3(base) << endl;
-    cout << g.Task2_1(base);
+    //Graph g = Graph("test5network.csv", "test5.csv");
+    //vector<string> base = {"A","D","I"}; // A -> E (D)
+    //cout << g.Task2_4_3(base) << endl;
 
     return 0;
 }

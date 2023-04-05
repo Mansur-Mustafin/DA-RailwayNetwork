@@ -152,6 +152,7 @@ void Graph::add_railway(const string& nameA, const string& nameB, bool f, int ca
 }
 
 /**
+<<<<<<< HEAD
  * This function determines whether a segment defined by a vector of integers belongs the Graph or not.
  *
  * @complexity The time complexity of this function is O(n).
@@ -184,6 +185,8 @@ bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
 }
 
 /**
+=======
+>>>>>>> 617219e24c649cd9da7795e7e71bce49c02a524f
  * This operator specifies how a set of integers should be written into an output stream.
  *
  * @complexity The time complexity of this operator is O(n) where n is the number of elements of the set s.
@@ -563,6 +566,30 @@ int Graph::Task2_4_2(const string &station) {
 }
 
 /**
+ * This function returns the maximum number of trains that can get into a station when there is maximum flow.
+ * @param base
+ * @return an integer with value equal to the number of trains that can get into a station when there is maximum flow.
+ */
+int Graph::Task2_4_3(const vector<string> &base) {
+    cout << "From " << base[0] << " to " << base[1] << " maximize the " << base[2] << endl;
+    if (!check_keys(base)) {
+        return -1;
+    }
+    if(base[0] == base[1]) return -1;
+    if(base[1] == base[2]) return Task2_1({base[0], base[1]});
+    vector<Railway> copy_railways = railways;
+
+    int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
+
+    for (auto &x : copy_railways) {
+        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
+            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+        }
+    }
+    return r;
+}
+
+/**
  * This function determines the maximum amount of trains that can simultaneously travel between two specific stations
  * with minimum cost.
  * @param base
@@ -776,21 +803,103 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
 }
 
 /**
- * This function obtains the index of the Railway whose Stations' names are contained in the parameter n.
+ * This functions implements the Edmonds-Karp algorithm to determine the maximum flow in the Graph with a "source"
+ * vertex given by s and a "target" vertex given by t.
  *
- * @complexity The time complexity of this function is O(n) where n is the number of railways of the Graph.
- * @param n - pair of strings, each being the names of station A and station B of a railway, respectively
- * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
- * is not found in the vector railways of the Graph.
+ * @complexity The time complexity of this function is O(V * E^2) where V is the number of vertices and E is the
+ * number of edges of the Graph.
+ * @param s - Integer representing the index of the "source" vertex
+ * @param t - Integer representing the index of the "target" vertex
+ * @param rail - Vector of objects of the class Railway
+ * @return an integer with the maximum flow from s to t
  */
-int Graph::getIndexOfRailway(pair<string, string> n) {
-    int index = 0;
-    for(auto railway : railways){
-        if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
-        (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
-        index++;
+int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
+    int result = 0;
+    while(true){
+        vector<int> mark(adjacencyList.size(), -1);
+        int x = bfs(s, t, -1, rail, mark);
+        if(x == 0) break;
+        result += x;
+        int cur = t;
+        while (cur != s) {
+            int prev = mark[cur];
+            int r = 0;
+            for(auto i : adjacencyList[prev]){
+                if(rail[i].getStationB() == stations[cur].getName()){
+                    r = i;
+                }
+            }
+            rail[r].addFlow(x);
+            rail[rail[r].getPrevPosition()].subFlow(x);
+            cur = prev;
+        }
     }
-    return -1;
+    return result;
+}
+
+/**
+ * This function implements the Breadth First Search Algorithm to determine an augmenting path and the maximum flow that
+ * can be "pushed" into this path between a "source" vertex and a "target" vertex.
+ *
+ * @complexity The time complexity of this function is O(E) where E is the number of edges of the Graph.
+ * @param s - Integer representing the index of the "source" vertex
+ * @param t - Integer representing the index of the "target" vertex
+ * @param u -
+ * @param rail - Vector of objects of the class Railway
+ * @param mark -
+ * @return 0 if no path can be found between the source vertex and the target vertex and the maximum flow that can exists
+ * in the path between the vertices.
+ */
+int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
+    mark.assign(adjacencyList.size(), -1);
+    mark[s] = -2;
+    queue<pair<int, int>> q;
+    q.push({s, 1e9});
+
+    while (!q.empty()) {
+        int u = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v : adjacencyList[u]) {
+            if(rail[v].getFlow() < rail[v].getCapacity() ){
+                int index_to_go = key[rail[v].getStationB()];
+                if(mark[index_to_go] == -1){
+                    mark[index_to_go] = u;
+                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
+                    if(index_to_go == t){
+                        return new_flow;
+                    }
+                    q.push({index_to_go, new_flow});
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+/**
+ * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
+ * "sink" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
+ * minimizing the cost.
+ *
+ * The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number of vertices.
+ * @param s
+ * @param t
+ * @param rail
+ */
+void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
+    while (true) {
+        pair<int, vector<int>> res = dijkstra(s, t, rail);
+        if (res.first <= 0) {
+            break;
+        }
+        for (int x : res.second) {
+            Railway e = rail[x];
+            rail[x].addFlow(res.first);
+            rail[e.getPrevPosition()].subFlow(res.first);
+        }
+    }
 }
 
 /**
@@ -861,100 +970,7 @@ bool Graph::check_keys(const vector<string> &base) {
     return true;
 }
 
-/**
- * This function applies the Dijkstra's algorithm in order to find the shortest path from "source" vertex s to
- * "target" vertex t that has positive capacity and adds the maximum flow possible along the path it chooses while
- * minimizing the cost.
- *
- * @complexity The time complexity of this function is O(E * V^2) where E is the number of edges and V is the number
- * of vertices of the Graph.
- * @param s - Integer representing the index of the starting vertex
- * @param t - Integer representing the index of the target vertex
- * @param rail - Vector of objects of the class Railway
- */
-void Graph::minCostFlow(int s, int t, vector<Railway> &rail) {
-    while (true) {
-        pair<int, vector<int>> res = dijkstra(s, t, rail);
-        if (res.first <= 0) {
-            break;
-        }
-        for (int x : res.second) {
-            Railway e = rail[x];
-            rail[x].addFlow(res.first);
-            rail[e.getPrevPosition()].subFlow(res.first);
-        }
-    }
-}
-
-/**
- * This function returns the maximum number of trains that can get into a station when there is maximum flow.
- * @param base
- * @return an integer with value equal to the number of trains that can get into a station when there is maximum flow.
- */
-int Graph::Task2_4_3(const vector<string> &base) {
-    if (!check_keys(base)) {
-        return -1;
-    }
-    if(base[0] == base[1]) return -1;
-    vector<Railway> copy_railways = railways;
-
-    int r = edmonds_karp_priority(key[base[0]], key[base[1]], key[base[2]], copy_railways);
-
-    for (auto &x : copy_railways) {
-        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
-            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
-        }
-    }
-    return r;
-}
-
-/**
- * This functions implements the Edmonds-Karp algorithm to determine the maximum flow in the Graph with a "source"
- * vertex given by s and a "target" vertex given by t.
- *
- * @complexity The time complexity of this function is O(V * E^2) where V is the number of vertices and E is the
- * number of edges of the Graph.
- * @param s - Integer representing the index of the "source" vertex
- * @param t - Integer representing the index of the "target" vertex
- * @param rail - Vector of objects of the class Railway
- * @return an integer with the maximum flow from s to t
- */
-int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
-    int result = 0;
-    while(true){
-        vector<int> mark(adjacencyList.size(), -1);
-        int x = bfs(s, t, -1, rail, mark);
-        if(x == 0) break;
-        result += x;
-        int cur = t;
-        while (cur != s) {
-            int prev = mark[cur];
-            int r = 0;
-            for(auto i : adjacencyList[prev]){
-                if(rail[i].getStationB() == stations[cur].getName()){
-                    r = i;
-                }
-            }
-            rail[r].addFlow(x);
-            rail[rail[r].getPrevPosition()].subFlow(x);
-            cur = prev;
-        }
-    }
-    return result;
-}
-
-/**
- * This function
- *
- * @complexity The time complexity of this function is O()
- * @param s - Integer representing the index of the "source" vertex
- * @param t - Integer representing the index of the "target" vertex
- * @param u
- * @param rail - Vector of objects of the class Railway
- * @param skip
- * @return
- */
-int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int skip) {
+int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail) {
     int result = 0;
     while(true){
         vector<int> mark(adjacencyList.size(), -1);
@@ -978,41 +994,66 @@ int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail, int
                 rail[rail[r].getPrevPosition()].subFlow(x);
                 cur = prev;
             }
+        }else{
+            result += xp;
+            int cur = t;
+            while (cur != s) {
+                int prev = mark[cur];
+                int r = 0;
+                for(auto i : adjacencyList[prev]){
+                    if(rail[i].getStationB() == stations[cur].getName()){
+                        r = i;
+                    }
+                }
+                rail[r].addFlow(xp);
+                rail[rail[r].getPrevPosition()].subFlow(xp);
+                cur = prev;
+            }
         }
-        result += xp;
+
     }
     return result;
 }
 
-/**
- * This function implements the Breadth First Search Algorithm to determine an augmenting path and the maximum flow that
- * can be "pushed" into this path between a "source" vertex and a "target" vertex.
- *
- * @complexity The time complexity of this function is O(E) where E is the number of edges of the Graph.
- * @param s - Integer representing the index of the "source" vertex
- * @param t - Integer representing the index of the "target" vertex
- * @param u
- * @param rail - Vector of objects of the class Railway
- * @param mark
- * @return 0 if no path can be found between the source vertex and the target vertex and the maximum flow that can exists
- * in the path between the vertices.
- */
-int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
+int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
     mark.assign(adjacencyList.size(), -1);
     mark[s] = -2;
     queue<pair<int, int>> q;
     q.push({s, 1e9});
-
+    int first_flow = 0;
     while (!q.empty()) {
-        int u = q.front().first;
+        int w = q.front().first;
         int flow = q.front().second;
         q.pop();
 
-        for (int v : adjacencyList[u]) {
+        for (int v : adjacencyList[w]) {
             if(rail[v].getFlow() < rail[v].getCapacity() ){
                 int index_to_go = key[rail[v].getStationB()];
-                if(mark[index_to_go] == -1){
-                    mark[index_to_go] = u;
+                if(mark[index_to_go] == -1 && index_to_go != t){
+                    mark[index_to_go] = w;
+                    int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
+                    if(index_to_go == u){
+                        first_flow = new_flow;
+                    }
+                    q.push({index_to_go, new_flow});
+                }
+            }
+        }
+    }
+    if(first_flow == 0) return 0;
+
+    q.push({u, first_flow});
+
+    while (!q.empty()) {
+        int w = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v : adjacencyList[w]) {
+            if(rail[v].getFlow() < rail[v].getCapacity() ){
+                int index_to_go = key[rail[v].getStationB()];
+                if(mark[index_to_go] == -1 && index_to_go != u){
+                    mark[index_to_go] = w;
                     int new_flow = min(flow, rail[v].getCapacity() - rail[v].getFlow());
                     if(index_to_go == t){
                         return new_flow;
@@ -1022,11 +1063,41 @@ int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
             }
         }
     }
+
     return 0;
 }
 
-int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int> mark) {
-    return 0;
+/**
+ * This function obtains the index of the Railway whose Stations' names are contained in the parameter n.
+ *
+ * The time complexity of this function is O(n).
+ * @param n
+ * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
+ * is not found in the vector railways of the Graph.
+ */
+int Graph::getIndexOfRailway(pair<string, string> n) {
+    int index = 0;
+    for(auto railway : railways){
+        if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
+           (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
+        index++;
+    }
+    return -1;
+}
+
+/**
+ * This function determines whether stations are connected in the graph or, in other words, whether if it is
+ * possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.
+ *
+ * The time complexity of this function is O(1).
+ * @param v1
+ * @param v2
+ * @return true if the stations can reach each other and false if they cannot.
+ */
+bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
+    vector<string> intersection;
+    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
+    return intersection.empty();
 }
 
 /**
