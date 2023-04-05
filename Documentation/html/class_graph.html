@@ -116,6 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afa3b4f37f07454787c3f4b1fe011d19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42008c5d3772516a9622de6904d14b73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a42008c5d3772516a9622de6904d14b73">Task2_1_2</a> (const vector&lt; string &gt; &amp;from, const vector&lt; string &gt; &amp;to)</td></tr>
 <tr class="separator:a42008c5d3772516a9622de6904d14b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cac3bcbeb7e9a5d66f5a1ad33fedb8f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a3cac3bcbeb7e9a5d66f5a1ad33fedb8f">Task2_1_3</a> (const vector&lt; string &gt; &amp;base)</td></tr>
+<tr class="separator:a3cac3bcbeb7e9a5d66f5a1ad33fedb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9edf7f7deea21d38b7fcff8f25f0a8aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a9edf7f7deea21d38b7fcff8f25f0a8aa">Task2_2</a> (vector&lt; string &gt; &amp;base)</td></tr>
 <tr class="separator:a9edf7f7deea21d38b7fcff8f25f0a8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad449db408ffd817fb77006289a5dce2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ad449db408ffd817fb77006289a5dce2b">Task2_2_2</a> ()</td></tr>
@@ -163,6 +165,14 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a95bda9b4265c87f74980eb5148863edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47e663571154169b8b16890fa568a7a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a47e663571154169b8b16890fa568a7a1">ford_falk</a> (int s, int t, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail, int skip=-1)</td></tr>
 <tr class="separator:a47e663571154169b8b16890fa568a7a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d686656ac0d32b09a92263e64fee4e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7d686656ac0d32b09a92263e64fee4e4">edmonds_karp</a> (int s, int t, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail)</td></tr>
+<tr class="separator:a7d686656ac0d32b09a92263e64fee4e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa26b9e8ef4810b9dcb92cf0442928482"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aa26b9e8ef4810b9dcb92cf0442928482">edmonds_karp_priority</a> (int s, int t, int u, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail, int skip=-1)</td></tr>
+<tr class="separator:aa26b9e8ef4810b9dcb92cf0442928482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f2ef000938725db10eb57cad6bf7ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a07f2ef000938725db10eb57cad6bf7ec">bfs</a> (int s, int t, int u, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail, vector&lt; int &gt; &amp;mark)</td></tr>
+<tr class="separator:a07f2ef000938725db10eb57cad6bf7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b2cf7e30116a917e01a2db487f8ed0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a71b2cf7e30116a917e01a2db487f8ed0">bfs_priority</a> (int s, int t, int u, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail, vector&lt; int &gt; mark)</td></tr>
+<tr class="separator:a71b2cf7e30116a917e01a2db487f8ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -268,11 +278,11 @@ Private Attributes</h2></td></tr>
 <p>This function adds the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> of attributes given by the parameters to the vector railways. After the railway is added into the vector in both directions (<a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A to <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B and vice versa), it will alter the adjacency list, taking into account the new railways that were added. If the boolean parameter f is true, then it will write the attributes of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> into an output stream, that can be used to write them into a file.</p>
 <p>@complexity The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nameA</td><td></td></tr>
-    <tr><td class="paramname">nameB</td><td></td></tr>
-    <tr><td class="paramname">f</td><td></td></tr>
-    <tr><td class="paramname">capacity</td><td></td></tr>
-    <tr><td class="paramname">service</td><td></td></tr>
+    <tr><td class="paramname">nameA</td><td>- Name of station A of the railway we want to add </td></tr>
+    <tr><td class="paramname">nameB</td><td>- Name of station B of the railway we want to add </td></tr>
+    <tr><td class="paramname">f</td><td>- Boolean variable to determine if the railway should be written into a file </td></tr>
+    <tr><td class="paramname">capacity</td><td>- Capacity of the railway we want to add </td></tr>
+    <tr><td class="paramname">service</td><td>- Type of service of the railway we want to add </td></tr>
   </table>
   </dd>
 </dl>
@@ -331,15 +341,123 @@ Private Attributes</h2></td></tr>
 <p>This function adds the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> of attributes given by the parameters to the vector stations. If the boolean parameter f is true, then it will write the attributes of the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> into an output stream, that can be used to write them into a file.</p>
 <p>@complexity The complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of the station we want to add </td></tr>
-    <tr><td class="paramname">f</td><td>Boolean variable to determine if the station should be written into a file </td></tr>
-    <tr><td class="paramname">district</td><td>District of the station we want to add </td></tr>
-    <tr><td class="paramname">municipality</td><td>Municipality of the station we want to add </td></tr>
-    <tr><td class="paramname">township</td><td>Township of the station we want to add </td></tr>
-    <tr><td class="paramname">line</td><td>Line of the station we want to add </td></tr>
+    <tr><td class="paramname">name</td><td>- Name of the station we want to add </td></tr>
+    <tr><td class="paramname">f</td><td>- Boolean variable to determine if the station should be written into a file </td></tr>
+    <tr><td class="paramname">district</td><td>- District of the station we want to add </td></tr>
+    <tr><td class="paramname">municipality</td><td>- Municipality of the station we want to add </td></tr>
+    <tr><td class="paramname">township</td><td>- Township of the station we want to add </td></tr>
+    <tr><td class="paramname">line</td><td>- Line of the station we want to add </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a07f2ef000938725db10eb57cad6bf7ec" name="a07f2ef000938725db10eb57cad6bf7ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07f2ef000938725db10eb57cad6bf7ec">&#9670;&#160;</a></span>bfs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::bfs </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mark</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71b2cf7e30116a917e01a2db487f8ed0" name="a71b2cf7e30116a917e01a2db487f8ed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b2cf7e30116a917e01a2db487f8ed0">&#9670;&#160;</a></span>bfs_priority()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::bfs_priority </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>mark</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -430,7 +548,7 @@ Private Attributes</h2></td></tr>
 <p>This function determines whether a segment defined by a vector of integers belongs the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> or not.</p>
 <p>@complexity The time complexity of this function is O(n). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">seg</td><td></td></tr>
+    <tr><td class="paramname">seg</td><td>- Vector of integers that represents a segment between stations. The integers of the vector represent the stations indexes </td></tr>
   </table>
   </dd>
 </dl>
@@ -556,6 +674,102 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a7d686656ac0d32b09a92263e64fee4e4" name="a7d686656ac0d32b09a92263e64fee4e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d686656ac0d32b09a92263e64fee4e4">&#9670;&#160;</a></span>edmonds_karp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::edmonds_karp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa26b9e8ef4810b9dcb92cf0442928482" name="aa26b9e8ef4810b9dcb92cf0442928482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa26b9e8ef4810b9dcb92cf0442928482">&#9670;&#160;</a></span>edmonds_karp_priority()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::edmonds_karp_priority </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>skip</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a47e663571154169b8b16890fa568a7a1" name="a47e663571154169b8b16890fa568a7a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47e663571154169b8b16890fa568a7a1">&#9670;&#160;</a></span>ford_falk()</h2>
 
@@ -667,7 +881,7 @@ Private Attributes</h2></td></tr>
 <p>This function inserts the Railways (in this case as edges) in the string input_name into the given <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
 <p>@complexity The time complexity of this function is O(n) where n is the number of lines of the string input_name. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input_name</td><td></td></tr>
+    <tr><td class="paramname">input_name</td><td>- Name of the file containing the edges (or railways) we want to insert into the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -700,7 +914,7 @@ Private Attributes</h2></td></tr>
 <p>This function inserts the Stations (in this case as vertices) in the string input_name into the given <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a>.</p>
 <p>@complexity The time complexity of this function is O(n) where n is the number of lines of the string input_name. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input_name</td><td></td></tr>
+    <tr><td class="paramname">input_name</td><td>- Name of the file containing the vertices (or stations) we want to insert into the <a class="el" href="class_graph.html" title="Class representing a Graph with Stations as vertices and Railways as edges.">Graph</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -835,6 +1049,24 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an integer with the maximum flow between two stations. </dd></dl>
+
+</div>
+</div>
+<a id="a3cac3bcbeb7e9a5d66f5a1ad33fedb8f" name="a3cac3bcbeb7e9a5d66f5a1ad33fedb8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cac3bcbeb7e9a5d66f5a1ad33fedb8f">&#9670;&#160;</a></span>Task2_1_3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::Task2_1_3 </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -1,16 +1,12 @@
 var searchData=
 [
-  ['task2_5f1_0',['Task2_1',['../class_graph.html#afa3b4f37f07454787c3f4b1fe011d19c',1,'Graph']]],
-  ['task2_5f1_5f2_1',['Task2_1_2',['../class_graph.html#a42008c5d3772516a9622de6904d14b73',1,'Graph']]],
-  ['task2_5f2_2',['Task2_2',['../class_graph.html#a9edf7f7deea21d38b7fcff8f25f0a8aa',1,'Graph']]],
-  ['task2_5f2_5f2_3',['Task2_2_2',['../class_graph.html#ad449db408ffd817fb77006289a5dce2b',1,'Graph']]],
-  ['task2_5f3_4',['Task2_3',['../class_graph.html#a0dc85c790cdb727ec24e440d436462fe',1,'Graph::Task2_3()'],['../class_menu.html#abc43bc655d73c4470f4e068ae4c1c699',1,'Menu::Task2_3()']]],
-  ['task2_5f3_5f2_5',['Task2_3_2',['../class_graph.html#a935f5b9e057826127d2e565862c60398',1,'Graph::Task2_3_2()'],['../class_menu.html#a564bdd8c1676421146037b6022d990e2',1,'Menu::Task2_3_2()']]],
-  ['task2_5f4_6',['Task2_4',['../class_graph.html#a2654f43b2e755cd58b7b5eecb08fea18',1,'Graph']]],
-  ['task2_5f4_5f2_7',['Task2_4_2',['../class_graph.html#a5b02b5f9a90d694d43bd571b5119e794',1,'Graph']]],
-  ['task2_5f4_5f3_8',['Task2_4_3',['../class_graph.html#a2b9071f83c481e6e4d38e4b6318fa787',1,'Graph']]],
-  ['task3_5f1_9',['Task3_1',['../class_graph.html#a300af4cf698a09e48d6b0a5279068f23',1,'Graph']]],
-  ['task4_5f1_10',['Task4_1',['../class_graph.html#a854b7fed986443c1e9e51f83d7a550ad',1,'Graph::Task4_1()'],['../class_menu.html#a985374a2ef79fbc130f88566b70c23bf',1,'Menu::Task4_1()']]],
-  ['task4_5f1_5f2_11',['Task4_1_2',['../class_graph.html#a7aade89b4ae6fe1116c522952362ed2d',1,'Graph::Task4_1_2()'],['../class_menu.html#aaa620bb1db9d3ac50a2c59a02f29be05',1,'Menu::Task4_1_2()']]],
-  ['task4_5f2_12',['Task4_2',['../class_graph.html#a33ceb8b36991d78514f0257eaceccc33',1,'Graph::Task4_2()'],['../class_menu.html#aa359a75a29f646edf195a8bc4c9e9dce',1,'Menu::Task4_2()']]]
+  ['setcapacity_0',['setCapacity',['../class_railway.html#a586f4cbe816307ffb0861e472b606862',1,'Railway']]],
+  ['setcost_1',['setCost',['../class_railway.html#a371dc2e405f2f42cbda9c82a8d281107',1,'Railway']]],
+  ['setind_2',['setInd',['../class_station.html#aa7ce5d71198e1d39e90e627b8ea720e6',1,'Station']]],
+  ['setprevposition_3',['setPrevPosition',['../class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec',1,'Railway']]],
+  ['setservice_4',['setService',['../class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6',1,'Railway']]],
+  ['setstationa_5',['setStationA',['../class_railway.html#ad6b03a0bf724777cd72713c751cdcf79',1,'Railway']]],
+  ['setstationb_6',['setStationB',['../class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6',1,'Railway']]],
+  ['station_7',['Station',['../class_station.html#a46a1672b35262d870c84aacf4f41fed1',1,'Station::Station(string name, string district, string municipality, string township, string line)'],['../class_station.html#ae106e27379a6ad6e1e23b8e017115b5a',1,'Station::Station()=default']]],
+  ['subflow_8',['subFlow',['../class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098',1,'Railway']]]
 ];

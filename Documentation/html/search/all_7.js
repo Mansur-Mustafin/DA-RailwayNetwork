@@ -1,5 +1,23 @@
 var searchData=
 [
-  ['heaviest_5fedge_0',['Heaviest_edge',['../class_menu.html#ac90f5976fa1c41a7f252f3c5f124d81e',1,'Menu']]],
-  ['hex_1',['HEX',['../_c_make_c_compiler_id_8c.html#a46d5d95daa1bef867bd0179594310ed5',1,'HEX():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#a46d5d95daa1bef867bd0179594310ed5',1,'HEX():&#160;CMakeCXXCompilerId.cpp']]]
+  ['g_0',['g',['../class_menu.html#a5adfb9b691d1adf31008a7fd9d0ad82b',1,'Menu']]],
+  ['getcapacity_1',['getCapacity',['../class_railway.html#a0e993ddf32ed32579cca9e61ffca12d4',1,'Railway']]],
+  ['getcost_2',['getCost',['../class_railway.html#acbdd2a1fb732ec3e700c7c5fabdd5e22',1,'Railway']]],
+  ['getdistrict_3',['getDistrict',['../class_station.html#aa118128d10a9f40c91e52c41ce5fa67e',1,'Station']]],
+  ['getflow_4',['getFlow',['../class_railway.html#a7f65c5631c9f9f5cd65cfbdf7146ff21',1,'Railway']]],
+  ['getind_5',['getInd',['../class_station.html#ad81012f5ba243df439c35319d1afb6e8',1,'Station']]],
+  ['getindexofrailway_6',['getIndexOfRailway',['../class_graph.html#a913457b930f65e6f7faf067c1e387684',1,'Graph']]],
+  ['getline_7',['getLine',['../class_station.html#a5c3fb0de72e7953120b0c4c1ce354bd2',1,'Station']]],
+  ['getmunicipality_8',['getMunicipality',['../class_station.html#a551a9c52bed087b5e6925b5c0d0066e1',1,'Station']]],
+  ['getname_9',['getName',['../class_station.html#a2863c0eebeedd65a7be47004dc729465',1,'Station']]],
+  ['getnumberstations_10',['getNumberStations',['../class_station.html#a0a07aa3215113ccf2df3005898e6fa10',1,'Station']]],
+  ['getprevposition_11',['getPrevPosition',['../class_railway.html#adc42c9dd393dbb93133435a52e0323a3',1,'Railway']]],
+  ['getservice_12',['getService',['../class_railway.html#afb5f429d4d22affd2af7ab7fcf0738ec',1,'Railway']]],
+  ['getstationa_13',['getStationA',['../class_railway.html#a056b57eb577d928580ee3cb7f5cc3c7c',1,'Railway']]],
+  ['getstationb_14',['getStationB',['../class_railway.html#a39e09cdb8bed5a736900a1c516fe3807',1,'Railway']]],
+  ['gettownship_15',['getTownship',['../class_station.html#aed50d4129d6a9f0370c28112ddd08196',1,'Station']]],
+  ['graph_16',['Graph',['../class_graph.html',1,'Graph'],['../class_graph.html#ae33b9c376b943ee40e64981db24d4be1',1,'Graph::Graph()']]],
+  ['graph_2ecpp_17',['Graph.cpp',['../_graph_8cpp.html',1,'']]],
+  ['graph_2ecpp_2eobj_2ed_18',['Graph.cpp.obj.d',['../_graph_8cpp_8obj_8d.html',1,'']]],
+  ['graph_2eh_19',['Graph.h',['../_graph_8h.html',1,'']]]
 ];

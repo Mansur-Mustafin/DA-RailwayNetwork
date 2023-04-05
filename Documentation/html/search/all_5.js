@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['flow_0',['flow',['../class_railway.html#a072a1b0f0031103f2a0681cb54967fb1',1,'Railway']]],
-  ['ford_5ffalk_1',['ford_falk',['../class_graph.html#a47e663571154169b8b16890fa568a7a1',1,'Graph']]]
+  ['edmonds_5fkarp_0',['edmonds_karp',['../class_graph.html#a7d686656ac0d32b09a92263e64fee4e4',1,'Graph']]],
+  ['edmonds_5fkarp_5fpriority_1',['edmonds_karp_priority',['../class_graph.html#aa26b9e8ef4810b9dcb92cf0442928482',1,'Graph']]]
 ];
