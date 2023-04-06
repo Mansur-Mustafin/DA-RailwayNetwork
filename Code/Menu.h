@@ -1,6 +1,9 @@
-//
-// Created by fgonc on 01/04/2023.
-//
+/**
+ * @file Menu.h
+ * @author fgonc
+ * @date 01/04/2023
+ * @brief Declaration of class Menu to use all functionalities of functions in user-friendly format.
+ */
 
 #ifndef DA_RAILWAYNETWORK_MENU_H
 #define DA_RAILWAYNETWORK_MENU_H

@@ -1,6 +1,9 @@
-//
-// Created by musta on 15.03.2023.
-//
+/**
+ * @file Graph.h
+ * @author Mansur Mustafin
+ * @date 15.03.2023
+ * @brief Declaration of class Graph to store date of station and railways and manipulate with them.
+ */
 
 #ifndef DA_RAILWAYNETWORK_GRAPH_H
 #define DA_RAILWAYNETWORK_GRAPH_H

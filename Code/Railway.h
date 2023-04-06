@@ -1,6 +1,9 @@
-//
-// Created by musta on 13.03.2023.
-//
+/**
+ * @file Railway.h
+ * @author Mansur Mustafin
+ * @date 13.03.2023
+ * @brief Declaration of class Railway to load railway data.
+ */
 
 #ifndef DA_RAILWAYNETWORK_RAILWAY_H
 #define DA_RAILWAYNETWORK_RAILWAY_H

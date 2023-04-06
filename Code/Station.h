@@ -1,6 +1,9 @@
-//
-// Created by musta on 13.03.2023.
-//
+/**
+ * @file Station.h
+ * @author Mansur Mustafin
+ * @date 13.03.2023
+ * @brief Declaration of class Station to load station data.
+ */
 
 #ifndef DA_RAILWAYNETWORK_STATION_H
 #define DA_RAILWAYNETWORK_STATION_H
