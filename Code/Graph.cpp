@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <queue>
 #include <map>
+#include <iomanip>
 
 /**
  * Constructor of the Class Graph.
@@ -452,9 +453,9 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
         }
     }
 
-    for (auto &t : trains){
-        cout << t.first.first << "-" << t.first.second << ": " << t.second << endl;
-    }
+//    for (auto &t : trains){
+//        cout << t.first.first << "-" << t.first.second << ": " << t.second << endl;
+//    }
 
     while (!q.empty()){
         auto &x = q.front();
@@ -462,7 +463,7 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
         if (x.getFlow() <= 0){
             continue;
         }
-        cout << q << "\n---------------\n";
+        //cout << q << "\n---------------\n";
         q.pop();
 
         set<int> &local_trains = trains[{x.getStationA(), x.getStationB()}];
@@ -491,16 +492,16 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
             }
         }
 
-        cout << x << endl;
-        cout << stations[key[x.getStationB()]].getDistrict() << " = "
-             << result[stations[key[x.getStationB()]].getDistrict()] << endl;
+//        cout << x << endl;
+//        cout << stations[key[x.getStationB()]].getDistrict() << " = "
+//             << result[stations[key[x.getStationB()]].getDistrict()] << endl;
 
-        for (auto &t : trains){
-            if (!t.second.empty()){
-                cout << t.first.first << "-" << t.first.second
-                     << ": " << t.second << endl;
-            }
-        }
+//        for (auto &t : trains){
+//            if (!t.second.empty()){
+//                cout << t.first.first << "-" << t.first.second
+//                     << ": " << t.second << endl;
+//            }
+//        }
 
         for (auto v : adjacencyList[key[x.getStationB()]]){
             if (copy_railways[v].getFlow()> 0){
@@ -514,7 +515,7 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
     }
     sort(ans.rbegin(), ans.rend());
     for (int i = 0; i < ans.size() && i < k; i++){
-        cout << ans[i].second << " " << ans[i].first << "\n";
+        cout << "The district: " << ans[i].second << " needs: " << ans[i].first << " trains" "\n";
     }
 }
 
@@ -712,7 +713,7 @@ int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_s
  * @param k
  * @return
  */
-int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k){
+int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f){
     if (!check_keys(base) || !check_segments(reduce)){
         return -1;
     }
@@ -724,16 +725,24 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k)
         copy_reduced_railways[2 * reduce[i] + 1].setCapacity(0);
     }
 
-    ford_falk(key[base[0]], key[base[1]], copy_railways);
+    int old = ford_falk(key[base[0]], key[base[1]], copy_railways);
     int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
 
 //    for (auto &seg : copy_railways){
 //        cout << seg;
 //    }
-//
-//    for (auto &seg : copy_reduced_railways){
-//        cout << seg;
-//    }
+
+    if(f){
+        cout << endl << "Residual flow: " << endl << endl;
+        for (auto &seg : copy_reduced_railways){
+            if(seg.getFlow() > 0){
+                cout << seg;
+            }
+        }
+    }
+
+    cout << endl << "Old Max Flow: " << old << endl;
+    cout << "New Max Flow: " << res << endl;
 
     vector<pair<int, int>> ans;
     for (size_t i = 0; i < copy_railways.size(); i++){
@@ -744,9 +753,31 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k)
 
     sort(ans.begin(), ans.end());
 
+    if(ans.empty()){
+        cout << "Nothing was changed";
+        return 0;
+    }
+
+//    for (size_t i = 0; i < k && i < ans.size(); i++){
+//        cout << copy_railways[ans[i].second] << " - "
+//             << copy_reduced_railways[ans[i].second] << ": " << -ans[i].first << endl;
+//    }
+
+
+    cout << endl << "Decreased flow: " << endl;
     for (size_t i = 0; i < k && i < ans.size(); i++){
-        cout << copy_railways[ans[i].second] << " - "
-             << copy_reduced_railways[ans[i].second] << ": " << -ans[i].first << endl;
+        if(copy_railways[ans[i].second].getFlow() > copy_reduced_railways[ans[i].second].getFlow()){
+            cout << copy_railways[ans[i].second].getStationA() << " -> " << copy_railways[ans[i].second].getStationB()
+                 << " : " << -ans[i].first << endl;
+        }
+    }
+
+    cout << endl << "Increased flow: " << endl;
+    for (size_t i = 0; i < k && i < ans.size(); i++){
+        if(copy_railways[ans[i].second].getFlow() < copy_reduced_railways[ans[i].second].getFlow()){
+            cout << copy_railways[ans[i].second].getStationA() << " -> " << copy_railways[ans[i].second].getStationB()
+                 << " : " << -ans[i].first << endl;
+        }
     }
 
     return 0;

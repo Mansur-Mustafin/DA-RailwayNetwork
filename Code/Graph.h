@@ -67,7 +67,7 @@ public:
     int Task3_1(const vector<string> &base);
     int Task4_1(const vector<string> &base, const vector<int> &reduce);
     int Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations);
-    int Task4_2(const vector<string> &base, const vector<int> &reduce, int k);
+    int Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f = false); // f: print new flow?
     void printImage(const string& file_name = "train_image.txt", bool f = false);
     string getStationName();
     string getNetworkName();
