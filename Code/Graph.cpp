@@ -711,6 +711,7 @@ int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_s
  * @param base
  * @param reduce
  * @param k
+ * @param f
  * @return
  */
 int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f){
