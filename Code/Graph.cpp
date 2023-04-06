@@ -330,7 +330,7 @@ void Graph::Task2_2(vector<string> &base) {
             r.push_back(x);
         }
     }
-    for(auto el : r){
+    for(const auto& el : r){
         cout << el.getStationA() << " -> " << el.getStationB()  << " (" << el.getFlow() << ")" << endl;
     }
 }
@@ -341,7 +341,7 @@ void Graph::Task2_2(vector<string> &base) {
 void Graph::Task2_2_2() {
     vector<Railway> copy_railways = railways;
     vector<Station> copy_stations = stations;
-    sort(copy_stations.begin(), copy_stations.end(), [](Station x, Station y) {return x.getNumberStations() > y.getNumberStations();});
+    sort(copy_stations.begin(), copy_stations.end(), [](const Station& x, const Station& y) {return x.getNumberStations() > y.getNumberStations();});
 
     struct answer{
         string s1;
@@ -662,9 +662,9 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
 
     vector<Railway> copy_railways = railways;
     vector<Railway> copy_reduced_railways = railways;
-    for (size_t i = 0; i < reduce.size(); i++){
-        copy_reduced_railways[2 * reduce[i]].setCapacity(0);
-        copy_reduced_railways[2 * reduce[i] + 1].setCapacity(0);
+    for (int i : reduce){
+        copy_reduced_railways[2 * i].setCapacity(0);
+        copy_reduced_railways[2 * i + 1].setCapacity(0);
     }
 
     int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
@@ -697,7 +697,7 @@ int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_s
     vector<int> reduce;
     int res = 0;
 
-    for(auto name: name_of_stations){
+    for(const auto& name: name_of_stations){
         int index = key[name];
         vector<int> v = adjacencyList[index];
         for(auto i : v){
@@ -726,9 +726,9 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k,
 
     vector<Railway> copy_railways = railways;
     vector<Railway> copy_reduced_railways = railways;
-    for (size_t i = 0; i < reduce.size(); i++){
-        copy_reduced_railways[2 * reduce[i]].setCapacity(0);
-        copy_reduced_railways[2 * reduce[i] + 1].setCapacity(0);
+    for (int i : reduce){
+        copy_reduced_railways[2 * i].setCapacity(0);
+        copy_reduced_railways[2 * i + 1].setCapacity(0);
     }
 
     int old = ford_falk(key[base[0]], key[base[1]], copy_railways);
@@ -1128,9 +1128,9 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
  * @return an integer with value equal to the index of the pretended Railway, or -1 if the pretended Railway
  * is not found in the vector railways of the Graph.
  */
-int Graph::getIndexOfRailway(pair<string, string> n) {
+int Graph::getIndexOfRailway(const pair<string, string>& n) {
     int index = 0;
-    for(auto railway : railways){
+    for(const auto& railway : railways){
         if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
            (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
         index++;
@@ -1175,5 +1175,20 @@ string Graph::getStationName() {
 
 string Graph::getNetworkName() {
     return input_edge_name;
+}
+
+void Graph::printNetwork() {
+    cout << "File name: " << input_edge_name << endl;
+    for(const auto& n : railways){
+        cout << n;
+    }
+}
+
+void Graph::printStations() {
+    cout << "File name: " << input_vertex_name << endl;
+
+    for(const auto& n : stations){
+        cout << n;
+    }
 }
 

@@ -37,7 +37,7 @@ class Graph {
     void minCostFlow(int s, int t, vector<Railway> &rail);
     bool check_keys(const vector<string> &base);
     bool check_segments(const vector<int> &seg);
-    bool check_Disjoint(const vector<string>& v1, const vector<string>& v2);
+    static bool check_Disjoint(const vector<string>& v1, const vector<string>& v2);
     vector<vector<int>> adjacencyList;
     vector<Railway> railways;
     vector<Station> stations;                     // stations
@@ -56,7 +56,7 @@ public:
     Graph(const string &input_edge_name, const string &input_vertex_name);
     void add_station(const string& name, bool f = true, const string& district = "", const string& municipality = "", const string& township = "", const string& line = ""); // f : write to file?
     void add_railway(const string& nameA, const string& nameB, bool f = true, int capacity = 1e9, const string& service = "STANDARD");
-    int getIndexOfRailway(pair<string, string>);
+    int getIndexOfRailway(const pair<string, string>&);
     int Task2_1(const vector<string> &base);
     int Task2_1_2(const vector<string> &from, const vector<string> &to);
     int Task2_1_3(const vector<string> &base);
@@ -71,9 +71,11 @@ public:
     int Task4_1(const vector<string> &base, const vector<int> &reduce);
     int Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations);
     int Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f = false); // f: print new flow?
-    void printImage(const string& file_name = "train_image.txt", bool f = false);
+    static void printImage(const string& file_name = "train_image.txt", bool f = false);
     string getStationName();
     string getNetworkName();
+    void printNetwork();
+    void printStations();
 };
 
 
