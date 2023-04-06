@@ -1121,8 +1121,9 @@ bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
  *
  * @complexity The time complexity of this function is O(n) where n is the number of lines of the text file.
  */
-void Graph::printImage() {
-    ifstream file("train_image.txt");
+void Graph::printImage(const string& name, bool f) {
+    if(f) cout << "File name: " << name << endl;
+    ifstream file(name);
     string line;
     cout << endl;
     while (std::getline(file, line)) {
@@ -1130,3 +1131,12 @@ void Graph::printImage() {
     }
     cout << endl << endl;
 }
+
+string Graph::getStationName() {
+    return input_vertex_name;
+}
+
+string Graph::getNetworkName() {
+    return input_edge_name;
+}
+

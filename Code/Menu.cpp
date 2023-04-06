@@ -8,6 +8,19 @@
 
 using namespace std;
 
+
+void Menu::change_file() {
+    string stations,network;
+    cout<<"Please enter the name of the stations file without extension:\n";
+    getline(cin>>ws,stations);
+    cout<<endl;
+    cout<<"Please enter the name of the network file without extension:\n";
+    getline(cin,network);
+    cout<<endl;
+    g = Graph(network + ".csv", stations + ".csv");
+    main_menu();
+}
+
 void Menu::choose_network(){
     g.printImage();
     string stations,network;
@@ -380,9 +393,10 @@ void Menu::main_menu() {
                    "|====================================================================================================================|\n"
                    "|                                               Other operations                                                     |\n"
                    "|====================================================================================================================|\n"
-                   "|  Add stations to the network                                                                                  [11] |\n"
-                   "|  Add railways to the network                                                                                  [12] |\n"
-                   "|  Exit                                                                                                          [0] |\n"
+                   "|  Add stations to the network                         [11] |   Reed network file                               [14] |\n"
+                   "|  Add railways to the netwo                           [12] |   Read station file                               [15] |\n"
+                   "|  Change files                                        [13] |                                                        |\n"
+                   "|  Exit                                                [0]  |                                                        |\n"
                    "|====================================================================================================================|\n";
 
         cout << endl;
@@ -459,6 +473,18 @@ void Menu::main_menu() {
 
             case 12:
                 add_railway();
+                break;
+
+            case 13:
+                change_file();
+                break;
+
+            case 14:
+                g.printImage(g.getNetworkName(), true);
+                break;
+
+            case 15:
+                g.printImage(g.getStationName(), true);
                 break;
 
             default:
