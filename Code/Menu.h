@@ -20,6 +20,7 @@ public:
     void choose_network();
     void add_station();
     void add_railway();
+    void change_file();
     void Task2_1();
     //void Max_flow();
     void Task2_1_2();
@@ -41,13 +42,8 @@ public:
     void Task4_1();
     void Task4_1_2();
     void Task4_2();
-    void basic_service();
-    void operation_cost();
-    void line_failures();
-    void add_stations_raiwlyas();
-
 private:
-    Graph g = Graph("network_test_1.csv", "stations_test_1.csv");
+    Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
 };
 
 
