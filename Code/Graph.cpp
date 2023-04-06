@@ -616,12 +616,16 @@ int Graph::Task3_1(const vector<string> &base) {
     if (!check_keys(base)) {
         return -1;
     }
+    int flow = 0;
     vector<Railway> copy_railways = railways;
     minCostFlow(key[base[0]], key[base[1]], copy_railways);
     int result = 0;
     for (auto &copy_railway : copy_railways) {
         if (copy_railway.getFlow() > 0){
             result += (copy_railway.getFlow() * copy_railway.getCost());
+            if(copy_railway.getStationB() == base[1]){
+                flow += copy_railway.getFlow();
+            }
         }
     }
     for(auto it = copy_railways.rbegin(); it != copy_railways.rend(); it++){
@@ -639,7 +643,8 @@ int Graph::Task3_1(const vector<string> &base) {
 //        }
 //    }
 //    cout << "result : " << c << endl;
-    cout << "Total Cost: " << result * 2 << endl;
+    cout << endl << "Total Cost: " << result * 2 << endl;
+    cout << "Total Flow: " << flow << endl;
     return result * 2;
 }
 

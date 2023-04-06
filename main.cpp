@@ -16,11 +16,11 @@ int main() {
 //    }
 
     Graph g = Graph("network.csv", "stations.csv");
-    vector<string> base = {"Vila Nova de Gaia-Devesas","Lisboa Oriente"}; // A -> E (D)
+    vector<string> base = {"Porto Campanhã","Lisboa Oriente"}; // A -> E (D)
     vector<int> reduce = {1,2, 498};
-    g.Task4_2(base, reduce, 10);
+    //g.Task4_2(base, reduce, 10);
 
-    //cout << g.Task2_4_3(base) << endl;
+    g.Task3_1(base);
 
     return 0;
 }
