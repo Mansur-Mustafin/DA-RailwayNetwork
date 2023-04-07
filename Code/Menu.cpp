@@ -389,7 +389,7 @@ void Menu::main_menu() {
                    "|====================================================================================================================|\n"
                    "|                                               Other operations                                                     |\n"
                    "|====================================================================================================================|\n"
-                   "|  Add stations to the network                         [11] |   Reed network file                               [14] |\n"
+                   "|  Add stations to the network                         [11] |   Read network file                               [14] |\n"
                    "|  Add railways to the network                         [12] |   Read station file                               [15] |\n"
                    "|  Change files                                        [13] |                                                        |\n"
                    "|  Exit                                                [0]  |                                                        |\n"
