@@ -242,7 +242,6 @@ void Graph::Task2_2_2() {
         for(int j = 0; j < i; j++){
             cur = ford_falk(key[copy_stations[i].getName()], key[copy_stations[j].getName()], copy_railways);
             copy_railways = railways;
-            //cout << copy_stations[i].name << " " <<  copy_stations[j].name << "  " << cur << endl;
             if(cur > max){
                 max = cur;
                 r.clear();
@@ -263,7 +262,6 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     if (!check_keys(base)) {
         return;
     }
-    // TODO k and flag
     vector<Railway> copy_railways = railways;
     int tmp = ford_falk(key[base[0]], key[base[1]], copy_railways);
     unordered_map<string, int> result;
@@ -288,6 +286,7 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
             result[stations[key[x.getStationB()]].getDistrict()] += x.getFlow();
         }
     }
+
     vector<pair<int, string>> ans;
     for (auto &x : result) {
         ans.emplace_back(x.second, x.first);
@@ -302,7 +301,6 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
     if (!check_keys(base)){
         return;
     }
-    // TODO k and flag
     vector<Railway> copy_railways = railways;
     ford_falk(key[base[0]], key[base[1]], copy_railways);
     unordered_map<string, set<int>> result;
@@ -320,17 +318,12 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
         }
     }
 
-//    for (auto &t : trains){
-//        cout << t.first.first << "-" << t.first.second << ": " << t.second << endl;
-//    }
-
     while (!q.empty()){
         auto &x = q.front();
 
         if (x.getFlow() <= 0){
             continue;
         }
-        //cout << q << "\n---------------\n";
         q.pop();
 
         set<int> &local_trains = trains[{x.getStationA(), x.getStationB()}];
@@ -358,17 +351,6 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
                 }
             }
         }
-
-//        cout << x << endl;
-//        cout << stations[key[x.getStationB()]].getDistrict() << " = "
-//             << result[stations[key[x.getStationB()]].getDistrict()] << endl;
-
-//        for (auto &t : trains){
-//            if (!t.second.empty()){
-//                cout << t.first.first << "-" << t.first.second
-//                     << ": " << t.second << endl;
-//            }
-//        }
 
         for (auto v : adjacencyList[key[x.getStationB()]]){
             if (copy_railways[v].getFlow()> 0){
@@ -480,16 +462,7 @@ int Graph::Task3_1(const vector<string> &base) {
             cout << (*it);
         }
     }
-//    int c = 0;
-//    for (auto &copy_railway : copy_railways) {
-//        if (copy_railway.getFlow() > 0){
-//            cout << copy_railway;
-//            cout << copy_railway.getCost() * 2 << " * " << copy_railway.getFlow() << " = " <<  copy_railway.getCost() * 2 * copy_railway.getFlow() << " (for now r:" << c + copy_railway.getCost() * 2 * copy_railway.getFlow() << ")" << endl;
-//            c += copy_railway.getCost() * 2 * copy_railway.getFlow();
-//            cout << endl;
-//        }
-//    }
-//    cout << "result : " << c << endl;
+
     cout << endl << "Total Cost: " << result * 2 << endl;
     cout << "Total Flow: " << flow << endl;
     return result * 2;
@@ -508,14 +481,6 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
     }
 
     int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
-
-//    for (auto &seg : copy_railways){
-//        cout << seg;
-//    }
-//
-//    for (auto &seg : copy_reduced_railways){
-//        cout << seg;
-//    }
 
     for (auto &copy_railway : copy_reduced_railways) {
         if (copy_railway.getFlow() > 0)
@@ -557,10 +522,6 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k,
     int old = ford_falk(key[base[0]], key[base[1]], copy_railways);
     int res = ford_falk(key[base[0]], key[base[1]], copy_reduced_railways);
 
-//    for (auto &seg : copy_railways){
-//        cout << seg;
-//    }
-
     if(f){
         cout << endl << "Residual flow: " << endl << endl;
         for (auto &seg : copy_reduced_railways){
@@ -586,12 +547,6 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k,
         cout << "Nothing was changed";
         return 0;
     }
-
-//    for (size_t i = 0; i < k && i < ans.size(); i++){
-//        cout << copy_railways[ans[i].second] << " - "
-//             << copy_reduced_railways[ans[i].second] << ": " << -ans[i].first << endl;
-//    }
-
 
     cout << endl << "Decreased flow: " << endl;
     for (size_t i = 0; i < k && i < ans.size(); i++){

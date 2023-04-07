@@ -108,13 +108,6 @@ class Graph {
     */
     static bool check_Disjoint(const vector<string>& v1, const vector<string>& v2);
 
-    vector<vector<int>> adjacencyList;
-    vector<Railway> railways;
-    vector<Station> stations;                     // stations
-    unordered_map<string, int> key;               // name -> index in vector
-    string input_edge_name = "network.csv";
-    string input_vertex_name = "stations.csv";
-
     /**
     * This function inserts the Stations (in this case as vertices) in the string input_name into the given Graph.
     *
@@ -212,6 +205,13 @@ class Graph {
      * through the intermediate vertex u.
      */
     int bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>& mark);
+
+    vector<vector<int>> adjacencyList;
+    vector<Railway> railways;
+    vector<Station> stations;
+    unordered_map<string, int> key;
+    string input_edge_name = "network.csv";
+    string input_vertex_name = "stations.csv";
 public:
     /**
      * Constructor of the Class Graph.
