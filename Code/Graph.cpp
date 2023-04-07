@@ -873,7 +873,7 @@ int Graph::getIndexOfRailway(const pair<string, string>& n) {
     return -1;
 }
 
-bool check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
+bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
     vector<string> intersection;
     set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
     return intersection.empty();
