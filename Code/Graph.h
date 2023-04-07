@@ -274,8 +274,9 @@ public:
     /**
     * This function determines the maximum flow between a group of "source" Stations and "sink" or "target" Stations.
     *
-    * The time complexity of this function is O(V + E * F) where V is the number of vertices (or Stations),
-    * E is the number of edges (or Railways) and F is the maximum flow that exists in the network.
+    * The time complexity of this function is O(V1 + V2 + E * F) where V1 is the number of vertices (or Stations) from,
+    * V2 is the number of vertices (or Stations) to, E is the number of edges (or Railways) and F is the maximum
+    * flow that exists in the network.
     * @param from - vector of strings with each string being the name of one "source" Stations
     * @param to - vector of strings with each string being the name of one "sink" Stations
     * @return an integer with the maximum flow between two stations.
