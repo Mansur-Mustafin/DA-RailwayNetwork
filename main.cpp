@@ -8,7 +8,8 @@ int main() {
 
     try {
         Menu menu;
-        menu.choose_network();
+        //menu.choose_network();
+        menu.main_menu();
     }
     catch (exception& e) {
         cout << e.what() << '\n';

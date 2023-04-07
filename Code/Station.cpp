@@ -84,11 +84,11 @@ istream &operator>>(istream &in, Station &vertex) {
  * @return output stream containing the name, district, municipality, township and line of the Station.
  */
 ostream &operator<<(ostream &out, const Station &vertex) {
-    out << left   << setw(40) << vertex.name ;
-    out << left   << setw(40) << vertex.district ;
-    out << left   << setw(40) << vertex.municipality ;
-    out << left   << setw(40) << vertex.township ;
-    out << left   << setw(40) << vertex.line ;
+    out << setfill(' ') << setw(40) << vertex.name ;
+    out << setfill(' ') << setw(40) << vertex.district ;
+    out << setfill(' ') << setw(40) << vertex.municipality ;
+    out << setfill(' ') << setw(40) << vertex.township ;
+    out << setfill(' ') << setw(40) << vertex.line ;
     out << endl;
     return out;
 }

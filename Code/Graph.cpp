@@ -1187,7 +1187,7 @@ void Graph::printNetwork() {
 
 void Graph::printStations() {
     cout << "File name: " << input_vertex_name << endl;
-    vector<string> v = {"Name" , "District" , "Municipality", "Line" , "Township"};
+    vector<string> v = {"Name" , "District" , "Municipality", "Township", "Line" };
     for(auto el : v ) cout << left << setw(40) << el;
     cout << endl;
     for(int i = 0; i < 200; i++) cout << '-';

@@ -46,7 +46,8 @@ public:
     void Task4_1_2();
     void Task4_2();
 private:
-    Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
+    //Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
+    Graph g = Graph("network.csv", "stations.csv");
 };
 
 
