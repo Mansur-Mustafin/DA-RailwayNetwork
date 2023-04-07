@@ -4,6 +4,7 @@
 
 #include "Station.h"
 #include <sstream>
+#include <iomanip>
 
 /**
  * This function returns the index of the given Station.
@@ -83,11 +84,12 @@ istream &operator>>(istream &in, Station &vertex) {
  * @return output stream containing the name, district, municipality, township and line of the Station.
  */
 ostream &operator<<(ostream &out, const Station &vertex) {
-    out << vertex.name << " ";
-    out << vertex.district << " ";
-    out << vertex.municipality << " ";
-    out << vertex.township << " ";
-    out << vertex.line << "\n";
+    out << left   << setw(40) << vertex.name ;
+    out << left   << setw(40) << vertex.district ;
+    out << left   << setw(40) << vertex.municipality ;
+    out << left   << setw(40) << vertex.township ;
+    out << left   << setw(40) << vertex.line ;
+    out << endl;
     return out;
 }
 

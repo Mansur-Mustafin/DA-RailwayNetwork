@@ -1179,16 +1179,20 @@ string Graph::getNetworkName() {
 
 void Graph::printNetwork() {
     cout << "File name: " << input_edge_name << endl;
+    int i = 0;
     for(const auto& n : railways){
-        cout << n;
+        cout << '[' << i++ << "]  " << n;
     }
 }
 
 void Graph::printStations() {
     cout << "File name: " << input_vertex_name << endl;
-
+    vector<string> v = {"Name" , "District" , "Municipality", "Line" , "Township"};
+    for(auto el : v ) cout << left << setw(40) << el;
+    cout << endl;
+    for(int i = 0; i < 200; i++) cout << '-';
+    cout << endl;
     for(const auto& n : stations){
         cout << n;
     }
 }
-
