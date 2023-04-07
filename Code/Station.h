@@ -28,7 +28,7 @@ public:
 
     /**
     * This function alters the value of the index of the Station to the value of the given parameter x.
-    * @param x
+    * @param newInd - Value to which the index of the Station should be altered to
     */
     void setInd(int NewInd);
 
@@ -64,11 +64,11 @@ public:
 
     /**
      * Constructor of the class Station with the given parameters name, district, municipality, township, line.
-     * @param name
-     * @param district
-     * @param municipality
-     * @param township
-     * @param line
+     * @param name - Name of the Station
+     * @param district - District of the Station
+     * @param municipality - Municipality of the Station
+     * @param township - Township of the Station
+     * @param line - Line of the Station
      */
     Station(string name, string district, string municipality, string township, string line)
             : name(name), district(district), municipality(municipality), township(township), line(line){};
@@ -86,22 +86,22 @@ public:
 
     /**
     * This function increments the number of Stations connected to the Station by the value of parameter add.
-    * @param add
+    * @param add - Value that should be added to the variable number_stations of the Station
     */
     void addNumberStations(int add);
 
     /**
     * This operator specifies how an object of the class Station should be altered, given an input stream.
-    * @param in
-    * @param vertex
+    * @param in - Input Stream
+    * @param vertex - Station that should be altered
     * @return input stream containing the name, district, municipality, township and line of the Station.
     */
     friend istream &operator>>(istream &in, Station &vertex);
 
     /**
     * This operator specifies how an object of the class Station should be written into an output stream.
-    * @param out
-    * @param vertex
+    * @param out - Output Stream
+    * @param vertex - Station that should be written into the output stream
     * @return output stream containing the name, district, municipality, township and line of the Station.
     */
     friend ostream &operator<<(ostream &out, const Station &vertex);

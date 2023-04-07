@@ -64,57 +64,57 @@ public:
 
     /**
     * This function alters the previous position of the Railway to the value of the given parameter newPosition.
-    * @param newPosition
+    * @param newPosition - Value to which the previous position of the Railway should be altered to
     */
     void setPrevPosition(int newPosition);
 
     /**
     * This function alters the capacity of the Railway to the value of the given parameter newCapacity.
-    * @param newCapacity
+    * @param newCapacity - Value to which the capacity of the Railway should be altered to
     */
     void setCapacity(int newCapacity);
 
     /**
     * This function alters Station A of the Railway to the Station given by the parameter stationA.
-    * @param stationA
+    * @param stationA - New name of the Station A of the Railway
     */
     void setStationA(const string& stationA);
 
     /**
     * This function alters Station B of the Railway to the Station given by the parameter stationB.
-    * @param stationB
+    * @param stationB - New name of the Station B of the Railway
     */
     void setStationB(const string& stationB);
 
     /**
     * This functions sets the service of the Railway to the service given by parameter service_.
-    * @param service_
+    * @param service_ - Type of service to which the current service of the Railway should be altered to
     */
     void setService(string service);
 
     /**
     * This function alters the cost of the Railway to the value given by the parameter c.
-    * @param c
+    * @param c - Cost to which the current cost of the Railway should be altered to
     */
     void setCost(int c);
 
     /**
     * This function increments the flow of the Railway by the value of the given parameter delta.
-    * @param delta
+    * @param delta - Value that should be added to the current flow of the Railway
     */
     void addFlow(int delta);
 
     /**
     * This function decrements the flow of the Railway by the value of the given parameter delta.
-    * @param delta
+    * @param delta - Value that should be subtracted from the current flow of the Railway
     */
     void subFlow(int delta);
 
     /**
      * Constructor of the class Railway with the given parameters flow, to and prev_position.
-     * @param flow
-     * @param to
-     * @param prev_position
+     * @param flow - Flow of the Railway
+     * @param to - Position to which the Railway should go
+     * @param prev_position - Previous Position of the Railway
      */
     Railway(int flow, int to, int prev_position)
             : flow(flow), prev_position(prev_position){};
@@ -126,16 +126,16 @@ public:
 
     /**
     * This operator specifies how an object of the class Railway should be altered, given an input stream.
-    * @param in
-    * @param edge
+    * @param in - Input Stream
+    * @param edge - Railway that should be altered
     * @return input stream containing the stations, capacity, service and cost of the Railway.
     */
     friend istream &operator>>(istream &is, Railway &edge);
 
     /**
     * This operator specifies how an object of the class Railway should be written into an output stream.
-    * @param in
-    * @param edge
+    * @param ot - Output Stream
+    * @param edge - Railway that should be printed into the terminal
     * @return output stream containing the stations, capacity, service and flow of the Railway.
     */
     friend ostream &operator<<(ostream &ot, const Railway &edge);
