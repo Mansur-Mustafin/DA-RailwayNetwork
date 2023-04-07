@@ -1,6 +1,9 @@
-//
-// Created by musta on 13.03.2023.
-//
+/**
+ * @file Station.h
+ * @author Mansur Mustafin
+ * @date 13.03.2023
+ * @brief Declaration of class Station to load station data.
+ */
 
 #ifndef DA_RAILWAYNETWORK_STATION_H
 #define DA_RAILWAYNETWORK_STATION_H
@@ -17,12 +20,46 @@ using namespace std;
 
 class Station {
 public:
+    /**
+    * This function returns the index of the given Station.
+    * @return an integer with the index of the given Station.
+    */
     int getInd() const;
+
+    /**
+    * This function alters the value of the index of the Station to the value of the given parameter x.
+    * @param x
+    */
     void setInd(int NewInd);
+
+    /**
+    * This function returns the name of the given Station.
+    * @return a string with the name of the given Station.
+    */
     string getName();
+
+    /**
+    * This function returns the District to which the given Station belongs.
+    * @return a string with the District of the given Station.
+    */
     string getDistrict();
+
+    /**
+    * This function returns the Municipality to which the given Station belongs.
+    * @return a string with the Municipality of the given Station.
+    */
     string getMunicipality();
+
+    /**
+    * This function returns the Township to which the given Station belongs.
+    * @return a string with the Township of the given Station.
+    */
     string getTownship();
+
+    /**
+    * This function returns the Train Line to which the given Station belongs.
+    * @return a string with the line of the given Station.
+    */
     string getLine();
 
     /**
@@ -40,9 +77,33 @@ public:
      * Default constructor of the class Station.
      */
     Station() = default;
+
+    /**
+    * This function returns the number of other Stations that have a connection to the given Station.
+    * @return an integer with the number of other Stations connected to the given Station.
+    */
     int getNumberStations() const;
+
+    /**
+    * This function increments the number of Stations connected to the Station by the value of parameter add.
+    * @param add
+    */
     void addNumberStations(int add);
+
+    /**
+    * This operator specifies how an object of the class Station should be altered, given an input stream.
+    * @param in
+    * @param vertex
+    * @return input stream containing the name, district, municipality, township and line of the Station.
+    */
     friend istream &operator>>(istream &in, Station &vertex);
+
+    /**
+    * This operator specifies how an object of the class Station should be written into an output stream.
+    * @param out
+    * @param vertex
+    * @return output stream containing the name, district, municipality, township and line of the Station.
+    */
     friend ostream &operator<<(ostream &out, const Station &vertex);
 private:
     int ind = 0;

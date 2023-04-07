@@ -38,7 +38,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\cmake-build-debug\network.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\cmake-build-debug\network_test_1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\cmake-build-debug\stations.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

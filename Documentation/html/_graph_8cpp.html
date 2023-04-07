@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DA Project 2023: C:/Users/utilizador/Desktop/Universidade/Projeto DA 1/DA-RailwayNetwork/Code/Graph.cpp File Reference</title>
+<title>DA Project 2023: Code/Graph.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -102,15 +102,16 @@ $(document).ready(function(){initNavTree('_graph_8cpp.html',''); initResizable()
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;queue&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afd14a0c18eda495b5cf78f57840dbf42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graph_8cpp.html#afd14a0c18eda495b5cf78f57840dbf42">check_Disjoint</a> (const vector&lt; string &gt; &amp;v1, const vector&lt; string &gt; &amp;v2)</td></tr>
-<tr class="separator:afd14a0c18eda495b5cf78f57840dbf42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5856a1a48106a5c066ed5d61a02ecb15"><td class="memItemLeft" align="right" valign="top">ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graph_8cpp.html#a5856a1a48106a5c066ed5d61a02ecb15">operator&lt;&lt;</a> (ostream &amp;out, set&lt; int &gt; &amp;s)</td></tr>
 <tr class="separator:a5856a1a48106a5c066ed5d61a02ecb15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636daf04ef23650fd37bb374b9ccaae1"><td class="memItemLeft" align="right" valign="top">ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graph_8cpp.html#a636daf04ef23650fd37bb374b9ccaae1">operator&lt;&lt;</a> (ostream &amp;out, queue&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;s)</td></tr>
 <tr class="separator:a636daf04ef23650fd37bb374b9ccaae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd14a0c18eda495b5cf78f57840dbf42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graph_8cpp.html#afd14a0c18eda495b5cf78f57840dbf42">check_Disjoint</a> (const vector&lt; string &gt; &amp;v1, const vector&lt; string &gt; &amp;v2)</td></tr>
+<tr class="separator:afd14a0c18eda495b5cf78f57840dbf42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="afd14a0c18eda495b5cf78f57840dbf42" name="afd14a0c18eda495b5cf78f57840dbf42"></a>
@@ -138,15 +139,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This function determines whether stations are connected in the graph or, in other words, whether if it is possible to reach the stations in vector v1 from the stations in vector v2 and vice versa.</p>
-<p>@complexity The time complexity of this function is O(1). </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">v1</td><td></td></tr>
-    <tr><td class="paramname">v2</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the stations can reach each other and false if they cannot. </dd></dl>
 
 </div>
 </div>

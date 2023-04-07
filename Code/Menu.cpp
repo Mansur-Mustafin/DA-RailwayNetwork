@@ -22,7 +22,7 @@ void Menu::change_file() {
 }
 
 void Menu::choose_network(){
-    g.printImage();
+    Graph::printImage();
     string stations,network;
     cout<<"          Do you want to change the network?\n"
           "|==================================================| \n"
@@ -476,11 +476,11 @@ void Menu::main_menu() {
                 break;
 
             case 14:
-                g.printImage(g.getNetworkName(), true);
+                g.printNetwork();
                 break;
 
             case 15:
-                g.printImage(g.getStationName(), true);
+                g.printStations();
                 break;
 
             default:

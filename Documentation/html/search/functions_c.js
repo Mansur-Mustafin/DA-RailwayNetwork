@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['operation_5fcost_0',['operation_cost',['../class_menu.html#a3fdb88e192d9d64e20a444f4752e621a',1,'Menu']]],
-  ['operator_3c_3c_1',['operator&lt;&lt;',['../_graph_8cpp.html#a5856a1a48106a5c066ed5d61a02ecb15',1,'operator&lt;&lt;(ostream &amp;out, set&lt; int &gt; &amp;s):&#160;Graph.cpp'],['../_graph_8cpp.html#a636daf04ef23650fd37bb374b9ccaae1',1,'operator&lt;&lt;(ostream &amp;out, queue&lt; Railway &gt; &amp;s):&#160;Graph.cpp'],['../_railway_8cpp.html#af46d1706b215451664174f313bd3210a',1,'operator&lt;&lt;(ostream &amp;out, const Railway &amp;edge):&#160;Railway.cpp'],['../_station_8cpp.html#abe6c34fe29c8b30d871639fe7d1975cf',1,'operator&lt;&lt;(ostream &amp;out, const Station &amp;vertex):&#160;Station.cpp']]],
-  ['operator_3e_3e_2',['operator&gt;&gt;',['../_railway_8cpp.html#afeb141b426ef153046272937be4c896c',1,'operator&gt;&gt;(istream &amp;in, Railway &amp;edge):&#160;Railway.cpp'],['../_station_8cpp.html#a1187be216a5cb86b8701cec0536fafbd',1,'operator&gt;&gt;(istream &amp;in, Station &amp;vertex):&#160;Station.cpp']]]
+  ['setcapacity_0',['setCapacity',['../class_railway.html#a586f4cbe816307ffb0861e472b606862',1,'Railway']]],
+  ['setcost_1',['setCost',['../class_railway.html#a371dc2e405f2f42cbda9c82a8d281107',1,'Railway']]],
+  ['setind_2',['setInd',['../class_station.html#aa7ce5d71198e1d39e90e627b8ea720e6',1,'Station']]],
+  ['setprevposition_3',['setPrevPosition',['../class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec',1,'Railway']]],
+  ['setservice_4',['setService',['../class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6',1,'Railway']]],
+  ['setstationa_5',['setStationA',['../class_railway.html#ad6b03a0bf724777cd72713c751cdcf79',1,'Railway']]],
+  ['setstationb_6',['setStationB',['../class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6',1,'Railway']]],
+  ['station_7',['Station',['../class_station.html#a46a1672b35262d870c84aacf4f41fed1',1,'Station::Station(string name, string district, string municipality, string township, string line)'],['../class_station.html#ae106e27379a6ad6e1e23b8e017115b5a',1,'Station::Station()=default']]],
+  ['subflow_8',['subFlow',['../class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098',1,'Railway']]]
 ];
