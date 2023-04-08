@@ -118,7 +118,8 @@ public:
      */
     void Task4_2();
     void Task4_2_2();
-    void Task4_2_3();
+    void Task4_2_2_aux_1();
+    void Task4_2_2_aux_2();
 private:
     Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
     //Graph g = Graph("network.csv", "stations.csv");

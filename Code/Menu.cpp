@@ -1,6 +1,4 @@
-//
-// Created by fgonc on 01/04/2023.
-//
+
 
 #include <iomanip>
 #include <iostream>
@@ -365,16 +363,97 @@ void Menu::Task4_2(){
 }
 
 void Menu::Task4_2_2(){
+
+    cout<<"       How do you want to process the network ?\n"
+          "|====================================================| \n"
+          "| Edge by Edge [1]    All edges at the same time [2] | \n"
+          "|====================================================| " << endl;
+    int answer;
+    cin>>answer;
+    cout<<endl;
+
+    if (cin.fail() || cin.peek() != '\n') {
+        cerr << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+    }
+
+    switch (answer) {
+        case 1:
+            Task4_2_2_aux_1();
+            break;
+        case 2:
+            Task4_2_2_aux_2();
+            break;
+
+        default:
+            cerr << "Invalid input" << endl << endl;
+            Task4_2_2();
+    }
+}
+
+void Menu::Task4_2_2_aux_1(){
+    int answer;
+    cout<<"       Do you want to use the whole network ?\n"
+          "|==================================================| \n"
+          "|       Yes [1]                   No  [2]          | \n"
+          "|==================================================| " << endl;
+    cin>>answer;
+    cout<<endl;
+
+    if (cin.fail() || cin.peek() != '\n') {
+        cerr << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+    }
+
+    int number_1,number_2;
+    vector<int> reduce;
+    string source_reduce,destination_reduce;
+    pair<string,string> railway;
+    switch (answer) {
+        case 1:
+            cout<<"Please enter a number:\n";
+            cin>>number_1;
+            g.Task4_2_3(number_1);
+            break;
+        case 2:
+            cout<<"Please enter a number:\n";
+            cin>>number_2;
+            int n;
+            cout <<"How many segments you want to erase ?:\n";
+            cin >> n;
+
+            for (size_t i = 0; i < n; i++){
+                cout <<"Please enter the name of one source station:\n";
+                getline(cin>>ws,source_reduce);
+                cout <<"Please enter the name of one destination station:\n";
+                getline(cin,destination_reduce);
+                railway.first = source_reduce;
+                railway.second = destination_reduce;
+                int index = g.getIndexOfRailway(railway);
+                reduce[i] = index;
+            }
+
+            g.Task4_2_2(reduce,number_2);
+            break;
+
+        default:
+            cerr << "Invalid input" << endl << endl;
+            Task4_2_2_aux_1();
+    }
+}
+
+void Menu::Task4_2_2_aux_2(){
     int number;
+    vector<int> reduce;
+    string source_reduce,destination_reduce;
+    pair<string,string> railway;
     cout<<"Please enter a number:\n";
     cin>>number;
     int n;
     cout <<"How many segments you want to erase ?:\n";
     cin >> n;
-
-    vector<int> reduce(n, 0);
-    string source_reduce,destination_reduce;
-    pair<string,string> railway;
 
     for (size_t i = 0; i < n; i++){
         cout <<"Please enter the name of one source station:\n";
@@ -388,32 +467,6 @@ void Menu::Task4_2_2(){
     }
 
     g.Task4_2_2(reduce,number);
-}
-
-void Menu::Task4_2_3(){
-    int number;
-    cout<<"Please enter a number:\n";
-    cin>>number;
-    int n;
-    cout <<"How many segments you want to erase ?:\n";
-    cin >> n;
-
-    vector<int> reduce(n, 0);
-    string source_reduce,destination_reduce;
-    pair<string,string> railway;
-
-    for (size_t i = 0; i < n; i++){
-        cout <<"Please enter the name of one source station:\n";
-        getline(cin>>ws,source_reduce);
-        cout <<"Please enter the name of one destination station:\n";
-        getline(cin,destination_reduce);
-        railway.first = source_reduce;
-        railway.second = destination_reduce;
-        int index = g.getIndexOfRailway(railway);
-        reduce[i] = index;
-    }
-
-    g.Task4_2_3(number,reduce);
 }
 
 void Menu::main_menu() {
@@ -438,6 +491,9 @@ void Menu::main_menu() {
                    "|===========================================================|========================================================|\n"
                    "| Maximum flow in a reduced network segments            [41]|  Minimum cost of maintaining maximum flow         [31] |\n"
                    "| Maximum flow in a reduced network stations            [42]|                                                        |\n"
+                   "| Top-k most affected stations for each segment failure [43]|                                                        |\n"
+                   "|                                                       [44]|                                                        |\n"
+                   "| Top-k most affected stations segment failure          [44]|                                                        |\n"
                    "| Top-k most affected stations segment failure with flow[43]|                                                        |\n"
                    "| Top-k most affected stations segment failure          [44]|                                                        |\n"
                    "|====================================================================================================================|\n"
@@ -519,10 +575,6 @@ void Menu::main_menu() {
 
             case 44:
                 Task4_2_2();
-                break;
-
-            case 45:
-                Task4_2_3();
                 break;
 
             case 11:
