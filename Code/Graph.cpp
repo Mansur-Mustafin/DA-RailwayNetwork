@@ -601,27 +601,22 @@ int Graph::Task4_2_2(const vector<int> &reduce, int k) {
         reduced_max_flows[i] = Task2_4_2(stations[i].getName(), false);
     }
 
+    vector<pair<string, int>> ans;
     for(int i = 0; i < max_flows.size() ; i++){
-        if(max_flows[i] != reduced_max_flows[i])
-        cout << "[" << i << "] "<< stations[i].getName() << "   " << max_flows[i] << " : "<< reduced_max_flows[i] <<  endl;
-    }
-
-
-
-    /*
-    cout << "Was added flow: " << endl;
-    for(int i = 0; max_flows.size() ; i++){
-        if(max_flows[i] > 0){
-            cout << stations[i].getName() << ": " << max_flows[i];
+        int d = max_flows[i] - reduced_max_flows[i];
+        if(d > 0){
+            ans.push_back(make_pair(stations[i].getName() , d));
         }
+
     }
-    cout << "Was reduced flow: " << endl;
-    for(int i = 0; max_flows.size() ; i++){
-        if(max_flows[i] < 0){
-            cout << stations[i].getName() << ": " << -max_flows[i];
-        }
+    sort(ans.rbegin(), ans.rend(), [] (const pair<string, int>& p1, const pair<string, int>& p2) -> bool {return p1.second < p2.second;});
+
+
+    cout << "Name stations: delta(new value)" << endl;
+    for(int i = 0; i < ans.size() && i < k; i++){
+        cout << ans[i].first << ": " << ans[i].second << " (" << reduced_max_flows[key[ans[i].first]] << ")" << endl;
     }
-    */
+
 
     // original network
     for (int i : reduce){

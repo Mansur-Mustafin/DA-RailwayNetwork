@@ -15,11 +15,8 @@ int main() {
     }
 
     Graph g = Graph("network.csv", "stations.csv");
-//    vector<string> base = {"Porto Campanhã","Espinho"}; // A -> E (D)
-    vector<int> reduce = {485};
+    vector<int> reduce = {1, 2, 3, 4, 485};
     g.Task4_2_2(reduce, 10);
-//    Graph::printImage();
-//    //g.Task3_1(base);
 
     return 0;
 }
