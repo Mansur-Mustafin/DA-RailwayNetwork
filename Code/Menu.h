@@ -117,9 +117,11 @@ public:
      * This function develops a page of the user interface with the data given by the Task4_2 function defined in Graph.h (Top k most affected stations by each segment failure)
      */
     void Task4_2();
+    void Task4_2_2();
+    void Task4_2_3();
 private:
-    //Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
-    Graph g = Graph("network.csv", "stations.csv");
+    Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
+    //Graph g = Graph("network.csv", "stations.csv");
 };
 
 

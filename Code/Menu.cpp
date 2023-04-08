@@ -364,6 +364,58 @@ void Menu::Task4_2(){
     g.Task4_2(base,reduce,number);
 }
 
+void Menu::Task4_2_2(){
+    int number;
+    cout<<"Please enter a number:\n";
+    cin>>number;
+    int n;
+    cout <<"How many segments you want to erase ?:\n";
+    cin >> n;
+
+    vector<int> reduce(n, 0);
+    string source_reduce,destination_reduce;
+    pair<string,string> railway;
+
+    for (size_t i = 0; i < n; i++){
+        cout <<"Please enter the name of one source station:\n";
+        getline(cin>>ws,source_reduce);
+        cout <<"Please enter the name of one destination station:\n";
+        getline(cin,destination_reduce);
+        railway.first = source_reduce;
+        railway.second = destination_reduce;
+        int index = g.getIndexOfRailway(railway);
+        reduce[i] = index;
+    }
+
+    g.Task4_2_2(reduce,number);
+}
+
+void Menu::Task4_2_3(){
+    int number;
+    cout<<"Please enter a number:\n";
+    cin>>number;
+    int n;
+    cout <<"How many segments you want to erase ?:\n";
+    cin >> n;
+
+    vector<int> reduce(n, 0);
+    string source_reduce,destination_reduce;
+    pair<string,string> railway;
+
+    for (size_t i = 0; i < n; i++){
+        cout <<"Please enter the name of one source station:\n";
+        getline(cin>>ws,source_reduce);
+        cout <<"Please enter the name of one destination station:\n";
+        getline(cin,destination_reduce);
+        railway.first = source_reduce;
+        railway.second = destination_reduce;
+        int index = g.getIndexOfRailway(railway);
+        reduce[i] = index;
+    }
+
+    g.Task4_2_3(number,reduce);
+}
+
 void Menu::main_menu() {
 
     while (true) {
@@ -387,6 +439,8 @@ void Menu::main_menu() {
                    "| Maximum flow in a reduced network segments            [41]|  Minimum cost of maintaining maximum flow         [31] |\n"
                    "| Maximum flow in a reduced network stations            [42]|                                                        |\n"
                    "| Top-k most affected stations for each segment failure [43]|                                                        |\n"
+                   "|                                                       [44]|                                                        |\n"
+                   "|                                                       [45]|                                                        |\n"
                    "|====================================================================================================================|\n"
                    "|                                               Other operations                                                     |\n"
                    "|====================================================================================================================|\n"
@@ -462,6 +516,14 @@ void Menu::main_menu() {
 
             case 43:
                 Task4_2();
+                break;
+
+            case 44:
+                Task4_2_2();
+                break;
+
+            case 45:
+                Task4_2_3();
                 break;
 
             case 11:
