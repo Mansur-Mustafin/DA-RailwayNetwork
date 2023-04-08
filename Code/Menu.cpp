@@ -4,6 +4,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <climits>
 #include "Menu.h"
 
 using namespace std;

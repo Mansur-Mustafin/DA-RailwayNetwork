@@ -269,7 +269,7 @@ public:
     * @param base - Vector of two strings with each one being the name of one of the stations that were inputted
     * @return an integer with the maximum flow between two stations.
     */
-    int Task2_1(const vector<string> &base);
+    int Task2_1(const vector<string> &base, bool print = true);
 
     /**
     * This function determines the maximum flow between a group of "source" Stations and "sink" or "target" Stations.
@@ -281,7 +281,7 @@ public:
     * @param to - vector of strings with each string being the name of one "sink" Stations
     * @return an integer with the maximum flow between two stations.
     */
-    int Task2_1_2(const vector<string> &from, const vector<string> &to);
+    int Task2_1_2(const vector<string> &from, const vector<string> &to, bool print = true);
 
     /**
      * This function determines the maximum flow between a two Stations, using the Edmonds-Karp Algorithm
@@ -358,7 +358,7 @@ public:
     * @param station - String containing the name of the station we want to analyse
     * @return an integer with the number of trains that can get into a Station.
     */
-    int Task2_4_2(const string &station);
+    int Task2_4_2(const string &station, bool print = true);
 
     /**
     * This function returns the maximum number of trains that would get into a specific station when there is maximum flow.
@@ -417,6 +417,8 @@ public:
     * @return 0 if the code ran successfully and -1 otherwise.
     */
     int Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f = false);// f: print new flow?
+
+    int Task4_2_2(const vector<int> &reduce, int k);
 
     /**
     * This function writes an "image" contained in a text document into the terminal.

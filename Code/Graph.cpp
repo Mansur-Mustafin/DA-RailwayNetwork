@@ -129,7 +129,7 @@ ostream &operator<<(ostream &out, queue<Railway> &s){
     return out;
 }
 
-int Graph::Task2_1(const vector<string> &base) {
+int Graph::Task2_1(const vector<string> &base, bool print) {
     if (!check_keys(base)) {
         return -1;
     }
@@ -137,18 +137,20 @@ int Graph::Task2_1(const vector<string> &base) {
     vector<Railway> copy_railways = railways;
     int r = ford_falk(key[base[0]], key[base[1]], copy_railways);
 
-    cout << r << endl;
+    if(print) cout << r << endl;
 
-    for (auto &x : copy_railways) {
-        if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
-            cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+
+    if(print){
+        for (auto &x : copy_railways) {
+            if (x.getFlow() > 0 && x.getStationA() != "FROM" && x.getStationB() != "TO") {
+                cout << x.getStationA() << " -> " << x.getStationB() << " " << x.getFlow() << '/'<< x.getCapacity() << endl;
+            }
         }
     }
-
     return r;
 }
 
-int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
+int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to, bool print) {
     if(!check_keys(from) || !check_keys(to)){
         return -1;
     }
@@ -165,7 +167,7 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to) {
     }
 
     vector<string> base = {"FROM", "TO"};
-    int r =  Task2_1(base);
+    int r =  Task2_1(base, print);
 
     for(const auto& station : from){
         adjacencyList[key[station]].pop_back();
@@ -385,7 +387,7 @@ void Graph::Task2_4(const vector<string> &base) {
     cout << count << "\n";
 }
 
-int Graph::Task2_4_2(const string &station) {
+int Graph::Task2_4_2(const string &station, bool print) {
 
     if (key.count(station) == 0) {
         return -1;
@@ -399,17 +401,21 @@ int Graph::Task2_4_2(const string &station) {
     }
 
     if(source.empty()){
-        cout << "Not sours stations. Result: " << stations[key[station]].getNumberStations();
+        if(print){
+            cout << "Not sours stations. Result: " << stations[key[station]].getNumberStations();
+        }
         return stations[key[station]].getNumberStations();
     }
 
     vector<string> from;
     if(source.empty()) return -1;
     for(auto index : source){
-        from.push_back(stations[index].getName());
+        if(stations[index].getName() != station){
+            from.push_back(stations[index].getName());
+        }
     }
 
-    int r = Task2_1_2(from, {station});
+    int r = Task2_1_2(from, {station}, print);
 
     return r;
 }
@@ -562,6 +568,65 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k,
             cout << copy_railways[ans[i].second].getStationA() << " -> " << copy_railways[ans[i].second].getStationB()
                  << " : " << -ans[i].first << endl;
         }
+    }
+
+    return 0;
+}
+
+int Graph::Task4_2_2(const vector<int> &reduce, int k) {
+
+    // check input data
+    if (!check_segments(reduce) || k < 1){
+        return -1;
+    }
+
+    // calculate flows in not reduced network
+    vector<int> max_flows (adjacencyList.size(), 0);
+    for(int i = 0; i < stations.size(); i++){
+        max_flows[i] = Task2_4_2(stations[i].getName(), false);
+    }
+    //for(int i = 0 ; i <  max_flows.size() ; i++) cout << stations[i].getName() << ": " << max_flows[i] << endl;
+
+    // reduce network
+    unordered_map<int,int> original_capacity;
+    for (int i : reduce){
+        original_capacity[i] = railways[2 * i].getCapacity();
+        railways[2 * i].setCapacity(0);
+        railways[2 * i + 1].setCapacity(0);
+    }
+
+    // calculate new values
+    vector<int> reduced_max_flows (adjacencyList.size(), 0);
+    for(int i = 0; i < stations.size(); i++){
+        reduced_max_flows[i] = Task2_4_2(stations[i].getName(), false);
+    }
+
+    for(int i = 0; i < max_flows.size() ; i++){
+        if(max_flows[i] != reduced_max_flows[i])
+        cout << "[" << i << "] "<< stations[i].getName() << "   " << max_flows[i] << " : "<< reduced_max_flows[i] <<  endl;
+    }
+
+
+
+    /*
+    cout << "Was added flow: " << endl;
+    for(int i = 0; max_flows.size() ; i++){
+        if(max_flows[i] > 0){
+            cout << stations[i].getName() << ": " << max_flows[i];
+        }
+    }
+    cout << "Was reduced flow: " << endl;
+    for(int i = 0; max_flows.size() ; i++){
+        if(max_flows[i] < 0){
+            cout << stations[i].getName() << ": " << -max_flows[i];
+        }
+    }
+    */
+
+    // original network
+    for (int i : reduce){
+        railways[2 * i].setCapacity(original_capacity[i]);
+        railways[2 * i + 1].setCapacity(original_capacity[i]);
     }
 
     return 0;
@@ -872,3 +937,5 @@ void Graph::printStations() {
         cout << n;
     }
 }
+
+
