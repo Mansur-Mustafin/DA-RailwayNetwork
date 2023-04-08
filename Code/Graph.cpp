@@ -932,6 +932,19 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
 
     q.push({u, first_flow});
 
+    set<int> need;
+    int u_copy = u;
+    while(u_copy != s){
+        need.insert(u_copy);
+        u_copy = mark[u_copy];
+    }
+    need.insert(s);
+    for(int i = 0; i < mark.size(); i++){
+        if(need.find(i) == need.end()){
+            mark[i] = -1;
+        }
+    }
+
     while (!q.empty()) {
         int w = q.front().first;
         int flow = q.front().second;
