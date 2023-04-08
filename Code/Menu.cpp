@@ -435,7 +435,7 @@ void Menu::Task4_2_2_aux_1(){
                 reduce[i] = index;
             }
 
-            g.Task4_2_2(reduce,number_2);
+            g.Task4_2_3(number_2,reduce);
             break;
 
         default:
