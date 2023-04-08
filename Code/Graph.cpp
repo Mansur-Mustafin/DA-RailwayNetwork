@@ -574,20 +574,15 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k,
 }
 
 int Graph::Task4_2_2(const vector<int> &reduce, int k) {
-
-    // check input data
     if (!check_segments(reduce) || k < 1){
         return -1;
     }
 
-    // calculate flows in not reduced network
     vector<int> max_flows (adjacencyList.size(), 0);
     for(int i = 0; i < stations.size(); i++){
         max_flows[i] = Task2_4_2(stations[i].getName(), false);
     }
-    //for(int i = 0 ; i <  max_flows.size() ; i++) cout << stations[i].getName() << ": " << max_flows[i] << endl;
 
-    // reduce network
     unordered_map<int,int> original_capacity;
     for (int i : reduce){
         original_capacity[i] = railways[2 * i].getCapacity();
@@ -595,7 +590,6 @@ int Graph::Task4_2_2(const vector<int> &reduce, int k) {
         railways[2 * i + 1].setCapacity(0);
     }
 
-    // calculate new values
     vector<int> reduced_max_flows (adjacencyList.size(), 0);
     for(int i = 0; i < stations.size(); i++){
         reduced_max_flows[i] = Task2_4_2(stations[i].getName(), false);
@@ -611,14 +605,11 @@ int Graph::Task4_2_2(const vector<int> &reduce, int k) {
     }
     sort(ans.rbegin(), ans.rend(), [] (const pair<string, int>& p1, const pair<string, int>& p2) -> bool {return p1.second < p2.second;});
 
-
     cout << "Name stations: delta(new value)" << endl;
     for(int i = 0; i < ans.size() && i < k; i++){
         cout << ans[i].first << ": " << ans[i].second << " (" << reduced_max_flows[key[ans[i].first]] << ")" << endl;
     }
 
-
-    // original network
     for (int i : reduce){
         railways[2 * i].setCapacity(original_capacity[i]);
         railways[2 * i + 1].setCapacity(original_capacity[i]);
@@ -932,5 +923,3 @@ void Graph::printStations() {
         cout << n;
     }
 }
-
-
