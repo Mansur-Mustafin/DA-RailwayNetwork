@@ -26,10 +26,12 @@ void Graph::input_vertex(const string &input_name) {
     int ptr = 0;
     getline(fin, s);
     while (fin >> v) {
-        key[v.getName()] = ptr;
-        v.setInd(ptr);
-        ptr++;
-        stations.emplace_back(v);
+        if(key.find(v.getName()) == key.end()){
+            key[v.getName()] = ptr;
+            v.setInd(ptr);
+            ptr++;
+            stations.emplace_back(v);
+        }
     }
     fin.close();
 }
@@ -64,6 +66,10 @@ void Graph::build_adjacencyList() {
 
 void Graph::add_station(const string& name, bool f, const string& district, const string& municipality, const string& township, const string& line) {
     Station v (name, district, municipality, township, line);
+    if(key.find(v.getName()) != key.end() && key[v.getName()] != -1){
+        cout << v.getName() << " already exist" << endl;
+        return;
+    }
     int ptr = (--stations.end())->getInd();
     v.setInd( ptr + 1);
     key[v.getName()] = ptr + 1;
@@ -171,12 +177,18 @@ int Graph::Task2_1_2(const vector<string> &from, const vector<string> &to, bool 
 
     for(const auto& station : from){
         adjacencyList[key[station]].pop_back();
+        railways.pop_back();
+        railways.pop_back();
     }
     for(const auto& station : to){
         adjacencyList[key[station]].pop_back();
+        railways.pop_back();
+        railways.pop_back();
     }
     adjacencyList.pop_back();
     adjacencyList.pop_back();
+    key["FROM"] = -1;
+    key["TO"] = -1;
     stations.pop_back();
     stations.pop_back();
     return r;
@@ -601,11 +613,10 @@ int Graph::Task4_2_2(const vector<int> &reduce, int k) {
         if(d > 0){
             ans.push_back(make_pair(stations[i].getName() , d));
         }
-
     }
     sort(ans.rbegin(), ans.rend(), [] (const pair<string, int>& p1, const pair<string, int>& p2) -> bool {return p1.second < p2.second;});
 
-    cout << "Name stations: delta(new value)" << endl;
+    cout << "Name stations: delta (new value)" << endl;
     for(int i = 0; i < ans.size() && i < k; i++){
         cout << ans[i].first << ": " << ans[i].second << " (" << reduced_max_flows[key[ans[i].first]] << ")" << endl;
     }
@@ -614,6 +625,81 @@ int Graph::Task4_2_2(const vector<int> &reduce, int k) {
         railways[2 * i].setCapacity(original_capacity[i]);
         railways[2 * i + 1].setCapacity(original_capacity[i]);
     }
+
+    return 0;
+}
+
+int Graph::Task4_2_3( int k, vector<int> reduced ) {
+    if (k < 1){
+        return -1;
+    }
+
+    if(reduced.empty()){
+        for(int i = 0; i < railways.size() / 2; i++){
+            reduced.push_back(i);
+        }
+    }
+
+    struct ans{
+        int railway;
+        int station;
+        int delta;
+    };
+
+    vector<ans> result;
+    vector<int> max_flows (adjacencyList.size(), 0);
+    for(int i = 0; i < stations.size(); i++){
+        max_flows[i] = Task2_4_2(stations[i].getName(), false);
+    }
+
+    for(int r : reduced){
+
+        cout << "[" << r << "] " << "In Process: " << railways[r * 2].getStationA() << " -> " << railways[r * 2].getStationB() << "\r" << endl;
+
+        int origin_capacity = railways[r * 2].getCapacity();
+        railways[2 * r].setCapacity(0);
+        railways[2 * r + 1].setCapacity(0);
+
+        vector<int> reduced_max_flows (adjacencyList.size(), 0);
+        for(int i = 0; i < stations.size(); i++){
+            reduced_max_flows[i] = Task2_4_2(stations[i].getName(), false);
+        }
+
+        for(int i = 0; i < max_flows.size() ; i++){
+            int d = max_flows[i] - reduced_max_flows[i];
+            if(d > 0){
+                ans a = {r, i, d};
+                result.push_back(a);
+            }
+        }
+
+        sort(result.rbegin(), result.rend(), [] (const ans& p1, const ans& p2) -> bool {
+            return p1.delta < p2.delta;
+        });
+
+        if(result.size() > k){
+            result.resize(k);
+        }
+        // set original capacity
+        railways[2 * r].setCapacity(origin_capacity);
+        railways[2 * r + 1].setCapacity(origin_capacity);
+    }
+
+    cout << "Done." << endl << endl;
+
+    //unordered_map<int, vector<pair<int,int>>> print; // railway (station, delta).
+    for(auto a : result){
+        cout << "For: " << railways[a.railway * 2].getStationA() << " -> " << railways[a.railway * 2].getStationB()
+        << "  (" << stations[a.station].getName() << ") : " << a.delta << endl;
+        //print[a.railway].emplace_back(a.station, a.delta);
+    }
+
+//    for(auto el : print){
+//        cout << "For: " << railways[el.first].getStationA() << " -> " << railways[el.first].getStationB() << endl;
+//        for(auto e : el.second){
+//            cout << "---- " <<  stations[e.first].getName() << " was reduced: " << e.second << endl;
+//        }
+//    }
 
     return 0;
 }

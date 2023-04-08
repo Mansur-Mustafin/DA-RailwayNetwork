@@ -15,8 +15,9 @@ int main() {
     }
 
     Graph g = Graph("network.csv", "stations.csv");
-    vector<int> reduce = {1, 2, 3, 4, 485};
-    g.Task4_2_2(reduce, 10);
+    vector<int> reduce = {464};
+    //g.Task4_2_2(reduce, 15);
+    g.Task4_2_3(100);
 
     return 0;
 }

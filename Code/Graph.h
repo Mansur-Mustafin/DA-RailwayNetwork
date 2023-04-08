@@ -418,7 +418,23 @@ public:
     */
     int Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f = false);// f: print new flow?
 
+    /**
+     * TODO
+     * @brief Recebe o vetor com estacoes para desligar, desliga todos e veja como se mudou max numero de comboios que entram na estacao
+     * @param reduce
+     * @param k
+     * @return
+     */
     int Task4_2_2(const vector<int> &reduce, int k);
+
+    /**
+     * TODO
+     * @brief Desliga todos segmentos e veja como se mudou max numero de comboios que entram na estacao
+     * @param k
+     * @param reduced se esta merda for vazia, vai considerar todos
+     * @return
+     */
+    int Task4_2_3(int k, vector<int> reduced = {});
 
     /**
     * This function writes an "image" contained in a text document into the terminal.
