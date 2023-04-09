@@ -18,5 +18,8 @@ var class_menu =
     [ "Task4_1", "class_menu.html#a985374a2ef79fbc130f88566b70c23bf", null ],
     [ "Task4_1_2", "class_menu.html#aaa620bb1db9d3ac50a2c59a02f29be05", null ],
     [ "Task4_2", "class_menu.html#aa359a75a29f646edf195a8bc4c9e9dce", null ],
+    [ "Task4_2_2", "class_menu.html#a8262e9de198d1499eaba514aaa79feca", null ],
+    [ "Task4_2_2_aux_1", "class_menu.html#a7b1018e7a444959e77ec20d35bb2b317", null ],
+    [ "Task4_2_2_aux_2", "class_menu.html#a19c6494becf9a543c05f3e60af2aaf43", null ],
     [ "g", "class_menu.html#a5adfb9b691d1adf31008a7fd9d0ad82b", null ]
 ];

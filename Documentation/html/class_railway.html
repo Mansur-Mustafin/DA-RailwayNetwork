@@ -128,8 +128,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad6b03a0bf724777cd72713c751cdcf79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae55bb9552aff7c456b0d317a2bf2afd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6">setStationB</a> (const string &amp;stationB)</td></tr>
 <tr class="separator:ae55bb9552aff7c456b0d317a2bf2afd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d7ead64e1bca526ad8d810bd4ab02e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6">setService</a> (string <a class="el" href="class_railway.html#afac1e31d95a6df03aa33e5b5d66b7c47">service</a>)</td></tr>
-<tr class="separator:a8d7ead64e1bca526ad8d810bd4ab02e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac0a0828a1d74d2545d3664b415c363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_railway.html#afac0a0828a1d74d2545d3664b415c363">setService</a> (string service_)</td></tr>
+<tr class="separator:afac0a0828a1d74d2545d3664b415c363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a371dc2e405f2f42cbda9c82a8d281107"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_railway.html#a371dc2e405f2f42cbda9c82a8d281107">setCost</a> (int c)</td></tr>
 <tr class="separator:a371dc2e405f2f42cbda9c82a8d281107"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c5bed8e94ca29b37232b71177de8c6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_railway.html#a9c5bed8e94ca29b37232b71177de8c6f">addFlow</a> (int delta)</td></tr>
@@ -210,9 +210,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>Constructor of the class <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> with the given parameters flow, to and prev_position. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">flow</td><td></td></tr>
-    <tr><td class="paramname">to</td><td></td></tr>
-    <tr><td class="paramname">prev_position</td><td></td></tr>
+    <tr><td class="paramname">flow</td><td>- Flow of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
+    <tr><td class="paramname">to</td><td>- Position to which the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should go </td></tr>
+    <tr><td class="paramname">prev_position</td><td>- Previous Position of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -263,7 +263,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function increments the flow of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> by the value of the given parameter delta. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delta</td><td></td></tr>
+    <tr><td class="paramname">delta</td><td>- Value that should be added to the current flow of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -413,7 +413,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function alters the capacity of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> to the value of the given parameter newCapacity. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newCapacity</td><td></td></tr>
+    <tr><td class="paramname">newCapacity</td><td>- Value to which the capacity of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should be altered to </td></tr>
   </table>
   </dd>
 </dl>
@@ -437,7 +437,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function alters the cost of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> to the value given by the parameter c. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td></td></tr>
+    <tr><td class="paramname">c</td><td>- Cost to which the current cost of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should be altered to </td></tr>
   </table>
   </dd>
 </dl>
@@ -461,15 +461,15 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function alters the previous position of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> to the value of the given parameter newPosition. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newPosition</td><td></td></tr>
+    <tr><td class="paramname">newPosition</td><td>- Value to which the previous position of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should be altered to </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a8d7ead64e1bca526ad8d810bd4ab02e6" name="a8d7ead64e1bca526ad8d810bd4ab02e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d7ead64e1bca526ad8d810bd4ab02e6">&#9670;&#160;</a></span>setService()</h2>
+<a id="afac0a0828a1d74d2545d3664b415c363" name="afac0a0828a1d74d2545d3664b415c363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac0a0828a1d74d2545d3664b415c363">&#9670;&#160;</a></span>setService()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -478,14 +478,14 @@ Friends</h2></td></tr>
           <td class="memname">void Railway::setService </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>service</em></td><td>)</td>
+          <td class="paramname"><em>service_</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>This functions sets the service of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> to the service given by parameter service_. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">service_</td><td></td></tr>
+    <tr><td class="paramname">service_</td><td>- Type of service to which the current service of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should be altered to </td></tr>
   </table>
   </dd>
 </dl>
@@ -509,7 +509,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function alters <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> to the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> given by the parameter stationA. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stationA</td><td></td></tr>
+    <tr><td class="paramname">stationA</td><td>- New name of the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> A of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -533,7 +533,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function alters <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> to the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> given by the parameter stationB. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stationB</td><td></td></tr>
+    <tr><td class="paramname">stationB</td><td>- New name of the <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> B of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -557,7 +557,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This function decrements the flow of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> by the value of the given parameter delta. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delta</td><td></td></tr>
+    <tr><td class="paramname">delta</td><td>- Value that should be subtracted from the current flow of the <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -600,8 +600,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This operator specifies how an object of the class <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should be written into an output stream. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">in</td><td></td></tr>
-    <tr><td class="paramname">edge</td><td></td></tr>
+    <tr><td class="paramname">ot</td><td>- Output Stream </td></tr>
+    <tr><td class="paramname">edge</td><td>- <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> that should be printed into the terminal </td></tr>
   </table>
   </dd>
 </dl>
@@ -644,8 +644,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p>This operator specifies how an object of the class <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> should be altered, given an input stream. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">in</td><td></td></tr>
-    <tr><td class="paramname">edge</td><td></td></tr>
+    <tr><td class="paramname">in</td><td>- Input Stream </td></tr>
+    <tr><td class="paramname">edge</td><td>- <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> that should be altered </td></tr>
   </table>
   </dd>
 </dl>
