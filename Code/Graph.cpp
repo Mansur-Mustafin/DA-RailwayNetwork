@@ -1044,9 +1044,8 @@ void Graph::printImage(const string& name, bool f) {
 
 void Graph::printNetwork() {
     cout << "File name: " << input_edge_name << endl;
-    int i = 0;
-    for(const auto& n : railways){
-        cout << '[' << i++ << "]  " << n;
+    for(int i = 0; i < railways.size(); i += 2){
+        cout << '[' << i / 2 + 1 << "]  " << railways[i];
     }
 }
 
