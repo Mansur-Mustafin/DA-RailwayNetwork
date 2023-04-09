@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "DA Project 2023", "index.html", [
+    [ "DA-RailwayNetwork", "md__c___users_utilizador__desktop__universidade__projeto__d_a_1__d_a__railway_network__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

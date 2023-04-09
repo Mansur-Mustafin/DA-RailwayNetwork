@@ -13,7 +13,7 @@ var class_railway =
     [ "setCapacity", "class_railway.html#a586f4cbe816307ffb0861e472b606862", null ],
     [ "setCost", "class_railway.html#a371dc2e405f2f42cbda9c82a8d281107", null ],
     [ "setPrevPosition", "class_railway.html#a18c3f7494fcaf4a41ec319e9336666ec", null ],
-    [ "setService", "class_railway.html#a8d7ead64e1bca526ad8d810bd4ab02e6", null ],
+    [ "setService", "class_railway.html#afac0a0828a1d74d2545d3664b415c363", null ],
     [ "setStationA", "class_railway.html#ad6b03a0bf724777cd72713c751cdcf79", null ],
     [ "setStationB", "class_railway.html#ae55bb9552aff7c456b0d317a2bf2afd6", null ],
     [ "subFlow", "class_railway.html#a3c7a1a6672f01d6759a7c3a8f094e098", null ],
