@@ -859,7 +859,7 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
 bool Graph::check_keys(const vector<string> &base) {
     for (auto &x : base) {
         if (key.count(x) == 0) {
-            cerr << x << " Not exist in system" << endl;
+            cerr << endl << "Station: " << x << " not exist in the system." << endl;
             return false;
         }
     }
