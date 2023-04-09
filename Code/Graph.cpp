@@ -64,7 +64,9 @@ void Graph::build_adjacencyList() {
     }
 }
 
-void Graph::add_station(const string& name, bool f, const string& district, const string& municipality, const string& township, const string& line) {
+void Graph::add_station(const string& name, bool f, const string& district,
+                        const string& municipality, const string& township, const string& line) {
+
     Station v (name, district, municipality, township, line);
     if(key.find(v.getName()) != key.end() && key[v.getName()] != -1){
         cout << v.getName() << " already exist" << endl;
@@ -238,7 +240,9 @@ void Graph::Task2_2(vector<string> &base) {
 void Graph::Task2_2_2() {
     vector<Railway> copy_railways = railways;
     vector<Station> copy_stations = stations;
-    sort(copy_stations.begin(), copy_stations.end(), [](const Station& x, const Station& y) {return x.getNumberStations() > y.getNumberStations();});
+    sort(copy_stations.begin(), copy_stations.end(), [](const Station& x, const Station& y) {
+        return x.getNumberStations() > y.getNumberStations();
+    });
 
     struct answer{
         string s1;
@@ -302,6 +306,7 @@ void Graph::Task2_3(vector<string> &base, int k, bool flag) {
     }
 
     vector<pair<int, string>> ans;
+    ans.reserve(result.size());
     for (auto &x : result) {
         ans.emplace_back(x.second, x.first);
     }
@@ -373,6 +378,7 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
         }
     }
     vector<pair<int, string>> ans;
+    ans.reserve(result.size());
     for (auto &x : result){
         ans.emplace_back(x.second.size(), x.first);
     }
@@ -584,7 +590,8 @@ int Graph::Task4_2(const vector<string> &base, const vector<int> &reduce, int k,
     cout << endl << "Increased flow: " << endl;
     for (size_t i = 0; i < k && i < ans.size(); i++){
         if(copy_railways[ans[i].second].getFlow() < copy_reduced_railways[ans[i].second].getFlow()){
-            cout << copy_railways[ans[i].second].getStationA() << " -> " << copy_railways[ans[i].second].getStationB()
+            cout << copy_railways[ans[i].second].getStationA() << " -> "
+                << copy_railways[ans[i].second].getStationB()
                  << " : " << -ans[i].first << endl;
         }
     }
@@ -621,7 +628,9 @@ int Graph::Task4_2_2(const vector<int> &reduce, int k) {
             ans.push_back(make_pair(stations[i].getName() , d));
         }
     }
-    sort(ans.rbegin(), ans.rend(), [] (const pair<string, int>& p1, const pair<string, int>& p2) -> bool {return p1.second < p2.second;});
+    sort(ans.rbegin(), ans.rend(), [] (const pair<string, int>& p1, const pair<string, int>& p2) -> bool{
+        return p1.second < p2.second;
+    });
 
     cout << "Name stations: delta (new value)" << endl;
     for(int i = 0; i < ans.size() && i < k; i++){
@@ -661,7 +670,9 @@ int Graph::Task4_2_3( int k, vector<int> reduced ) {
 
     for(int r : reduced){
 
-        cout << "[" << r << "] " << "In Process: " << railways[r * 2].getStationA() << " -> " << railways[r * 2].getStationB() << "\r" << endl;
+        cout << "[" << r << "] " << "In Process: "
+            << railways[r * 2].getStationA() << " -> "
+            << railways[r * 2].getStationB() << "\r" << endl;
 
         int origin_capacity = railways[r * 2].getCapacity();
         railways[2 * r].setCapacity(0);
@@ -680,7 +691,7 @@ int Graph::Task4_2_3( int k, vector<int> reduced ) {
             }
         }
 
-        sort(result.rbegin(), result.rend(), [] (const ans& p1, const ans& p2) -> bool {
+        sort(result.rbegin(), result.rend(),[] (const ans& p1, const ans& p2) -> bool {
             return p1.delta < p2.delta;
         });
 
@@ -696,8 +707,10 @@ int Graph::Task4_2_3( int k, vector<int> reduced ) {
 
     //unordered_map<int, vector<pair<int,int>>> print; // railway (station, delta).
     for(auto a : result){
-        cout << "For: " << railways[a.railway * 2].getStationA() << " -> " << railways[a.railway * 2].getStationB()
-        << "  (" << stations[a.station].getName() << ") : " << a.delta << endl;
+        cout << "For: " << railways[a.railway * 2].getStationA() << " -> "
+        << railways[a.railway * 2].getStationB()
+        << "  (" << stations[a.station].getName() << ") : "
+        << a.delta << endl;
         //print[a.railway].emplace_back(a.station, a.delta);
     }
 
@@ -738,8 +751,7 @@ int Graph::dfs(int v, int t, int current_min, vector<bool> &mark, vector<Railway
     }
     for (int q : adjacencyList[v]) {
         if (rail[q].getFlow() < rail[q].getCapacity()) {
-            int mn =
-                    dfs(key[rail[q].getStationB()], t,
+            int mn = dfs(key[rail[q].getStationB()], t,
                         min(current_min, rail[q].getCapacity() - rail[q].getFlow()), mark, rail);
             if (mn > 0) {
                 rail[q].addFlow(mn);
@@ -992,7 +1004,7 @@ int Graph::getIndexOfRailway(const pair<string, string>& n) {
 
 bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
     vector<string> intersection;
-    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(intersection));
+    set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(intersection));
     return intersection.empty();
 }
 

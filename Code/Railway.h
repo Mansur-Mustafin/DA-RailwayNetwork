@@ -90,7 +90,7 @@ public:
     * This functions sets the service of the Railway to the service given by parameter service_.
     * @param service_ - Type of service to which the current service of the Railway should be altered to
     */
-    void setService(string service);
+    void setService(string service_);
 
     /**
     * This function alters the cost of the Railway to the value given by the parameter c.
