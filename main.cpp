@@ -14,10 +14,10 @@ int main() {
         cout << e.what() << '\n';
     }
 
-    //Graph g = Graph("network_test_4.csv", "stations_test_4.csv");
-    //vector<int> reduce = {464, 10, 11};
-    //vector<string> base = {"A", "E", "D"};
-    //g.Task2_4_3(base);
+//    Graph g = Graph("network_test_7.csv", "stations_test_7.csv");
+//    vector<int> reduce = {464, 10, 11};
+//    vector<string> base = {"A", "D", "E"};
+//    g.Task2_4_3(base);
 
     //Graph g = Graph("network.csv", "stations.csv");
     //vector<int> reduce = {464};

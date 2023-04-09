@@ -94,7 +94,7 @@ void Graph::add_railway(const string& nameA, const string& nameB, bool f, int ca
     e.setStationA(e.getStationB());
     e.setStationB(tmp);
     railways.emplace_back(e);
-    int n = railways.size();
+    int n = (int) railways.size();
     railways[n - 2].setPrevPosition(n - 1);
     railways[n - 1].setPrevPosition(n - 2);
     adjacencyList[key[nameA]].emplace_back(n - 2);
@@ -267,7 +267,7 @@ void Graph::Task2_2_2() {
             }
         }
     }
-    for(auto e : r){
+    for(const auto& e : r){
         cout << e.s1 << " -> " << e.s2 << " (" << e.flow << ")" << endl;
     }
 }
@@ -344,23 +344,23 @@ void Graph::Task2_3_2(vector<string> &base, int k, bool flag){
         if (flag){
             if (stations[key[x.getStationA()]].getMunicipality() !=
                 stations[key[x.getStationB()]].getMunicipality()){
-                for (auto train_id : trains[{x.getStationA(), x.getStationB()}]){
-                    result[stations[key[x.getStationB()]].getMunicipality()].insert(train_id);
+                for (auto id : trains[{x.getStationA(), x.getStationB()}]){
+                    result[stations[key[x.getStationB()]].getMunicipality()].insert(id);
                 }
             }
         }
         else if (stations[key[x.getStationA()]].getDistrict() !=
                  stations[key[x.getStationB()]].getDistrict()){
-            for (auto train_id : trains[{x.getStationA(), x.getStationB()}]){
-                result[stations[key[x.getStationB()]].getDistrict()].insert(train_id);
+            for (auto id : trains[{x.getStationA(), x.getStationB()}]){
+                result[stations[key[x.getStationB()]].getDistrict()].insert(id);
             }
         }
 
         for (auto &y : copy_railways){
             if (y.getStationA() == x.getStationB() && y.getFlow() > 0){
                 for (size_t i = 0; i < y.getFlow() && !local_trains.empty(); i++){
-                    int train_id = *local_trains.begin();
-                    trains[{y.getStationA(), y.getStationB()}].insert(train_id);
+                    int id = *local_trains.begin();
+                    trains[{y.getStationA(), y.getStationB()}].insert(id);
                     local_trains.erase(local_trains.begin());
                 }
             }
@@ -510,11 +510,9 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
 
 int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations) {
     if(!check_keys(base)){
-        cout << base[0] << " " << base[1] << " not in the system " << endl;
         return -1;
     }
     if(!check_keys(name_of_stations)){
-        cout << "some stations not in the system" << endl;
         return -1;
     }
 
@@ -757,7 +755,7 @@ int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
     int result = 0;
     while(true){
         vector<int> mark(adjacencyList.size(), -1);
-        int x = bfs(s, t, -1, rail, mark);
+        int x = bfs(s, t, rail, mark);
         if(x == 0) break;
         result += x;
         int cur = t;
@@ -777,11 +775,11 @@ int Graph::edmonds_karp(int s, int t,  vector<Railway> &rail) {
     return result;
 }
 
-int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
+int Graph::bfs(int s, int t, vector<Railway> &rail, vector<int>& mark) {
     mark.assign(adjacencyList.size(), -1);
     mark[s] = -2;
     queue<pair<int, int>> q;
-    q.push({s, 1e9});
+    q.emplace(s, 1e9);
 
     while (!q.empty()) {
         int u = q.front().first;
@@ -797,7 +795,7 @@ int Graph::bfs(int s, int t, int u, vector<Railway> &rail, vector<int>& mark) {
                     if(index_to_go == t){
                         return new_flow;
                     }
-                    q.push({index_to_go, new_flow});
+                    q.emplace(index_to_go, new_flow);
                 }
             }
         }
@@ -861,6 +859,7 @@ pair<int, vector<int>> Graph::dijkstra(int s, int t, vector<Railway> &rail) {
 bool Graph::check_keys(const vector<string> &base) {
     for (auto &x : base) {
         if (key.count(x) == 0) {
+            cerr << x << " Not exist in system" << endl;
             return false;
         }
     }
@@ -875,7 +874,7 @@ int Graph::edmonds_karp_priority(int s, int t, int u, vector<Railway> &rail) {
         int xp = bfs_priority(s, t, u, rail, mark);
 
         if(xp == 0){
-            int x = bfs(s, t, u, rail, mark);
+            int x = bfs(s, t, rail, mark);
             if(x == 0) break;
             result += x;
             int cur = t;
@@ -916,7 +915,7 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
     mark.assign(adjacencyList.size(), -1);
     mark[s] = -2;
     queue<pair<int, int>> q;
-    q.push({s, 1e9});
+    q.emplace(s, 1e9);
     int first_flow = 0;
     while (!q.empty()) {
         int w = q.front().first;
@@ -932,14 +931,14 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
                     if(index_to_go == u){
                         first_flow = new_flow;
                     }
-                    q.push({index_to_go, new_flow});
+                    q.emplace(index_to_go, new_flow);
                 }
             }
         }
     }
     if(first_flow == 0) return 0;
 
-    q.push({u, first_flow});
+    q.emplace(u, first_flow);
 
     set<int> need;
     int u_copy = u;
@@ -968,7 +967,7 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
                     if(index_to_go == t){
                         return new_flow;
                     }
-                    q.push({index_to_go, new_flow});
+                    q.emplace(index_to_go, new_flow);
                 }
             }
         }
@@ -979,7 +978,6 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
 
 int Graph::getIndexOfRailway(const pair<string, string>& n) {
     if(!check_keys({n.first, n.second})){
-        cout << "This stations not exist in system: " << n.first << " " << n.second << endl;
         return -1;
     }
     int index = 0;
@@ -1010,14 +1008,6 @@ void Graph::printImage(const string& name, bool f) {
     cout << endl << endl;
 }
 
-string Graph::getStationName() {
-    return input_vertex_name;
-}
-
-string Graph::getNetworkName() {
-    return input_edge_name;
-}
-
 void Graph::printNetwork() {
     cout << "File name: " << input_edge_name << endl;
     int i = 0;
@@ -1029,7 +1019,7 @@ void Graph::printNetwork() {
 void Graph::printStations() {
     cout << "File name: " << input_vertex_name << endl;
     vector<string> v = {"Name" , "District" , "Municipality", "Township", "Line" };
-    for(auto el : v ) cout << left << setw(40) << el;
+    for(const auto& el : v ) cout << left << setw(40) << el;
     cout << endl;
     for(int i = 0; i < 200; i++) cout << '-';
     cout << endl;

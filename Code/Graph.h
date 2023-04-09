@@ -188,7 +188,7 @@ class Graph {
     * @return 0 if no path can be found between the source vertex and the target vertex and the maximum flow that can exists
     * in the path between the vertices.
     */
-    int bfs(int s, int t, int u, vector<Railway> &rail, vector<int> &mark);
+    int bfs(int s, int t, vector<Railway> &rail, vector<int> &mark);
 
     /**
      * This function implements the Breadth First Search Algorithm to determine an augmenting path and the maximum flow that
@@ -442,18 +442,6 @@ public:
     * The time complexity of this function is O(n) where n is the number of lines of the text file.
     */
     static void printImage(const string& file_name = "train_image.txt", bool f = false);
-
-    /**
-     * This function returns the name of the file where the attributes of the stations of the network are contained
-     * @return a string with the name of the file
-     */
-    string getStationName();
-
-    /**
-     * This function returns the name of the file where the attributes of the railways of the network are contained
-     * @return a string with the name of the file
-     */
-    string getNetworkName();
 
     /**
      * This function determines how a network (Graph) should be printed into the terminal
