@@ -114,7 +114,7 @@ class Graph {
     * The time complexity of this function is O(n) where n is the number of lines of the string input_name.
     * @param input_name - Name of the file containing the vertices (or stations) we want to insert into the Graph
     */
-    void input_vertex(const string &input_name);
+    int input_vertex(const string &input_name);
 
     /**
     * This function inserts the Railways (in this case as edges) in the string input_name into the given Graph.
@@ -122,7 +122,7 @@ class Graph {
     * The time complexity of this function is O(n) where n is the number of lines of the string input_name.
     * @param input_name - Name of the file containing the edges (or railways) we want to insert into the Graph
     */
-    void input_edge(const string &input_name);
+    int input_edge(const string &input_name);
 
     /**
     * This function inputs into the vector adjacencyList subvectors of two integers, that dictate which Stations
@@ -143,7 +143,7 @@ class Graph {
     * @param s - Integer representing the index of the "Source" Station
     * @param t - Integer representing the index of the "Sink" Station
     * @param rail - Vector of Objects of the class Railway
-    * @param skip -
+    * @param skip
     * @return an integer with the value of the maximum flow between the "source" vertex and the "sink" vertex.
     */
     int ford_falk(int s, int t, vector<Railway> &rail, int skip = -1);
@@ -288,7 +288,7 @@ public:
      *
      * The time complexity of this function is O(V * E^2) where V is the number of vertices (or Stations) and E is the
      * number of edges (or Railways)
-     * @param base  - Vector of two strings with each one being the name of one of the stations that were inputted
+     * @param base - Vector of two strings with each one being the name of one of the stations that were inputted
      * @return an integer with the maximum flow between two stations
      */
     int Task2_1_3(const vector<string> &base);
@@ -414,25 +414,34 @@ public:
     * @param base - Vector of two strings with each one being the name of the starting and ending stations that were inputted
     * @param reduce  - Vector of integers with the indexes of the railways that should be removed from the network
     * @param k - Number of top-k affected stations that should be printed
+    * @param f - Boolean variable that determines if the new flow should be printed with the stations
     * @return 0 if the code ran successfully and -1 otherwise.
     */
     int Task4_2(const vector<string> &base, const vector<int> &reduce, int k, bool f = false);// f: print new flow?
 
     /**
-     * TODO
-     * @brief Recebe o vetor com estacoes para desligar, desliga todos e veja como se mudou max numero de comboios que entram na estacao
-     * @param reduce
-     * @param k
-     * @return
+     * This function prints the stations that would have a more significant loss of flow (or traffic of trains) when
+     * the selected segments of the network are nonoperational. This function analyses all the edges at the same time
+     *
+     * The time complexity of this function is O((V^2 * E^2) + R + V) where V is the number of vertices (or Stations),
+     * E is the number of edges (or Railways) and R is the number of elements of the reduced network.
+     * @param reduce - Vector of integers with the indexes of the railways that should be removed from the network
+     * @param k - Number of top-k affected stations that should be printed
+     * @return 0 if the code ran successfully and -1 otherwise.
      */
     int Task4_2_2(const vector<int> &reduce, int k);
 
     /**
-     * TODO
-     * @brief Desliga todos segmentos e veja como se mudou max numero de comboios que entram na estacao
-     * @param k
-     * @param reduced se esta merda for vazia, vai considerar todos
-     * @return
+     * This function prints the stations that would have a more significant loss of flow (or traffic of trains) when
+     * the selected segments of the network are nonoperational or all the segments if none are provided. This function
+     * analyses all the edges one by one.
+     *
+     * The time complexity of this function is O(R * (V^2 * E^2)) where V is the number of vertices (or Stations),
+     * E is the number of edges (or Railways) and R is the number of elements of the reduced network.
+     * @param k - Number of top-k affected stations that should be printed
+     * @param reduced - Vector of integers with the indexes of the railways that should be removed from the network. If
+     * empty, it will remove all of them
+     * @return 0 if the code ran successfully and -1 otherwise.
      */
     int Task4_2_3(int k, vector<int> reduced = {});
 

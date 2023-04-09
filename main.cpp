@@ -19,10 +19,11 @@ int main() {
 //    vector<string> base = {"A", "D", "E"};
 //    g.Task2_4_3(base);
 
-    //Graph g = Graph("network.csv", "stations.csv");
-    //vector<int> reduce = {464};
-    //g.Task4_2_2(reduce, 15);
-    //g.Task4_2_3(100);
+//    Graph g = Graph("demo_network.csv", "demo_stations.csv");
+//    //vector<int> reduce = {464};
+//    //g.Task4_2_2(reduce, 15);
+//    //g.Task4_2_3(100);
+//    g.Task3_1({"B_L_A" , "B_I_B"});
 
     return 0;
 }
