@@ -295,7 +295,11 @@ void Menu::Task4_1(){
         railway.first = source_reduce;
         railway.second = destination_reduce;
         int index = g.getIndexOfRailway(railway);
-        reduce[i] = index;
+        if(index != -1){
+            reduce[i] = index;
+        }else{
+            i--;
+        }
     }
     g.Task4_1(base,reduce);
 }
@@ -356,7 +360,11 @@ void Menu::Task4_2(){
         railway.first = source_reduce;
         railway.second = destination_reduce;
         int index = g.getIndexOfRailway(railway);
-        reduce[i] = index;
+        if(index != -1){
+            reduce[i] = index;
+        }else{
+            i--;
+        }
     }
 
     g.Task4_2(base,reduce,number);
@@ -432,7 +440,11 @@ void Menu::Task4_2_2_aux_1(){
                 railway.first = source_reduce;
                 railway.second = destination_reduce;
                 int index = g.getIndexOfRailway(railway);
-                reduce[i] = index;
+                if(index != -1){
+                    reduce[i] = index;
+                }else{
+                    i--;
+                }
             }
 
             g.Task4_2_3(number_2,reduce);
@@ -449,7 +461,7 @@ void Menu::Task4_2_2_aux_2(){
     vector<int> reduce;
     string source_reduce,destination_reduce;
     pair<string,string> railway;
-    cout<<"Please enter a number:\n";
+    cout<<"Please enter a number (top-k):\n";
     cin>>number;
     int n;
     cout <<"How many segments you want to erase ?:\n";
@@ -463,7 +475,11 @@ void Menu::Task4_2_2_aux_2(){
         railway.first = source_reduce;
         railway.second = destination_reduce;
         int index = g.getIndexOfRailway(railway);
-        reduce[i] = index;
+        if(index != -1){
+            reduce[i] = index;
+        }else{
+            i--;
+        }
     }
 
     g.Task4_2_2(reduce,number);

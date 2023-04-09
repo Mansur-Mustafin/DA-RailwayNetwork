@@ -509,6 +509,15 @@ int Graph::Task4_1(const vector<string> &base, const vector<int> &reduce){
 }
 
 int Graph::Task4_1_2(const vector<string> &base, const vector<string> &name_of_stations) {
+    if(!check_keys(base)){
+        cout << base[0] << " " << base[1] << " not in the system " << endl;
+        return -1;
+    }
+    if(!check_keys(name_of_stations)){
+        cout << "some stations not in the system" << endl;
+        return -1;
+    }
+
     vector<int> reduce;
     int res = 0;
 
@@ -969,12 +978,17 @@ int Graph::bfs_priority(int s, int t, int u, vector<Railway> &rail, vector<int>&
 }
 
 int Graph::getIndexOfRailway(const pair<string, string>& n) {
+    if(!check_keys({n.first, n.second})){
+        cout << "This stations not exist in system: " << n.first << " " << n.second << endl;
+        return -1;
+    }
     int index = 0;
     for(const auto& railway : railways){
         if((n.first == railway.getStationA() && n.second == railway.getStationB()) ||
            (n.first == railway.getStationB() && n.second == railway.getStationA())) return index / 2;
         index++;
     }
+    cout << "Not exist railway: " << n.first << " " << n.second << endl;
     return -1;
 }
 
@@ -992,6 +1006,7 @@ void Graph::printImage(const string& name, bool f) {
     while (std::getline(file, line)) {
         std::cout << line << '\n';
     }
+    file.close();
     cout << endl << endl;
 }
 
