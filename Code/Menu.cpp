@@ -115,19 +115,41 @@ void Menu::Task2_1(){
 }
 
 void Menu::Task2_1_2(){
-    int n;
-    cout <<"How many source stations you want ?:\n";
-    cin >> n;
-    vector<string> source(n,"");
-    for (size_t i = 0; i < n; i++){
+    int n_1,n_2;
+    bool valid = false;
+    while(!valid) {
+        cout << "How many source stations you want ?:\n";
+        cin >> n_1;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
+    vector<string> source(n_1,"");
+    for (size_t i = 0; i < n_1; i++){
         cout <<"Please enter the name of one source station:\n";
         getline(cin >>ws, source[i]);
     }
 
-    cout <<"How many destination stations you want ?:\n";
-    cin >> n;
-    vector<string> destination(n,"");
-    for (size_t i = 0; i < n; i++){
+    valid = false;
+    while(!valid) {
+        cout << "How many destination stations you want ?:\n";
+        cin >> n_2;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
+    vector<string> destination(n_2,"");
+    for (size_t i = 0; i < n_2; i++){
         cout <<"Please enter the name of one destination station:\n";
         getline(cin >>ws, destination[i]);
     }
@@ -167,17 +189,38 @@ void Menu::Task2_3(){
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
     int number;
-    cout<<"Please enter a number:\n";
-    getline(cin>>number,source_name);
-    cout<<endl;
-    cout<<"Search municipalities [0] or districts [1]\n";
-    int choice;
-    getline(cin>>choice,source_name);
-    cout<<endl;
-    if(choice){
-        g.Task2_3(base,number,false);
-    }else{
-        g.Task2_3(base,number,true);
+    bool valid = false;
+    while(!valid) {
+        cout << "Please enter a number:\n";
+        cin >> number;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
+    valid=false;
+    while(!valid) {
+        int choice;
+        cout << "Search municipalities [0] or districts [1]\n";
+        cin >> choice;
+        cout << endl;
+        if ((cin.fail() || cin.peek() != '\n') || (choice!=1 && choice!=0)) {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else {
+            valid=true;
+            if (choice) {
+                g.Task2_3(base, number, false);
+            } else {
+                g.Task2_3(base, number, true);
+            }
+        }
     }
 }
 
@@ -194,17 +237,38 @@ void Menu::Task2_3_2(){
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
     int number;
-    cout<<"Please enter a number:\n";
-    getline(cin>>number,source_name);
-    cout<<endl;
-    cout<<"Search municipalities [0] or districts [1]\n";
-    int choice;
-    getline(cin>>choice,source_name);
-    cout<<endl;
-    if(choice){
-        g.Task2_3_2(base,number,false);
-    }else{
-        g.Task2_3_2(base,number,true);
+    bool valid = false;
+    while(!valid) {
+        cout << "Please enter a number:\n";
+        cin >> number;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
+    valid=false;
+    while(!valid) {
+        int choice;
+        cout << "Search municipalities [0] or districts [1]\n";
+        cin >> choice;
+        cout << endl;
+        if ((cin.fail() || cin.peek() != '\n') || (choice!=1 && choice!=0)) {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else {
+            valid=true;
+            if (choice) {
+                g.Task2_3(base, number, false);
+            } else {
+                g.Task2_3(base, number, true);
+            }
+        }
     }
 }
 
@@ -281,9 +345,20 @@ void Menu::Task4_1(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
+    bool valid = false;
     int n;
-    cout <<"How many segments you want to erase ?:\n";
-    cin >> n;
+    while(!valid) {
+        cout << "How many segments you want to erase ?:\n";
+        cin >> n;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
     vector<int> reduce(n, 0);
     string source_reduce,destination_reduce;
     pair<string,string> railway;
@@ -316,9 +391,20 @@ void Menu::Task4_1_2(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
+    bool valid = false;
     int n;
-    cout <<"How many stations u want to add ?:\n";
-    cin >> n;
+    while(!valid) {
+        cout << "How many segments you want to add ?:\n";
+        cin >> n;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
     vector<string> stations(n, "");
     string name_station;
     for (size_t i = 0; i < n; i++){
@@ -341,12 +427,34 @@ void Menu::Task4_2(){
     vector<string> base;
     base.emplace_back(source_name);
     base.emplace_back(dest_name);
+    bool valid = false;
     int number;
-    cout<<"Please enter a number:\n";
-    cin>>number;
+    while(!valid) {
+        cout << "Please enter a number ?:\n";
+        cin >> number;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
+    valid = false;
     int n;
-    cout <<"How many segments you want to erase ?:\n";
-    cin >> n;
+    while(!valid) {
+        cout << "How many segments you want to erase ?:\n";
+        cin >> n;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
 
     vector<int> reduce(n, 0);
     string source_reduce,destination_reduce;
@@ -419,18 +527,51 @@ void Menu::Task4_2_2_aux_1(){
     vector<int> reduce;
     string source_reduce,destination_reduce;
     pair<string,string> railway;
+    bool valid = false;
     switch (answer) {
         case 1:
-            cout<<"Please enter a number:\n";
-            cin>>number_1;
+            while(!valid) {
+                cout << "Please enter a number ?:\n";
+                cin >> number_1;
+                if (cin.fail() || cin.peek() != '\n') {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    cout << "Invalid input" << endl << endl;
+                }
+                else{
+                    valid=true;
+                }
+            }
             g.Task4_2_3(number_1);
             break;
         case 2:
-            cout<<"Please enter a number:\n";
-            cin>>number_2;
+            valid=false;
+            while(!valid) {
+                cout << "Please enter a number ?:\n";
+                cin >> number_2;
+                if (cin.fail() || cin.peek() != '\n') {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    cout << "Invalid input" << endl << endl;
+                }
+                else{
+                    valid=true;
+                }
+            }
+            valid=false;
             int n;
-            cout <<"How many segments you want to erase ?:\n";
-            cin >> n;
+            while(!valid) {
+                cout << "Please enter a number ?:\n";
+                cin >> n;
+                if (cin.fail() || cin.peek() != '\n') {
+                    cin.clear();
+                    cin.ignore(INT_MAX, '\n');
+                    cout << "Invalid input" << endl << endl;
+                }
+                else{
+                    valid=true;
+                }
+            }
 
             for (size_t i = 0; i < n; i++){
                 cout <<"Please enter the name of one source station:\n";
@@ -461,11 +602,33 @@ void Menu::Task4_2_2_aux_2(){
     vector<int> reduce;
     string source_reduce,destination_reduce;
     pair<string,string> railway;
-    cout<<"Please enter a number (top-k):\n";
-    cin>>number;
+    bool valid=false;
+    while(!valid) {
+        cout << "Please enter a number (top-k) ?:\n";
+        cin >> number;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
+    valid=false;
     int n;
-    cout <<"How many segments you want to erase ?:\n";
-    cin >> n;
+    while(!valid) {
+        cout << "How many segments you want to erase ?:\n";
+        cin >> n;
+        if (cin.fail() || cin.peek() != '\n') {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input" << endl << endl;
+        }
+        else{
+            valid=true;
+        }
+    }
 
     for (size_t i = 0; i < n; i++){
         cout <<"Please enter the name of one source station:\n";
