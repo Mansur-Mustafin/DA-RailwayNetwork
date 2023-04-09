@@ -8,7 +8,7 @@ int main() {
 
     try {
         Menu menu;
-        //menu.choose_network();
+        menu.choose_network();
     }
     catch (exception& e) {
         cout << e.what() << '\n';
@@ -19,11 +19,11 @@ int main() {
 //    vector<string> base = {"A", "D", "E"};
 //    g.Task2_4_3(base);
 
-    Graph g = Graph("network.csv", "stations.csv");
-    //vector<int> reduce = {464};
-    //g.Task4_2_2(reduce, 15);
-    //g.Task4_2_3(100);
-    g.Task3_1({"Lisboa Oriente" , "Porto Campanhã"});
+//    Graph g = Graph("network22.csv", "stations.csv");
+//    //vector<int> reduce = {464};
+//    //g.Task4_2_2(reduce, 15);
+//    //g.Task4_2_3(100);
+//    g.Task3_1({"Lisboa Oriente" , "Porto Campanhã"});
 
     return 0;
 }

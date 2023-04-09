@@ -13,10 +13,10 @@
 
 Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
     if(input_edge(input_edge_name_) == -1){
-        return;
+        exit(1);
     }
     if(input_vertex(input_vertex_name_) == -1){
-        return;
+        exit(1);
     }
     build_adjacencyList();
     input_edge_name = input_edge_name_;
@@ -41,7 +41,7 @@ int Graph::input_vertex(const string &input_name) {
         fin.close();
         return 0;
     }else{
-        cout << "File: " << input_name << " unable to open." << endl;
+        cerr << "File: " << input_name << " unable to open." << endl;
         return -1;
     }
     return 0;
@@ -63,7 +63,7 @@ int Graph::input_edge(const string &input_name) {
         fin.close();
         return 0;
     }else{
-        cout << "File: " << input_name << " unable to open." << endl;
+        cerr << "File: " << input_name << " unable to open." << endl;
         return -1;
     }
     return 0;
