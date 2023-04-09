@@ -12,43 +12,61 @@
 #include <iomanip>
 
 Graph::Graph(const string &input_edge_name_, const string &input_vertex_name_) {
-    input_edge(input_edge_name_);
-    input_vertex(input_vertex_name_);
+    if(input_edge(input_edge_name_) == -1){
+        return;
+    }
+    if(input_vertex(input_vertex_name_) == -1){
+        return;
+    }
     build_adjacencyList();
     input_edge_name = input_edge_name_;
     input_vertex_name = input_vertex_name_;
 }
 
-void Graph::input_vertex(const string &input_name) {
+int Graph::input_vertex(const string &input_name) {
     Station v;
     string s;
     ifstream fin(input_name);
-    int ptr = 0;
-    getline(fin, s);
-    while (fin >> v) {
-        if(key.find(v.getName()) == key.end()){
-            key[v.getName()] = ptr;
-            v.setInd(ptr);
-            ptr++;
-            stations.emplace_back(v);
+    if(fin.is_open()){
+        int ptr = 0;
+        getline(fin, s);
+        while (fin >> v) {
+            if(key.find(v.getName()) == key.end()){
+                key[v.getName()] = ptr;
+                v.setInd(ptr);
+                ptr++;
+                stations.emplace_back(v);
+            }
         }
+        fin.close();
+        return 0;
+    }else{
+        cout << "File: " << input_name << " unable to open." << endl;
+        return -1;
     }
-    fin.close();
+    return 0;
 }
 
-void Graph::input_edge(const string &input_name) {
+int Graph::input_edge(const string &input_name) {
     Railway e;
     string s;
     ifstream fin(input_name);
-    getline(fin, s);
-    while (fin >> e) {
-        railways.emplace_back(e);
-        string tmp = e.getStationA();
-        e.setStationA(e.getStationB());
-        e.setStationB(tmp);
-        railways.emplace_back(e);
+    if(fin.is_open()){
+        getline(fin, s);
+        while (fin >> e) {
+            railways.emplace_back(e);
+            string tmp = e.getStationA();
+            e.setStationA(e.getStationB());
+            e.setStationB(tmp);
+            railways.emplace_back(e);
+        }
+        fin.close();
+        return 0;
+    }else{
+        cout << "File: " << input_name << " unable to open." << endl;
+        return -1;
     }
-    fin.close();
+    return 0;
 }
 
 void Graph::build_adjacencyList() {
@@ -1011,13 +1029,17 @@ bool Graph::check_Disjoint(const vector<string>& v1, const vector<string>& v2) {
 void Graph::printImage(const string& name, bool f) {
     if(f) cout << "File name: " << name << endl;
     ifstream file(name);
-    string line;
-    cout << endl;
-    while (std::getline(file, line)) {
-        std::cout << line << '\n';
+    if(file.is_open()){
+        string line;
+        cout << endl;
+        while (std::getline(file, line)) {
+            std::cout << line << '\n';
+        }
+        file.close();
+        cout << endl << endl;
+    }else{
+        cout << "File: " << name << " unable to open." << endl;
     }
-    file.close();
-    cout << endl << endl;
 }
 
 void Graph::printNetwork() {

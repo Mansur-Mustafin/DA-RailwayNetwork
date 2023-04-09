@@ -114,7 +114,7 @@ class Graph {
     * The time complexity of this function is O(n) where n is the number of lines of the string input_name.
     * @param input_name - Name of the file containing the vertices (or stations) we want to insert into the Graph
     */
-    void input_vertex(const string &input_name);
+    int input_vertex(const string &input_name);
 
     /**
     * This function inserts the Railways (in this case as edges) in the string input_name into the given Graph.
@@ -122,7 +122,7 @@ class Graph {
     * The time complexity of this function is O(n) where n is the number of lines of the string input_name.
     * @param input_name - Name of the file containing the edges (or railways) we want to insert into the Graph
     */
-    void input_edge(const string &input_name);
+    int input_edge(const string &input_name);
 
     /**
     * This function inputs into the vector adjacencyList subvectors of two integers, that dictate which Stations
