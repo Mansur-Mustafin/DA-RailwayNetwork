@@ -264,9 +264,9 @@ void Menu::Task2_3_2(){
         else {
             valid=true;
             if (choice) {
-                g.Task2_3(base, number, false);
+                g.Task2_3_2(base, number, false);
             } else {
-                g.Task2_3(base, number, true);
+                g.Task2_3_2(base, number, true);
             }
         }
     }
@@ -670,9 +670,6 @@ void Menu::main_menu() {
                    "|===========================================================|========================================================|\n"
                    "| Maximum flow in a reduced network segments            [41]|  Minimum cost of maintaining maximum flow         [31] |\n"
                    "| Maximum flow in a reduced network stations            [42]|                                                        |\n"
-                   "| Top-k most affected stations for each segment failure [43]|                                                        |\n"
-                   "|                                                       [44]|                                                        |\n"
-                   "| Top-k most affected stations segment failure          [44]|                                                        |\n"
                    "| Top-k most affected stations segment failure with flow[43]|                                                        |\n"
                    "| Top-k most affected stations segment failure          [44]|                                                        |\n"
                    "|====================================================================================================================|\n"
