@@ -143,7 +143,8 @@ class Graph {
     * @param s - Integer representing the index of the "Source" Station
     * @param t - Integer representing the index of the "Sink" Station
     * @param rail - Vector of Objects of the class Railway
-    * @param skip
+    * @param skip - Integer representing the index of a Station that should be ignored. If the value of the variable is -1,
+    * then no Station should be ignored by the function.
     * @return an integer with the value of the maximum flow between the "source" vertex and the "sink" vertex.
     */
     int ford_falk(int s, int t, vector<Railway> &rail, int skip = -1);
@@ -449,6 +450,8 @@ public:
     * This function writes an "image" contained in a text document into the terminal.
     *
     * The time complexity of this function is O(n) where n is the number of lines of the text file.
+    * @param file_name - Name of the file being printed
+    * @param f - Boolean variable. If true, print the name of the file being read
     */
     static void printImage(const string& file_name = "train_image.txt", bool f = false);
 

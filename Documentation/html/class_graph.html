@@ -171,10 +171,10 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:ab63ee8e082485ca0a601c0e563952a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d5b97a6b48e43fa04ce3918c37e9b4c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a6d5b97a6b48e43fa04ce3918c37e9b4c">check_segments</a> (const vector&lt; int &gt; &amp;seg)</td></tr>
 <tr class="separator:a6d5b97a6b48e43fa04ce3918c37e9b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1270f6396f38a1a102595ba59b108593"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a1270f6396f38a1a102595ba59b108593">input_vertex</a> (const string &amp;input_name)</td></tr>
-<tr class="separator:a1270f6396f38a1a102595ba59b108593"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacf577256d26c6bb8a2b266b457fb93f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aacf577256d26c6bb8a2b266b457fb93f">input_edge</a> (const string &amp;input_name)</td></tr>
-<tr class="separator:aacf577256d26c6bb8a2b266b457fb93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af992c3d4c6e881c570fc6270284e03b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#af992c3d4c6e881c570fc6270284e03b0">input_vertex</a> (const string &amp;input_name)</td></tr>
+<tr class="separator:af992c3d4c6e881c570fc6270284e03b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7365a1cf14481cc667d8ee6aac6d4ff2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7365a1cf14481cc667d8ee6aac6d4ff2">input_edge</a> (const string &amp;input_name)</td></tr>
+<tr class="separator:a7365a1cf14481cc667d8ee6aac6d4ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95bda9b4265c87f74980eb5148863edd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a95bda9b4265c87f74980eb5148863edd">build_adjacencyList</a> ()</td></tr>
 <tr class="separator:a95bda9b4265c87f74980eb5148863edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47e663571154169b8b16890fa568a7a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a47e663571154169b8b16890fa568a7a1">ford_falk</a> (int s, int t, vector&lt; <a class="el" href="class_railway.html">Railway</a> &gt; &amp;rail, int skip=-1)</td></tr>
@@ -925,7 +925,7 @@ Friends</h2></td></tr>
     <tr><td class="paramname">s</td><td>- Integer representing the index of the "Source" <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> </td></tr>
     <tr><td class="paramname">t</td><td>- Integer representing the index of the "Sink" <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> </td></tr>
     <tr><td class="paramname">rail</td><td>- Vector of Objects of the class <a class="el" href="class_railway.html" title="Class representing a Railway.">Railway</a> </td></tr>
-    <tr><td class="paramname">skip</td><td></td></tr>
+    <tr><td class="paramname">skip</td><td>- Integer representing the index of a <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> that should be ignored. If the value of the variable is -1, then no <a class="el" href="class_station.html" title="Class representing a Train Station.">Station</a> should be ignored by the function. </td></tr>
   </table>
   </dd>
 </dl>
@@ -959,8 +959,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aacf577256d26c6bb8a2b266b457fb93f" name="aacf577256d26c6bb8a2b266b457fb93f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacf577256d26c6bb8a2b266b457fb93f">&#9670;&#160;</a></span>input_edge()</h2>
+<a id="a7365a1cf14481cc667d8ee6aac6d4ff2" name="a7365a1cf14481cc667d8ee6aac6d4ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7365a1cf14481cc667d8ee6aac6d4ff2">&#9670;&#160;</a></span>input_edge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -969,7 +969,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Graph::input_edge </td>
+          <td class="memname">int Graph::input_edge </td>
           <td>(</td>
           <td class="paramtype">const string &amp;&#160;</td>
           <td class="paramname"><em>input_name</em></td><td>)</td>
@@ -992,8 +992,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a1270f6396f38a1a102595ba59b108593" name="a1270f6396f38a1a102595ba59b108593"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1270f6396f38a1a102595ba59b108593">&#9670;&#160;</a></span>input_vertex()</h2>
+<a id="af992c3d4c6e881c570fc6270284e03b0" name="af992c3d4c6e881c570fc6270284e03b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af992c3d4c6e881c570fc6270284e03b0">&#9670;&#160;</a></span>input_vertex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1002,7 +1002,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Graph::input_vertex </td>
+          <td class="memname">int Graph::input_vertex </td>
           <td>(</td>
           <td class="paramtype">const string &amp;&#160;</td>
           <td class="paramname"><em>input_name</em></td><td>)</td>
@@ -1110,7 +1110,13 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This function writes an "image" contained in a text document into the terminal.</p>
-<p>The time complexity of this function is O(n) where n is the number of lines of the text file. </p>
+<p>The time complexity of this function is O(n) where n is the number of lines of the text file. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>- Name of the file being printed </td></tr>
+    <tr><td class="paramname">f</td><td>- Boolean variable. If true, print the name of the file being read </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
